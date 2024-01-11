@@ -85,7 +85,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+We wanted to solve a porblem of what to make when you have limited resources. So we came up with the idea of creating a mobile app that allows the user to input the ingredients available and it will provide the user with possible recipes of food they can make with those ingredients.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -93,14 +93,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 ### Built With
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+[![C++][C++]][C++-url] [![CMake][CMake]][CMake-url] [![Swift][Swift]][Swift-url] [![Dart][Dart]][Dart-url] [![C][C]][C-url] [![HTML5][HTML5]][HTML5-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -195,8 +188,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
-
+LinkedIn - [Christine Bui](https://linkedin.com/in/christine-bui-csulb) 
+LinkedIn - [Jeet Patel](https://linkedin.com/in/jeet-patel-csulb)
 Project Link: [https://github.com/Christine-Bui/Dish-Wish](https://github.com/Christine-Bui/Dish-Wish)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -216,7 +209,7 @@ Project Link: [https://github.com/Christine-Bui/Dish-Wish](https://github.com/Ch
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://github.com/Christine-Bui/Dish-Wish.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Christine-Bui/Dish-Wish.svg?style=for-the-badge
 [contributors-url]: https://github.com/Christine-Bui/Dish-Wish/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Christine-Bui/Dish-Wish.svg?style=for-the-badge
 [forks-url]: https://github.com/Christine-Bui/Dish-Wish/network/members
@@ -229,19 +222,15 @@ Project Link: [https://github.com/Christine-Bui/Dish-Wish](https://github.com/Ch
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/christine-bui-csulb
 [product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[C++]: https://img.shields.io/badge/C++-2CA5E0?style=for-the-badge&logo=cplusplus&logoColor=white"
+[C++-url]: https://cplusplus.com/
+[CMake]: https://img.shields.io/badge/CMake-%23008FBA.svg?style=for-the-badge&logo=cmake&logoColor=white
+[CMake-url]: https://cmake.org/
+[Swift]: https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white
+[Swift-url]: https://www.swift.org/
+[Dart]: https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white
+[Dart-url]: https://angular.io/
+[C]: https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white
+[C-url]: https://
+[HTML5]: https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white
+[HTML5-url]: https://
