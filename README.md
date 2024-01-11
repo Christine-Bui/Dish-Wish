@@ -182,8 +182,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-LinkedIn - [Christine Bui](https://linkedin.com/in/christine-bui-csulb) 
-LinkedIn - [Jeet Patel](https://linkedin.com/in/jeet-patel-csulb)
+LinkedIn - [Christine Bui](https://linkedin.com/in/christine-bui-csulb)<br>
+LinkedIn - [Jeet Patel](https://linkedin.com/in/jeet-patel-csulb)<br>
 Project Link: [https://github.com/Christine-Bui/Dish-Wish](https://github.com/Christine-Bui/Dish-Wish)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
