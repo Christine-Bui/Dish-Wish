@@ -46,8 +46,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 </div>
 
 
@@ -187,8 +185,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-LinkedIn - [Christine Bui](https://linkedin.com/in/christine-bui-csulb)<br>
-LinkedIn - [Jeet Patel](https://linkedin.com/in/jeet-patel-csulb)<br>
+<a href="https://www.linkedin.com/in/jeet-patel-csulb"> <img src="images/J_Linkedin.jpg"><img></a>
+<a href="https://www.linkedin.com/in/jeet-patel-csulb"> <img src="images/C_Linkedin.jpg"><img></a><br>
 Project Link: [https://github.com/Christine-Bui/Dish-Wish](https://github.com/Christine-Bui/Dish-Wish)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
