@@ -18,7 +18,7 @@
 <h3 align="center">Dish Wish</h3>
 
   <p align="center">
-    project_description
+    Need a Dish, We Grant That Wish
     <br />
     <a href="https://github.com/Christine-Bui/Dish-Wish"><strong>Explore the docs »</strong></a>
     <br />
@@ -81,7 +81,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-We wanted to solve a porblem of what to make when you have limited resources. So we came up with the idea of creating a mobile app that allows the user to input the ingredients available and it will provide the user with possible recipes of food they can make with those ingredients.
+We wanted to solve a problem of what to make when you have limited resources. So we came up with the idea of creating a mobile app that allows the user to input the ingredients available and it will provide the user with possible recipes of food they can make with those ingredients.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
