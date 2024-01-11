@@ -18,7 +18,7 @@
 <h3 align="center">Dish Wish</h3>
 
   <p align="center">
-    <i> Need a dish, we grant that wish </i>
+    <em> Need a dish, we grant that wish </em>
     <br />
     <a href="https://github.com/Christine-Bui/Dish-Wish"><strong>Explore the docs »</strong></a>
     <br />
