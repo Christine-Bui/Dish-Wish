@@ -55,6 +55,7 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
+      <li><a href="#high-fidelity-design">High Fidelity Design</a></li>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
