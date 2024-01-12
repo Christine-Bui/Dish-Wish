@@ -143,10 +143,40 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Loading Screen
+- [ ] Bottom Navigation Bar
+    - [ ] Saved button
+    - [ ] Home button
+    - [ ] More button
+- [ ] Home screen
+    - [ ] Search Bar
+    - [ ] Horizontal Scroll List Views
+    - [ ] Vertical scrolls for sections recommended for you, popular dishes, and your collections
+- [ ] Filter Pop-up Dialog Page
+    - [ ] By ingredients button
+    - [ ] By recipe button
+- [ ] Search by ingredients option
+    - [ ] Vertical scroll list view of ingredients (alphabet order, matches user input, checkboxes)
+- [ ] Search by recipe
+    - [ ] Vertical card view of recipes (top: most relevant, after: similar)
+    - [ ] Star option to save
+- [ ] Recipe Page
+    - [ ] Back button
+    - [ ] Star option to save
+    - [ ] Vertical scroll for recipe content
+- [ ] Collection Page
+    - [ ] Search bar
+    - [ ] Add collection button
+    - [ ] Card view of groups of recipes saved
+- [ ] Settings Page
+    - [ ] Theme toggle for dark or light mode
+    - [ ] Slider for adjusting font size
+    - [ ] Buttons for FAQ and About us pages
+- [ ] Recently Viewed Page
+    - [ ] Vertical Scroll List view of recipes
+- [ ] FAQ
+    - [ ] Vertical scroll list view of questions and answers
+- [ ] About Us page
 
 See the [open issues](https://github.com/Christine-Bui/Dish-Wish/issues) for a full list of proposed features (and known issues).
 
