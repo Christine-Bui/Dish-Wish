@@ -85,7 +85,48 @@ We wanted to solve a problem of what to make when you have limited resources. So
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## High Fidelity Design
+### Light Mode
+<table>
+  <tr>
+    <td><img src="images/Loading Screen.png"></td>
+    <td><img src="images/Home Screen.png"></td>
+    <td><img src="images/Fliter Search.png"></td>
+    <td><img src="images/Ingredient Search.png"></td>
+  </tr>
+  <tr>
+    <td><img src="images/Recipe Search.png"></td>
+    <td><img src="images/Recipe.png"></td>
+    <td><img src="images/Collections.png"></td>
+    <td><img src="images/Settings.png"></td>
+  </tr>
+  <tr>
+    <td><img src="images/Recently Viewed.png"></td>
+    <td><img src="images/FAQ.png"></td>
+    <td><img src="images/About Us.png"></td>
+  </tr>
+</table>
 
+### Dark Mode
+<table>
+  <tr>
+    <td><img src="images/Dark Loading Screen.png"></td>
+    <td><img src="images/Dark Home Screen.png"></td>
+    <td><img src="images/Dark Filter Search.png"></td>
+    <td><img src="images/Dark Ingredient Search.png"></td>
+  </tr>
+  <tr>
+    <td><img src="images/Dark Recipe Search.png"></td>
+    <td><img src="images/Dark Recipe.png"></td>
+    <td><img src="images/Dark Collection.png"></td>
+    <td><img src="images/Dark Settings.png"></td>
+  </tr>
+  <tr>
+    <td><img src="images/Dark Recently Viewed.png"></td>
+    <td><img src="images/Dark FAQ.png"></td>
+    <td><img src="images/Dark About Us.png"></td>
+  </tr>
+</table>
 
 ### Built With
 
