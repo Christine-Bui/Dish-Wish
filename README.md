@@ -55,8 +55,12 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <li><a href="#high-fidelity-design">High Fidelity Design</a></li>
       <ul>
+        <li><a href="#high-fidelity-design">High Fidelity Design</a></li>
+          <ul>
+            <li><a href="#light-mode">Light Mode</a></li>
+            <li><a href="#dark-mode">Dark Mode</a></li>
+          </ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -76,7 +80,6 @@
 </details>
 
 
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -86,8 +89,8 @@ We wanted to solve a problem of what to make when you have limited resources. So
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## High Fidelity Design
-### Light Mode
+### High Fidelity Design
+#### Light Mode
 <table>
   <tr>
     <td><img src="images/Loading Screen.png"></td>
@@ -108,7 +111,7 @@ We wanted to solve a problem of what to make when you have limited resources. So
   </tr>
 </table>
 
-### Dark Mode
+#### Dark Mode
 <table>
   <tr>
     <td><img src="images/Dark Loading Screen.png"></td>
@@ -128,12 +131,13 @@ We wanted to solve a problem of what to make when you have limited resources. So
     <td><img src="images/Dark About Us.png"></td>
   </tr>
 </table>
+<br>
 
 ### Built With
 
 [![C++][C++]][C++-url] [![CMake][CMake]][CMake-url] [![Swift][Swift]][Swift-url] [![Dart][Dart]][Dart-url] [![C][C]][C-url] [![HTML5][HTML5]][HTML5-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
 
 
 
@@ -167,7 +171,7 @@ This is an example of how to list things you need to use the software and how to
    const API_KEY = 'ENTER YOUR API';
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
 
 
 
@@ -178,7 +182,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
 
 
 
@@ -223,7 +227,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 See the [open issues](https://github.com/Christine-Bui/Dish-Wish/issues) for a full list of proposed features (and known issues).
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
 
 
 
@@ -232,7 +236,7 @@ See the [open issues](https://github.com/Christine-Bui/Dish-Wish/issues) for a f
 
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
 
 
 
@@ -242,7 +246,7 @@ See the [open issues](https://github.com/Christine-Bui/Dish-Wish/issues) for a f
 <a href="https://www.linkedin.com/in/jeet-patel-csulb"> <img src="images/J_Linkedin.jpg" widht="auto" height="28px"><img></a>
 <a href="https://www.linkedin.com/in/christine-bui-csulb" > <img src="images/C_Linkedin.jpg" widht="auto" height="28x"><img></a><br>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
 
 
 
@@ -253,7 +257,7 @@ See the [open issues](https://github.com/Christine-Bui/Dish-Wish/issues) for a f
 * []()
 * []()
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#about-the-project">back to top</a>)</p>
 
 
 
