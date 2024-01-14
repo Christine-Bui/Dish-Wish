@@ -91,7 +91,7 @@ class _HomePage extends State<HomePage> {
           height: 15,
         ),
         Container(
-          height: 240,
+          height: 260,
           child: ListView.separated(
             itemBuilder: (context, index) {
               return Container(
@@ -99,6 +99,7 @@ class _HomePage extends State<HomePage> {
                   decoration: BoxDecoration(
                       color: Colors.grey.withOpacity(0.3),
                       borderRadius: BorderRadius.circular(20)),
+                      padding: EdgeInsets.all(10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -130,6 +131,7 @@ class _HomePage extends State<HomePage> {
                       //   ),
                       // ),
                     ],
+                    
                   )
                 );
             },
@@ -161,7 +163,7 @@ class _HomePage extends State<HomePage> {
           height: 15,
         ),
         Container(
-          height: 240,
+          height: 260,
           child: ListView.separated(
             itemBuilder: (context, index) {
               return Container(
@@ -169,6 +171,7 @@ class _HomePage extends State<HomePage> {
                   decoration: BoxDecoration(
                       color: Colors.grey.withOpacity(0.3),
                       borderRadius: BorderRadius.circular(20)),
+                      padding: EdgeInsets.all(10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
