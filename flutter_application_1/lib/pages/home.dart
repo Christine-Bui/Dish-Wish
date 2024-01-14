@@ -76,146 +76,190 @@ class _HomePage extends State<HomePage> {
   }
 
   Column recommendSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: Text(
-            'Recommended for you',
-            style: TextStyle(
-                color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
-          ),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        Container(
-          height: 330,
-          child: ListView.separated(
-            itemBuilder: (context, index) {
-              return Container(
-                  width: 210,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(20)),
-                      padding: EdgeInsets.all(10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20), // Image border
-                        child: SizedBox.fromSize(
-                          size: Size.fromRadius(108), // Image radius
-                          child: Image.asset(
-                            recipes[index].iconPath,
-                            // height: 240,
-                            // width: 210,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        recipes[index].name,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                            fontSize: 16),
-                      ),
-                      Text(
-                        recipes[index].description,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                            fontSize: 16),
-                      ),
-                    ],
-                    
-                  )
-                );
-            },
-            separatorBuilder: (context, index) => SizedBox(
-              width: 25,
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Popular Dishes',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-            itemCount: recipes.length,
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.only(left: 20, right: 20),
+            TextButton(
+              onPressed: () {
+                // Add your "See All" button action here
+              },
+              child: Text(
+                'See All',
+                style: TextStyle(
+                  color: Colors.blue, // Change color as needed
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      SizedBox(
+        height: 15,
+      ),
+      Container(
+        height: 330,
+        child: ListView.separated(
+          itemBuilder: (context, index) {
+            return Container(
+              width: 210,
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: EdgeInsets.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: SizedBox.fromSize(
+                      size: Size.fromRadius(108),
+                      child: Image.asset(
+                        recipes[index].iconPath,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    recipes[index].name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Text(
+                    recipes[index].description,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+          separatorBuilder: (context, index) => SizedBox(
+            width: 25,
           ),
-        )
-      ],
-    );
-  }
+          itemCount: recipes.length,
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.only(left: 20, right: 20),
+        ),
+      )
+    ],
+  );
+}
+
 
   Column popularSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: Text(
-            'Popular Dishes',
-            style: TextStyle(
-                color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
-          ),
-        ),
-        SizedBox(
-          height: 15,
-        ),
-        Container(
-          height: 330,
-          child: ListView.separated(
-            itemBuilder: (context, index) {
-              return Container(
-                  width: 210,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(20)),
-                      padding: EdgeInsets.all(10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start, // Align names to the left
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20), // Image border
-                        child: SizedBox.fromSize(
-                          size: Size.fromRadius(108), // Image radius
-                          child: Image.asset(
-                            recipes[index].iconPath,
-                            // height: 240,
-                            // width: 210,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        recipes[index].name,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                            fontSize: 16),
-                      ),
-                      Text(
-                        recipes[index].description,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                            fontSize: 16),
-                      ),
-                    ],
-                  ));
-            },
-            separatorBuilder: (context, index) => SizedBox(
-              width: 25,
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Popular Dishes',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-            itemCount: recipes.length,
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.only(left: 20, right: 20),
+            TextButton(
+              onPressed: () {
+                // Add your "See All" button action here
+              },
+              child: Text(
+                'See All',
+                style: TextStyle(
+                  color: Colors.blue, // Change color as needed
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      SizedBox(
+        height: 15,
+      ),
+      Container(
+        height: 330,
+        child: ListView.separated(
+          itemBuilder: (context, index) {
+            return Container(
+              width: 210,
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: EdgeInsets.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: SizedBox.fromSize(
+                      size: Size.fromRadius(108),
+                      child: Image.asset(
+                        recipes[index].iconPath,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    recipes[index].name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Text(
+                    recipes[index].description,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+          separatorBuilder: (context, index) => SizedBox(
+            width: 25,
           ),
-        )
-      ],
-    );
-  }
+          itemCount: recipes.length,
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.only(left: 20, right: 20),
+        ),
+      )
+    ],
+  );
+}
+
 
   Container searchField() {
     return Container(
