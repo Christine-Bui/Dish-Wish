@@ -32,7 +32,10 @@ class _HomePage extends State<HomePage> {
           SizedBox(
             height: 40,
           ),
-          popularSection()
+          popularSection(),
+          SizedBox(
+            height: 40,
+          ),
         ],
       ),
     );
