@@ -91,7 +91,7 @@ class _HomePage extends State<HomePage> {
           height: 15,
         ),
         Container(
-          height: 260,
+          height: 330,
           child: ListView.separated(
             itemBuilder: (context, index) {
               return Container(
@@ -102,6 +102,7 @@ class _HomePage extends State<HomePage> {
                       padding: EdgeInsets.all(10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20), // Image border
@@ -122,14 +123,13 @@ class _HomePage extends State<HomePage> {
                             color: Colors.black,
                             fontSize: 16),
                       ),
-                      // Text(
-                      //   recipes[index].level + ' | ' + recipes[index].duration + ' | ' + recipe[index].calories,
-                      //   style: TextStyle(
-                      //     color: Color(0xff7B6F72),
-                      //     fontSize: 13,
-                      //     fontWeight: FontWeight.w400
-                      //   ),
-                      // ),
+                      Text(
+                        recipes[index].description,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontSize: 16),
+                      ),
                     ],
                     
                   )
@@ -163,7 +163,7 @@ class _HomePage extends State<HomePage> {
           height: 15,
         ),
         Container(
-          height: 260,
+          height: 330,
           child: ListView.separated(
             itemBuilder: (context, index) {
               return Container(
@@ -174,6 +174,7 @@ class _HomePage extends State<HomePage> {
                       padding: EdgeInsets.all(10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start, // Align names to the left
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20), // Image border
@@ -194,14 +195,13 @@ class _HomePage extends State<HomePage> {
                             color: Colors.black,
                             fontSize: 16),
                       ),
-                      // Text(
-                      //   recipes[index].level + ' | ' + recipes[index].duration + ' | ' + recipe[index].calories,
-                      //   style: TextStyle(
-                      //     color: Color(0xff7B6F72),
-                      //     fontSize: 13,
-                      //     fontWeight: FontWeight.w400
-                      //   ),
-                      // ),
+                      Text(
+                        recipes[index].description,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                            fontSize: 16),
+                      ),
                     ],
                   ));
             },
