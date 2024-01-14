@@ -22,13 +22,16 @@ class _HomePage extends State<HomePage> {
     return Scaffold(
       appBar: appBar(),
       backgroundColor: Colors.white,
-      body: Column(
+      body: ListView(
         children: [
           searchField(),
           SizedBox(
             height: 40,
           ),
           recommendSection(),
+          SizedBox(
+            height: 40,
+          ),
           popularSection()
         ],
       ),
@@ -90,7 +93,8 @@ class _HomePage extends State<HomePage> {
                       //   ),
                       // ),
                     ],
-                  ));
+                  )
+                );
             },
             separatorBuilder: (context, index) => SizedBox(
               width: 25,
@@ -111,7 +115,7 @@ class _HomePage extends State<HomePage> {
         Padding(
           padding: const EdgeInsets.only(left: 20),
           child: Text(
-            'Recommended for you',
+            'Popular Dishes',
             style: TextStyle(
                 color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
           ),
