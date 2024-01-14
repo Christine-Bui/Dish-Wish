@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage> {
   List<RecipeModel> recipes = [];
+  int _currentIndex = 0;
 
   void getInitialInfo() {
     recipes = RecipeModel.getRecipes();
@@ -38,6 +39,7 @@ class _HomePage extends State<HomePage> {
           ),
         ],
       ),
+      bottomNavigationBar: botNav(),
     );
 
   }
@@ -45,6 +47,7 @@ class _HomePage extends State<HomePage> {
   BottomNavigationBar botNav(){
     return BottomNavigationBar(
     type: BottomNavigationBarType.fixed,
+    currentIndex: _currentIndex,
     backgroundColor: Colors.white,
     selectedItemColor: Colors.black,
     unselectedItemColor: Colors.grey,
@@ -56,8 +59,19 @@ class _HomePage extends State<HomePage> {
     items:[
       BottomNavigationBarItem(
         icon: SvgPicture.asset('assets/icons/Search.svg'),
+        label: 'Saved',
         ),
-    ]
+
+        BottomNavigationBarItem(
+        icon: SvgPicture.asset('assets/icons/Search.svg'),
+        label: 'Home',
+        ),
+
+        BottomNavigationBarItem(
+        icon: SvgPicture.asset('assets/icons/Search.svg'),
+        label: 'More',
+        ),
+      ]
     );
   }
 
