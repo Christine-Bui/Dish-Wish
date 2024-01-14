@@ -39,6 +39,26 @@ class _HomePage extends State<HomePage> {
         ],
       ),
     );
+
+  }
+
+  BottomNavigationBar botNav(){
+    return BottomNavigationBar(
+    type: BottomNavigationBarType.fixed,
+    backgroundColor: Colors.white,
+    selectedItemColor: Colors.black,
+    unselectedItemColor: Colors.grey,
+    selectedFontSize: 14,
+    unselectedFontSize: 14,
+    onTap: (value){
+
+    },
+    items:[
+      BottomNavigationBarItem(
+        icon: SvgPicture.asset('assets/icons/Search.svg'),
+        ),
+    ]
+    );
   }
 
   Column recommendSection() {
