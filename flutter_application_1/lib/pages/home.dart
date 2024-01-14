@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_application_1/models/recipe_model.dart';
 
 class HomePage extends StatelessWidget{
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  List<RecipeModel> recipes = [];
+
+  void getRecipes(){
+    recipes = RecipeModel.getRecipes();
+  }
 
   @override
   Widget build(BuildContext context){
@@ -11,7 +18,68 @@ class HomePage extends StatelessWidget{
       backgroundColor: Colors.white,
       body: Column(
         children: [
-        searchField()
+        searchField(),
+        SizedBox(height: 40,),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left:20),
+              child: Text(
+                'Recommended for you',
+                style:TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600
+                ),
+              ),
+            ),
+            SizedBox(height: 15,),
+            Container(
+              height: 240,
+              child: ListView.separated(
+                itemBuilder: (context, index){
+                  return Container(
+                    width: 210,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(20)
+                     ),
+                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SvgPicture.asset(recipes[index].iconPath),
+                        Text(
+                          recipes[index].name,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                            fontSize: 16
+                          ),
+                        ),
+                        // Text(
+                        //   recipes[index].level + ' | ' + recipes[index].duration + ' | ' + recipe[index].calories,
+                        //   style: TextStyle(
+                        //     color: Color(0xff7B6F72),
+                        //     fontSize: 13,
+                        //     fontWeight: FontWeight.w400
+                        //   ),
+                        // ),
+                      ],
+                     )
+                  );
+                }, 
+                separatorBuilder: (context, index) => SizedBox(width: 25,), 
+                itemCount: recipes.length,
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.only(
+                  left: 20,
+                  right: 20
+                ),
+              ),
+            )
+          ],
+          )
         ],
       ),
     );
