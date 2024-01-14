@@ -7,6 +7,7 @@ class RecipeModel {
     required this.name,
     required this. iconPath,
   });
+
   static List<RecipeModel> getRecipes(){
     List<RecipeModel> recipes = [];
 
@@ -30,5 +31,6 @@ class RecipeModel {
           iconPath: 'assets/icons/pho ga.jpg'
           )
         );
+      return recipes;
   }
 }

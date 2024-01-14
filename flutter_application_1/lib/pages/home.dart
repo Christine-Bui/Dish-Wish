@@ -2,17 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
 
-class HomePage extends StatelessWidget{
-  HomePage({super.key});
+class HomePage extends StatefulWidget{
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => HomePageState();
+}
+
+class HomePageState extends State<HomePage>{
 
   List<RecipeModel> recipes = [];
 
-  void getRecipes(){
+  void getInitialInfo(){
     recipes = RecipeModel.getRecipes();
   }
 
   @override
   Widget build(BuildContext context){
+    getInitialInfo();
     return Scaffold(
       appBar: appBar(),
       backgroundColor: Colors.white,
