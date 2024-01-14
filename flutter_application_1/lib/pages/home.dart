@@ -28,7 +28,8 @@ class _HomePage extends State<HomePage> {
           SizedBox(
             height: 40,
           ),
-          recommendSection()
+          recommendSection(),
+          popularSection()
         ],
       ),
     );
@@ -61,11 +62,86 @@ class _HomePage extends State<HomePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset(
-                        recipes[index].iconPath,
-                        height: 140,
-                        width: 140,
-                        fit: BoxFit.cover,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20), // Image border
+                        child: SizedBox.fromSize(
+                          size: Size.fromRadius(108), // Image radius
+                          child: Image.asset(
+                            recipes[index].iconPath,
+                            // height: 240,
+                            // width: 210,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        recipes[index].name,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                            fontSize: 16),
+                      ),
+                      // Text(
+                      //   recipes[index].level + ' | ' + recipes[index].duration + ' | ' + recipe[index].calories,
+                      //   style: TextStyle(
+                      //     color: Color(0xff7B6F72),
+                      //     fontSize: 13,
+                      //     fontWeight: FontWeight.w400
+                      //   ),
+                      // ),
+                    ],
+                  ));
+            },
+            separatorBuilder: (context, index) => SizedBox(
+              width: 25,
+            ),
+            itemCount: recipes.length,
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(left: 20, right: 20),
+          ),
+        )
+      ],
+    );
+  }
+
+  Column popularSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: Text(
+            'Recommended for you',
+            style: TextStyle(
+                color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Container(
+          height: 240,
+          child: ListView.separated(
+            itemBuilder: (context, index) {
+              return Container(
+                  width: 210,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.3),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20), // Image border
+                        child: SizedBox.fromSize(
+                          size: Size.fromRadius(108), // Image radius
+                          child: Image.asset(
+                            recipes[index].iconPath,
+                            // height: 240,
+                            // width: 210,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
                       Text(
                         recipes[index].name,
