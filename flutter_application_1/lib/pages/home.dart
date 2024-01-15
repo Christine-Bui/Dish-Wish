@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,8 +12,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage> {
   List<RecipeModel> recipes = [];
-  int _currentIndex = 0;
-
   void getInitialInfo() {
     recipes = RecipeModel.getRecipes();
   }
@@ -273,38 +272,30 @@ class _HomePage extends State<HomePage> {
 
   AppBar appBar() {
     return AppBar(
-      title: Text(
-        "Dish Wish",
-        style: TextStyle(
-            color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
-      ),
-      backgroundColor: Colors.white,
-      elevation: 0.0,
-      centerTitle: false,
-      leading:
-        IconButton(
+        title: Text(
+          "Dish Wish",
+          style: TextStyle(
+              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        centerTitle: false,
+        leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
-          tooltip:'Back',
-          onPressed: (){
-
-          },
+          tooltip: 'Back',
+          onPressed: () {},
         ),
-      actions: <Widget> [
-        IconButton(
-          icon: const Icon(Icons.favorite),
-          tooltip:'Show Liked',
-          onPressed: (){
-
-          },
-        ),
-        IconButton(
-          icon: const Icon(Icons.more_vert),
-          tooltip:'Show More',
-          onPressed: (){
-
-          },
-        ),
-      ]
-    );
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            tooltip: 'Show Liked',
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.more_vert),
+            tooltip: 'Show More',
+            onPressed: () {},
+          ),
+        ]);
   }
 }
