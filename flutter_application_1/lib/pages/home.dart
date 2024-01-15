@@ -52,7 +52,7 @@ class _HomePage extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Popular Dishes',
+                'Recommended for you',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -82,14 +82,13 @@ class _HomePage extends State<HomePage> {
           child: ListView.separated(
             itemBuilder: (context, index) {
               return Container(
-                width: 210,
+                width: 238,
                 decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 padding: EdgeInsets.all(10),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ClipRRect(
@@ -102,6 +101,7 @@ class _HomePage extends State<HomePage> {
                         ),
                       ),
                     ),
+                    Padding(padding: const EdgeInsets.only(top: 10)),
                     Text(
                       recipes[index].name,
                       style: TextStyle(
@@ -115,7 +115,7 @@ class _HomePage extends State<HomePage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
                   ],
@@ -174,14 +174,13 @@ class _HomePage extends State<HomePage> {
           child: ListView.separated(
             itemBuilder: (context, index) {
               return Container(
-                width: 210,
+                width: 238,
                 decoration: BoxDecoration(
                   color: Colors.grey.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 padding: EdgeInsets.all(10),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ClipRRect(
@@ -194,6 +193,7 @@ class _HomePage extends State<HomePage> {
                         ),
                       ),
                     ),
+                    Padding(padding: const EdgeInsets.only(top: 10)),
                     Text(
                       recipes[index].name,
                       style: TextStyle(
@@ -207,7 +207,7 @@ class _HomePage extends State<HomePage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
                   ],
