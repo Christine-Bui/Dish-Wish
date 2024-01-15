@@ -27,15 +27,15 @@ class _HomePage extends State<HomePage> {
         children: [
           searchField(),
           SizedBox(
-            height: 40,
+            height: 30,
           ),
           recommendSection(),
           SizedBox(
-            height: 40,
+            height: 30,
           ),
           popularSection(),
           SizedBox(
-            height: 40,
+            height: 30,
           ),
         ],
       ),
@@ -84,8 +84,15 @@ class _HomePage extends State<HomePage> {
               return Container(
                 width: 238,
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.3),
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1), // Shadow color
+                      blurRadius: 8, // Blur radius
+                      offset: Offset(3, 6), // Offset in x and y axis
+                    ),
+                  ],
                 ),
                 padding: EdgeInsets.all(10),
                 child: Column(
@@ -127,7 +134,7 @@ class _HomePage extends State<HomePage> {
             ),
             itemCount: recipes.length,
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.only(left: 20, right: 20),
+            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
           ),
         )
       ],
@@ -144,7 +151,7 @@ class _HomePage extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Popular Dishes',
+                'Popular Recipes',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
@@ -176,8 +183,15 @@ class _HomePage extends State<HomePage> {
               return Container(
                 width: 238,
                 decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(0.3),
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1), // Shadow color
+                      blurRadius: 8, // Blur radius
+                      offset: Offset(3, 6), // Offset in x and y axis
+                    ),
+                  ],
                 ),
                 padding: EdgeInsets.all(10),
                 child: Column(
@@ -219,7 +233,7 @@ class _HomePage extends State<HomePage> {
             ),
             itemCount: recipes.length,
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.only(left: 20, right: 20),
+            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
           ),
         )
       ],
