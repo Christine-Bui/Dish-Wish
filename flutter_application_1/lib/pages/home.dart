@@ -260,28 +260,37 @@ class _HomePage extends State<HomePage> {
   AppBar appBar() {
     return AppBar(
       title: Text(
-        "What's in Your Fridge?",
+        "Dish Wish",
         style: TextStyle(
             color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
       ),
       backgroundColor: Colors.white,
       elevation: 0.0,
-      centerTitle: true,
-      leading: GestureDetector(
-        onTap: () {},
-        child: Container(
-          margin: EdgeInsets.all(10),
-          alignment: Alignment.center,
-          child: SvgPicture.asset(
-            'assets/icons/Arrow - Left 2.svg',
-            height: 20,
-            width: 20,
-          ),
-          decoration: BoxDecoration(
-              color: Color(0xffF7F8F8),
-              borderRadius: BorderRadius.circular(10)),
+      centerTitle: false,
+      leading:
+        IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          tooltip:'Back',
+          onPressed: (){
+
+          },
         ),
-      ),
+      actions: <Widget> [
+        IconButton(
+          icon: const Icon(Icons.favorite),
+          tooltip:'Show Liked',
+          onPressed: (){
+
+          },
+        ),
+        IconButton(
+          icon: const Icon(Icons.more_vert),
+          tooltip:'Show More',
+          onPressed: (){
+
+          },
+        ),
+      ]
     );
   }
 }
