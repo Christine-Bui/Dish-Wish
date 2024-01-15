@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/collection.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -283,18 +284,28 @@ class _HomePage extends State<HomePage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           tooltip: 'Back',
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.favorite),
             tooltip: 'Show Liked',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => CollectionPage()),
+              );
+            },
           ),
           IconButton(
             icon: const Icon(Icons.more_vert),
             tooltip: 'Show More',
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => CollectionPage()),
+              );
+            },
           ),
         ]);
   }
