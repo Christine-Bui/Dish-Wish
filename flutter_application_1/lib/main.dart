@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(),
+      home: CollectionPage(),
       theme: ThemeData(
         textTheme:
             GoogleFonts.jetBrainsMonoTextTheme(Theme.of(context).textTheme),

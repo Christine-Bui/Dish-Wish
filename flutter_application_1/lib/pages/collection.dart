@@ -1,76 +1,9 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:flutter_application_1/models/collection_model.dart';
-
-// class CollectionPage extends StatefulWidget {
-//   const CollectionPage({super.key});
-//   @override
-//   State<CollectionPage> createState() => _CollectionPage();
-// }
-
-// class _CollectionPage extends State<CollectionPage> {
-//   List<CollectionModel> collections = [];
-
-//   void getInitialInfo() {
-//     collections = CollectionModel.getCollections();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     getInitialInfo();
-//     return Scaffold(
-//       body: _buildImageColumn(),
-//     );
-//   }
-// }
-
-// Widget _buildImageColumn() {
-//   return Container(
-//     decoration: const BoxDecoration(
-//       color: Colors.transparent,
-//     ),
-//     child: Column(
-//       children: [
-//         _buildImageRow(1),
-//         _buildImageRow(3),
-//       ],
-//     ),
-//   );
-// }
-
-// Widget _buildDecoratedImage(int imageIndex, double boxSize) => Expanded(
-//   child: Container(
-//     width: boxSize,
-//     height: boxSize,
-//     decoration: BoxDecoration(
-//       color: Colors.white,
-//       borderRadius: BorderRadius.circular(20),
-//       boxShadow: [
-//         BoxShadow(
-//           color: Colors.black.withOpacity(0.1), // Shadow color
-//           blurRadius: 8, // Blur radius
-//           offset: Offset(3, 6), // Offset in x and y axis
-//         ),
-//       ],
-//     ),
-//     margin: const EdgeInsets.all(4),
-//     child: Image.asset('assets/icons/$imageIndex.jpg', fit: BoxFit.cover),
-//   ),
-// );
-
-// Widget _buildImageRow(int imageIndex) => Row(
-//   children: [
-//     _buildDecoratedImage(imageIndex, 180.0),
-//     _buildDecoratedImage(imageIndex + 1,  180.0),
-//   ],
-// );
-
 import 'package:flutter/material.dart';
 
 class CollectionPage extends StatelessWidget {
   final Map<String, List<String>> galleries = {
-    'Nature': ['1', '2', '3', '4'],
-    'City': ['5', '6', '7', '8'],
+    'Favorites': ['1', '2', '3', '4'],
+    'Other': ['5', '6', '7', '8'],
     // Add more categories as needed
   };
 
@@ -78,69 +11,88 @@ class CollectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Image Gallery'),
+        title: Text('Collections'),
       ),
-      body: _buildGallery(context),
+      body: _buildGallery(),
     );
   }
 
-  Widget _buildGallery(BuildContext context) {
-    return ListView(
-      children: [
-        for (var category in galleries.keys)
-          _buildFolder(context, category, galleries[category]!),
-      ],
+  Widget _buildGallery() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 8.0,
+        mainAxisSpacing: 8.0,
+      ),
+      itemCount: galleries.length,
+      itemBuilder: (context, index) {
+        var category = galleries.keys.elementAt(index);
+        var imageIndices = galleries[category]!;
+        return _buildFolder(context, category, imageIndices);
+      },
     );
   }
 
   Widget _buildFolder(BuildContext context, String category, List<String> imageIndices) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            category,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        // Handle folder tap
+        print('Folder tapped: $category');
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 8,
+              offset: Offset(3, 6),
             ),
-          ),
-          SizedBox(height: 8),
-          _buildImageRow(context, imageIndices),
-        ],
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(child: _buildMiniImage(context, imageIndices[0])),
+                  Expanded(child: _buildMiniImage(context, imageIndices[1])),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(child: _buildMiniImage(context, imageIndices[2])),
+                  Expanded(child: _buildMiniImage(context, imageIndices[3])),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                category,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    );
-  }
-
-  Widget _buildImageRow(BuildContext context, List<String> imageIndices) {
-    return Row(
-      children: [
-        for (var index in imageIndices) _buildMiniImage(context, index),
-      ],
     );
   }
 
   Widget _buildMiniImage(BuildContext context, String imageIndex) {
     return Container(
-      width: MediaQuery.of(context).size.width / 2 - 16,
-      height: MediaQuery.of(context).size.width / 4,
-      margin: EdgeInsets.only(right: 8, bottom: 8),
+      margin: EdgeInsets.all(2),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: Offset(3, 6),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Image.asset(
-          'assets/icons/$imageIndex.jpg',
+        borderRadius: BorderRadius.circular(8),
+        image: DecorationImage(
+          image: AssetImage('assets/icons/$imageIndex.jpg'),
           fit: BoxFit.cover,
         ),
       ),
@@ -148,3 +100,8 @@ class CollectionPage extends StatelessWidget {
   }
 }
 
+void main() {
+  runApp(MaterialApp(
+    home: CollectionPage(),
+  ));
+}
