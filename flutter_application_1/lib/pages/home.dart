@@ -39,227 +39,192 @@ class _HomePage extends State<HomePage> {
           ),
         ],
       ),
-      bottomNavigationBar: botNav(),
-    );
-
-  }
-
-  BottomNavigationBar botNav(){
-    return BottomNavigationBar(
-    type: BottomNavigationBarType.fixed,
-    currentIndex: _currentIndex,
-    backgroundColor: Colors.white,
-    selectedItemColor: Colors.black,
-    unselectedItemColor: Colors.grey,
-    selectedFontSize: 14,
-    unselectedFontSize: 14,
-    onTap: (value){
-
-    },
-    items:[
-      BottomNavigationBarItem(
-        icon: SvgPicture.asset('assets/icons/Search.svg'),
-        label: 'Saved',
-        ),
-
-        BottomNavigationBarItem(
-        icon: SvgPicture.asset('assets/icons/Search.svg'),
-        label: 'Home',
-        ),
-
-        BottomNavigationBarItem(
-        icon: SvgPicture.asset('assets/icons/Search.svg'),
-        label: 'More',
-        ),
-      ]
     );
   }
 
   Column recommendSection() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Popular Dishes',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                // Add your "See All" button action here
-              },
-              child: Text(
-                'See All',
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Popular Dishes',
                 style: TextStyle(
-                  color: Colors.blue, // Change color as needed
-                  fontSize: 14,
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-      SizedBox(
-        height: 15,
-      ),
-      Container(
-        height: 330,
-        child: ListView.separated(
-          itemBuilder: (context, index) {
-            return Container(
-              width: 210,
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(20),
+              TextButton(
+                onPressed: () {
+                  // Add your "See All" button action here
+                },
+                child: Text(
+                  'See All',
+                  style: TextStyle(
+                    color: Colors.blue, // Change color as needed
+                    fontSize: 14,
+                  ),
+                ),
               ),
-              padding: EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: SizedBox.fromSize(
-                      size: Size.fromRadius(108),
-                      child: Image.asset(
-                        recipes[index].iconPath,
-                        fit: BoxFit.cover,
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Container(
+          height: 330,
+          child: ListView.separated(
+            itemBuilder: (context, index) {
+              return Container(
+                width: 210,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: SizedBox.fromSize(
+                        size: Size.fromRadius(108),
+                        child: Image.asset(
+                          recipes[index].iconPath,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    recipes[index].name,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                      fontSize: 16,
+                    Text(
+                      recipes[index].name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  Text(
-                    recipes[index].description,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
-                      fontSize: 16,
+                    Text(
+                      recipes[index].description,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
-          separatorBuilder: (context, index) => SizedBox(
-            width: 25,
+                  ],
+                ),
+              );
+            },
+            separatorBuilder: (context, index) => SizedBox(
+              width: 25,
+            ),
+            itemCount: recipes.length,
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(left: 20, right: 20),
           ),
-          itemCount: recipes.length,
-          scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.only(left: 20, right: 20),
-        ),
-      )
-    ],
-  );
-}
-
+        )
+      ],
+    );
+  }
 
   Column popularSection() {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Popular Dishes',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                // Add your "See All" button action here
-              },
-              child: Text(
-                'See All',
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Popular Dishes',
                 style: TextStyle(
-                  color: Colors.blue, // Change color as needed
-                  fontSize: 14,
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-      SizedBox(
-        height: 15,
-      ),
-      Container(
-        height: 330,
-        child: ListView.separated(
-          itemBuilder: (context, index) {
-            return Container(
-              width: 210,
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.3),
-                borderRadius: BorderRadius.circular(20),
+              TextButton(
+                onPressed: () {
+                  // Add your "See All" button action here
+                },
+                child: Text(
+                  'See All',
+                  style: TextStyle(
+                    color: Colors.blue, // Change color as needed
+                    fontSize: 14,
+                  ),
+                ),
               ),
-              padding: EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: SizedBox.fromSize(
-                      size: Size.fromRadius(108),
-                      child: Image.asset(
-                        recipes[index].iconPath,
-                        fit: BoxFit.cover,
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Container(
+          height: 330,
+          child: ListView.separated(
+            itemBuilder: (context, index) {
+              return Container(
+                width: 210,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.3),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: SizedBox.fromSize(
+                        size: Size.fromRadius(108),
+                        child: Image.asset(
+                          recipes[index].iconPath,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  Text(
-                    recipes[index].name,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                      fontSize: 16,
+                    Text(
+                      recipes[index].name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  Text(
-                    recipes[index].description,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
-                      fontSize: 16,
+                    Text(
+                      recipes[index].description,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
-          separatorBuilder: (context, index) => SizedBox(
-            width: 25,
+                  ],
+                ),
+              );
+            },
+            separatorBuilder: (context, index) => SizedBox(
+              width: 25,
+            ),
+            itemCount: recipes.length,
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(left: 20, right: 20),
           ),
-          itemCount: recipes.length,
-          scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.only(left: 20, right: 20),
-        ),
-      )
-    ],
-  );
-}
-
+        )
+      ],
+    );
+  }
 
   Container searchField() {
     return Container(
