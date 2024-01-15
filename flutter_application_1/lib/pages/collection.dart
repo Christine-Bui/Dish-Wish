@@ -19,38 +19,39 @@ class _CollectionPage extends State<CollectionPage> {
   Widget build(BuildContext context) {
     getInitialInfo();
     return Scaffold(
-      body: searchField(),
+      body: _buildImageColumn(),
     );
   }
 }
 
-Container searchField() {
+Widget _buildImageColumn() {
   return Container(
-    margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
-    decoration: BoxDecoration(boxShadow: [
-      BoxShadow(
-          color: const Color(0xff1D1617).withOpacity(0.11),
-          blurRadius: 40,
-          spreadRadius: 0.0)
-    ]),
-    child: TextField(
-      decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          contentPadding: const EdgeInsets.all(15),
-          hintText: 'Search',
-          hintStyle: const TextStyle(color: Color(0xffDDDADA), fontSize: 14),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset('assets/icons/Search.svg'),
-          ),
-          suffixIcon: Padding(
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset('assets/icons/Filter.svg'),
-          ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide.none)),
+    decoration: const BoxDecoration(
+      color: Colors.black26,
+    ),
+    child: Column(
+      children: [
+        _buildImageRow(1),
+        _buildImageRow(3),
+      ],
     ),
   );
 }
+
+Widget _buildDecoratedImage(int imageIndex) => Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(width: 10, color: Colors.black38),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+        ),
+        margin: const EdgeInsets.all(4),
+        child: Image.asset('assets/icons$imageIndex.jpg'),
+      ),
+    );
+
+Widget _buildImageRow(int imageIndex) => Row(
+      children: [
+        _buildDecoratedImage(imageIndex),
+        _buildDecoratedImage(imageIndex + 1),
+      ],
+    );

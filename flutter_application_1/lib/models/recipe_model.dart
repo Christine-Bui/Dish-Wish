@@ -16,7 +16,7 @@ class RecipeModel {
     recipes.add(
       RecipeModel(
         name: 'Pho Bo',
-        iconPath: 'assets/icons/pho.jpg',
+        iconPath: 'assets/icons/1.jpg',
         description: 'Traditional Vietnamese beef noodle soup.',
         )
       );
@@ -24,7 +24,7 @@ class RecipeModel {
       recipes.add(
         RecipeModel(
           name: 'Banh Xeo',
-          iconPath: 'assets/icons/xeo.jpg',
+          iconPath: 'assets/icons/3.jpg',
           description: 'Vietnamese sizzling crepes with shrimp and pork.',
           )
         );
@@ -32,7 +32,7 @@ class RecipeModel {
       recipes.add(
         RecipeModel(
           name: 'Pho Ga',
-          iconPath: 'assets/icons/pho ga.jpg',
+          iconPath: 'assets/icons/2.jpg',
           description: 'Vietnamese chicken noodle soup.',
           )
         );
