@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Christine-Bui/Dish-Wish">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo-white.jpg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Dish Wish</h3>
@@ -82,8 +82,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 We wanted to solve a problem of what to make when you have limited resources. So we came up with the idea of creating a mobile app that allows the user to input the ingredients available and it will provide the user with possible recipes of food they can make with those ingredients.
 
