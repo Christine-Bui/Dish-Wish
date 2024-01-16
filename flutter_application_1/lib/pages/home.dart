@@ -272,38 +272,38 @@ class _HomePage extends State<HomePage> {
   }
 
   AppBar appBar() {
-  return AppBar(
-    title: const Text(
-      "Dish Wish",
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
+    return AppBar(
+      title: const Text(
+        "Dish Wish",
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
       ),
-    ),
-    backgroundColor: Colors.white,
-    elevation: 0.0,
-    centerTitle: false,
-    actions: <Widget>[
-      IconButton(
-        icon: const Icon(Icons.favorite),
-        tooltip: 'Show Liked',
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => CollectionPage()),
-          );
-        },
-      ),
-      IconButton(
-        icon: const Icon(Icons.more_vert),
-        tooltip: 'Show More',
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const Settings()),
-          );
-        },
-      ),
-    ],
-  );
+      backgroundColor: Colors.white,
+      elevation: 0.0,
+      centerTitle: false,
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.favorite),
+          tooltip: 'Show Liked',
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => CollectionPage()),
+            );
+          },
+        ),
+        IconButton(
+          icon: const Icon(Icons.more_vert),
+          tooltip: 'Show More',
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => SettingsPage()),
+            );
+          },
+        ),
+      ],
+    );
   }
 }
