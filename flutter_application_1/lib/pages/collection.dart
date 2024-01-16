@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class CollectionPage extends StatelessWidget {
+class CollectionPage extends StatefulWidget {
   final Map<String, List<String>> galleries = {
     'Favorites': ['1', '2', '3', '4'],
     'Other': ['5', '6', '7', '8'],
@@ -8,12 +9,61 @@ class CollectionPage extends StatelessWidget {
   };
 
   @override
+  State<CollectionPage> createState() => _CollectionPage();
+}
+
+class _CollectionPage extends State<CollectionPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Collections'),
       ),
-      body: _buildGallery(),
+      body: Column(
+        children: [
+          searchField(),
+          SizedBox(height: 30),
+          Expanded(
+            child: _buildGallery(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container searchField() {
+    return Container(
+      margin: EdgeInsets.only(top: 40, left: 20, right: 20),
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+            color: Color(0xff1D1617).withOpacity(0.11),
+            blurRadius: 40,
+            spreadRadius: 0.0)
+      ]),
+      child: TextField(
+        decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding: EdgeInsets.all(15),
+            hintText: 'Search',
+            hintStyle: TextStyle(color: Color(0xffDDDADA), fontSize: 14),
+            prefixIcon: Padding(
+              padding: const EdgeInsets.all(12),
+              child: SvgPicture.asset('assets/icons/Search.svg'),
+            ),
+            suffixIcon: Padding(
+              padding: const EdgeInsets.all(12),
+              child: SvgPicture.asset('assets/icons/Filter.svg'),
+            ),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide.none)),
+      ),
     );
   }
 
@@ -24,16 +74,17 @@ class CollectionPage extends StatelessWidget {
         crossAxisSpacing: 8.0,
         mainAxisSpacing: 8.0,
       ),
-      itemCount: galleries.length,
+      itemCount: widget.galleries.length,
       itemBuilder: (context, index) {
-        var category = galleries.keys.elementAt(index);
-        var imageIndices = galleries[category]!;
+        var category = widget.galleries.keys.elementAt(index);
+        var imageIndices = widget.galleries[category]!;
         return _buildFolder(context, category, imageIndices);
       },
     );
   }
 
-  Widget _buildFolder(BuildContext context, String category, List<String> imageIndices) {
+  Widget _buildFolder(
+      BuildContext context, String category, List<String> imageIndices) {
     return GestureDetector(
       onTap: () {
         // Handle folder tap

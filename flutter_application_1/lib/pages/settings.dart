@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -23,6 +24,7 @@ class _Settings extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white, // Set the background color for the entire screen
       appBar: AppBar(
         title: Text(
           'Settings',
@@ -31,17 +33,45 @@ class _Settings extends State<Settings> {
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
       ),
-      backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            margin: EdgeInsets.only(top: 40, left: 20, right: 20),
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                  color: Color(0xff1D1617).withOpacity(0.11),
+                  blurRadius: 40,
+                  spreadRadius: 0.0)
+            ]),
+            child: TextField(
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: EdgeInsets.all(15),
+                  hintText: 'Search',
+                  hintStyle: TextStyle(color: Color(0xffDDDADA), fontSize: 14),
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: SvgPicture.asset('assets/icons/Search.svg'),
+                  ),
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: SvgPicture.asset('assets/icons/Filter.svg'),
+                  ),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide.none)),
+            ),
+          ),
+          SizedBox(height: 20), // Adjust the spacing between the search bar and other content
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Popular Recipes',
+                  'All Results',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,
@@ -71,7 +101,6 @@ class _Settings extends State<Settings> {
             child: ListView.separated(
               itemBuilder: (context, index) {
                 return Container(
-                  width: 238,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
@@ -83,43 +112,52 @@ class _Settings extends State<Settings> {
                       ),
                     ],
                   ),
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: SizedBox.fromSize(
-                          size: Size.fromRadius(108),
-                          child: Image.asset(
-                            recipes[index].iconPath,
-                            fit: BoxFit.cover,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: SizedBox.fromSize(
+                            size: Size.fromRadius(75), // Adjust the image size
+                            child: Image.asset(
+                              recipes[index].iconPath,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(padding: const EdgeInsets.only(top: 10)),
-                      Text(
-                        recipes[index].name,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
-                          fontSize: 16,
+                        SizedBox(width: 20), // Adjust the spacing between image and text
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                recipes[index].name,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              SizedBox(height: 5), // Adjust the spacing between text and description
+                              Text(
+                                recipes[index].description,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Text(
-                        recipes[index].description,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
               separatorBuilder: (context, index) => SizedBox(
-                width: 25,
+                height: 25,
               ),
               itemCount: recipes.length,
               scrollDirection: Axis.vertical,
