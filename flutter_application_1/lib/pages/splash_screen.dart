@@ -40,13 +40,13 @@ class _SplashScreenState extends State<SplashScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               height: 36, // Adjust the height as needed
               width: 36,  // Adjust the width as needed
               child: SvgPicture.asset('assets/icons/logo-black.svg'),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               "Need a dish,",
               style: TextStyle(
                 color: Colors.black,
@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen>
                 fontStyle: FontStyle.italic,
               ),
             ),
-            Text(
+            const Text(
               "We grant that wish!",
               style: TextStyle(
                 color: Colors.black,

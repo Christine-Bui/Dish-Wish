@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AllRec extends StatelessWidget {
-  const AllRec({super.key});
+class Reccomendations extends StatelessWidget {
+  const Reccomendations({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -26,15 +26,15 @@ class _HomePage extends State<HomePage> {
       body: ListView(
         children: [
           searchField(),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           recommendSection(),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           popularSection(),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
         ],
@@ -51,7 +51,7 @@ class _HomePage extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Recommended for you',
                 style: TextStyle(
                   color: Colors.black,
@@ -63,7 +63,7 @@ class _HomePage extends State<HomePage> {
                 onPressed: () {
                   // Add your "See All" button action here
                 },
-                child: Text(
+                child: const Text(
                   'See All',
                   style: TextStyle(
                     color: Colors.blue, // Change color as needed
@@ -74,10 +74,10 @@ class _HomePage extends State<HomePage> {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
-        Container(
+        SizedBox(
           height: 340,
           child: ListView.separated(
             itemBuilder: (context, index) {
@@ -90,28 +90,28 @@ class _HomePage extends State<HomePage> {
                     BoxShadow(
                       color: Colors.black.withOpacity(0.1), // Shadow color
                       blurRadius: 8, // Blur radius
-                      offset: Offset(3, 6), // Offset in x and y axis
+                      offset: const Offset(3, 6), // Offset in x and y axis
                     ),
                   ],
                 ),
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: SizedBox.fromSize(
-                        size: Size.fromRadius(108),
+                        size: const Size.fromRadius(108),
                         child: Image.asset(
                           recipes[index].iconPath,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    Padding(padding: const EdgeInsets.only(top: 10)),
+                    const Padding(padding: EdgeInsets.only(top: 10)),
                     Text(
                       recipes[index].name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
                         fontSize: 16,
@@ -119,7 +119,7 @@ class _HomePage extends State<HomePage> {
                     ),
                     Text(
                       recipes[index].description,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                         fontSize: 14,
@@ -129,12 +129,12 @@ class _HomePage extends State<HomePage> {
                 ),
               );
             },
-            separatorBuilder: (context, index) => SizedBox(
+            separatorBuilder: (context, index) => const SizedBox(
               width: 25,
             ),
             itemCount: recipes.length,
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           ),
         )
       ],
@@ -150,7 +150,7 @@ class _HomePage extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Popular Recipes',
                 style: TextStyle(
                   color: Colors.black,
@@ -162,7 +162,7 @@ class _HomePage extends State<HomePage> {
                 onPressed: () {
                   // Add your "See All" button action here
                 },
-                child: Text(
+                child: const Text(
                   'See All',
                   style: TextStyle(
                     color: Colors.blue, // Change color as needed
@@ -173,10 +173,10 @@ class _HomePage extends State<HomePage> {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
-        Container(
+        SizedBox(
           height: 350,
           child: ListView.separated(
             itemBuilder: (context, index) {
@@ -189,28 +189,28 @@ class _HomePage extends State<HomePage> {
                     BoxShadow(
                       color: Colors.black.withOpacity(0.1), // Shadow color
                       blurRadius: 8, // Blur radius
-                      offset: Offset(3, 6), // Offset in x and y axis
+                      offset: const Offset(3, 6), // Offset in x and y axis
                     ),
                   ],
                 ),
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: SizedBox.fromSize(
-                        size: Size.fromRadius(108),
+                        size: const Size.fromRadius(108),
                         child: Image.asset(
                           recipes[index].iconPath,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    Padding(padding: const EdgeInsets.only(top: 10)),
+                    const Padding(padding: EdgeInsets.only(top: 10)),
                     Text(
                       recipes[index].name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
                         fontSize: 16,
@@ -218,7 +218,7 @@ class _HomePage extends State<HomePage> {
                     ),
                     Text(
                       recipes[index].description,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                         fontSize: 14,
@@ -228,12 +228,12 @@ class _HomePage extends State<HomePage> {
                 ),
               );
             },
-            separatorBuilder: (context, index) => SizedBox(
+            separatorBuilder: (context, index) => const SizedBox(
               width: 25,
             ),
             itemCount: recipes.length,
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           ),
         )
       ],
@@ -242,10 +242,10 @@ class _HomePage extends State<HomePage> {
 
   Container searchField() {
     return Container(
-      margin: EdgeInsets.only(top: 40, left: 20, right: 20),
+      margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
-            color: Color(0xff1D1617).withOpacity(0.11),
+            color: const Color(0xff1D1617).withOpacity(0.11),
             blurRadius: 40,
             spreadRadius: 0.0)
       ]),
@@ -253,9 +253,9 @@ class _HomePage extends State<HomePage> {
         decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
-            contentPadding: EdgeInsets.all(15),
+            contentPadding: const EdgeInsets.all(15),
             hintText: 'Search',
-            hintStyle: TextStyle(color: Color(0xffDDDADA), fontSize: 14),
+            hintStyle: const TextStyle(color: Color(0xffDDDADA), fontSize: 14),
             prefixIcon: Padding(
               padding: const EdgeInsets.all(12),
               child: SvgPicture.asset('assets/icons/Search.svg'),
@@ -273,7 +273,7 @@ class _HomePage extends State<HomePage> {
 
   AppBar appBar() {
   return AppBar(
-    title: Text(
+    title: const Text(
       "Dish Wish",
       style: TextStyle(
         color: Colors.black,
@@ -286,7 +286,7 @@ class _HomePage extends State<HomePage> {
     centerTitle: false,
     leading: Padding(
       padding: const EdgeInsets.all(12),
-      child: Container(
+      child: SizedBox(
         height: 36, // Adjust the height as needed
         width: 36,  // Adjust the width as needed
         child: SvgPicture.asset('assets/icons/logo-black.svg'),
@@ -298,7 +298,7 @@ class _HomePage extends State<HomePage> {
         tooltip: 'Show Liked',
         onPressed: () {
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => CollectionPage()),
+            MaterialPageRoute(builder: (context) => const CollectionPage()),
           );
         },
       ),
@@ -307,7 +307,7 @@ class _HomePage extends State<HomePage> {
         tooltip: 'Show More',
         onPressed: () {
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => Settings()),
+            MaterialPageRoute(builder: (context) => const Settings()),
           );
         },
       ),
