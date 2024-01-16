@@ -298,7 +298,7 @@ class _HomePage extends State<HomePage> {
         tooltip: 'Show Liked',
         onPressed: () {
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const CollectionPage()),
+            MaterialPageRoute(builder: (context) => CollectionPage()),
           );
         },
       ),

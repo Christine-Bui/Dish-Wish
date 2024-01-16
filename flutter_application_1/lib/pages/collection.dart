@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CollectionPage extends StatefulWidget {
+  CollectionPage({super.key});
   final Map<String, List<String>> galleries = {
     'Favorites': ['1', '2', '3', '4'],
     'Other': ['5', '6', '7', '8'],
