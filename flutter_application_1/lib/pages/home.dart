@@ -289,7 +289,7 @@ class _HomePage extends State<HomePage> {
       child: SizedBox(
         height: 36, // Adjust the height as needed
         width: 36,  // Adjust the width as needed
-        child: SvgPicture.asset('assets/icons/logo-black.svg'),
+        child: Image.asset('assets/icons/logo-black.jpg'), // Change to Image.asset
       ),
     ),
     actions: <Widget>[

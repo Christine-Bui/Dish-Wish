@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/pages/home.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -41,9 +40,9 @@ class _SplashScreenState extends State<SplashScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 36, // Adjust the height as needed
-              width: 36,  // Adjust the width as needed
-              child: SvgPicture.asset('assets/icons/logo-black.svg'),
+              height: 200, // Adjust the height as needed
+              width: 200,  // Adjust the width as needed
+              child: Image.asset('assets/icons/logo-black.jpg'), // Change to Image.asset
             ),
             const SizedBox(height: 20),
             const Text(
