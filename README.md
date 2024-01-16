@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Christine-Bui/Dish-Wish">
-    <img src="assets/icons/logo-white.jpg" alt="Logo" width="80" height="80">
+    <img src="flutter_application_1/assets/icons/logo-white.jpg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Dish Wish</h3>
