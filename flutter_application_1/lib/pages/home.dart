@@ -78,11 +78,11 @@ class _HomePage extends State<HomePage> {
           height: 15,
         ),
         Container(
-          height: 330,
+          height: 340,
           child: ListView.separated(
             itemBuilder: (context, index) {
               return Container(
-                width: 238,
+                width: 250,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -177,7 +177,7 @@ class _HomePage extends State<HomePage> {
           height: 15,
         ),
         Container(
-          height: 330,
+          height: 350,
           child: ListView.separated(
             itemBuilder: (context, index) {
               return Container(
