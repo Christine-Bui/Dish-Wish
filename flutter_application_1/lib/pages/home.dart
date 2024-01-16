@@ -284,14 +284,6 @@ class _HomePage extends State<HomePage> {
     backgroundColor: Colors.white,
     elevation: 0.0,
     centerTitle: false,
-    leading: Padding(
-      padding: const EdgeInsets.all(12),
-      child: SizedBox(
-        height: 36, // Adjust the height as needed
-        width: 36,  // Adjust the width as needed
-        child: Image.asset('assets/icons/logo-black.jpg'), // Change to Image.asset
-      ),
-    ),
     actions: <Widget>[
       IconButton(
         icon: const Icon(Icons.favorite),
