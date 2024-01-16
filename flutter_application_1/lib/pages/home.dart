@@ -272,41 +272,46 @@ class _HomePage extends State<HomePage> {
   }
 
   AppBar appBar() {
-    return AppBar(
-        title: Text(
-          "Dish Wish",
-          style: TextStyle(
-              color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        centerTitle: false,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          tooltip: 'Back',
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.favorite),
-            tooltip: 'Show Liked',
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => CollectionPage()),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.more_vert),
-            tooltip: 'Show More',
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => Settings()),
-              );
-            },
-          ),
-        ]);
+  return AppBar(
+    title: Text(
+      "Dish Wish",
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    backgroundColor: Colors.white,
+    elevation: 0.0,
+    centerTitle: false,
+    leading: Padding(
+      padding: const EdgeInsets.all(12),
+      child: Container(
+        height: 36, // Adjust the height as needed
+        width: 36,  // Adjust the width as needed
+        child: SvgPicture.asset('assets/icons/logo-black.svg'),
+      ),
+    ),
+    actions: <Widget>[
+      IconButton(
+        icon: const Icon(Icons.favorite),
+        tooltip: 'Show Liked',
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => CollectionPage()),
+          );
+        },
+      ),
+      IconButton(
+        icon: const Icon(Icons.more_vert),
+        tooltip: 'Show More',
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => Settings()),
+          );
+        },
+      ),
+    ],
+  );
   }
 }

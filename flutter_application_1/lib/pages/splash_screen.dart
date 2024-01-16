@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/pages/home.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -36,26 +37,32 @@ class _SplashScreenState extends State<SplashScreen>
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(),
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.edit, size: 80, color: Colors.black),
+            Container(
+              height: 36, // Adjust the height as needed
+              width: 36,  // Adjust the width as needed
+              child: SvgPicture.asset('assets/icons/logo-black.svg'),
+            ),
             SizedBox(height: 20),
             Text(
               "Need a dish,",
               style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 24,
-                  fontStyle: FontStyle.italic),
+                color: Colors.black,
+                fontWeight: FontWeight.normal,
+                fontSize: 24,
+                fontStyle: FontStyle.italic,
+              ),
             ),
             Text(
               "We grant that wish!",
               style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 24,
-                  fontStyle: FontStyle.italic),
+                color: Colors.black,
+                fontWeight: FontWeight.normal,
+                fontSize: 24,
+                fontStyle: FontStyle.italic,
+              ),
             )
           ],
         ),
