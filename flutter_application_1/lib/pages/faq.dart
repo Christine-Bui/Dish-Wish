@@ -166,3 +166,9 @@ class _Faq extends State<Faq> {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+    home: Faq(),
+  ));
+}

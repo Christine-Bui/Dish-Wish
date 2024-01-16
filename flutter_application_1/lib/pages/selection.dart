@@ -166,3 +166,9 @@ class _Selection extends State<Selection> {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+    home: Selection(),
+  ));
+}

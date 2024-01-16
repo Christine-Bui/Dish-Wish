@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/collection.dart';
-import 'package:flutter_application_1/pages/home.dart';
 import 'package:flutter_application_1/pages/splash_screen.dart';
-import 'package:flutter_application_1/pages/settings.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {

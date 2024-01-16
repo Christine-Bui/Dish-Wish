@@ -161,3 +161,9 @@ class _Results extends State<Results> {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+    home: Results(),
+  ));
+}

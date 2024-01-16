@@ -166,3 +166,9 @@ class _Filter extends State<Filter> {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+    home: Filter(),
+  ));
+}

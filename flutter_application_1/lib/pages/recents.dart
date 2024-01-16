@@ -166,3 +166,9 @@ class _Recents extends State<Recents> {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+    home: Recents(),
+  ));
+}
