@@ -23,9 +23,9 @@ class _SettingsPage extends State<SettingsPage> {
       backgroundColor: Colors.white,
       body: ListView(
         children: [
-          Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: const Text('Settings',
+          const Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text('Settings',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 24,
@@ -34,9 +34,9 @@ class _SettingsPage extends State<SettingsPage> {
           const SizedBox(height: 10),
           AppSettings(),
           const SizedBox(height: 30),
-          Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: const Text('Help & Support',
+          const Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text('Help & Support',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,
@@ -55,11 +55,11 @@ class _SettingsPage extends State<SettingsPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20),
+        const Padding(
+          padding: EdgeInsets.only(left: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
                 'App Settings',
                 style: TextStyle(
@@ -83,7 +83,7 @@ class _SettingsPage extends State<SettingsPage> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 2,
                 blurRadius: 5,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               ),
             ],
           ),
@@ -118,8 +118,8 @@ class _SettingsPage extends State<SettingsPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20),
+        const Padding(
+          padding: EdgeInsets.only(left: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [],
@@ -137,7 +137,7 @@ class _SettingsPage extends State<SettingsPage> {
                 color: Colors.grey.withOpacity(0.5),
                 spreadRadius: 2,
                 blurRadius: 5,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               ),
             ],
           ),
@@ -146,7 +146,7 @@ class _SettingsPage extends State<SettingsPage> {
             children: [
               Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
                   fontWeight: FontWeight.w400,

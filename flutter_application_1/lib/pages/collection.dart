@@ -23,12 +23,12 @@ class _CollectionPage extends State<CollectionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Collections'),
+        title: const Text('Collections'),
       ),
       body: Column(
         children: [
           searchField(),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Expanded(
             child: _buildGallery(),
           ),
@@ -39,10 +39,10 @@ class _CollectionPage extends State<CollectionPage> {
 
   Container searchField() {
     return Container(
-      margin: EdgeInsets.only(top: 40, left: 20, right: 20),
+      margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
-            color: Color(0xff1D1617).withOpacity(0.11),
+            color: const Color(0xff1D1617).withOpacity(0.11),
             blurRadius: 40,
             spreadRadius: 0.0)
       ]),
@@ -50,9 +50,9 @@ class _CollectionPage extends State<CollectionPage> {
         decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
-            contentPadding: EdgeInsets.all(15),
+            contentPadding: const EdgeInsets.all(15),
             hintText: 'Search',
-            hintStyle: TextStyle(color: Color(0xffDDDADA), fontSize: 14),
+            hintStyle: const TextStyle(color: Color(0xffDDDADA), fontSize: 14),
             prefixIcon: Padding(
               padding: const EdgeInsets.all(12),
               child: SvgPicture.asset('assets/icons/Search.svg'),
@@ -70,7 +70,7 @@ class _CollectionPage extends State<CollectionPage> {
 
   Widget _buildGallery() {
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 8.0,
         mainAxisSpacing: 8.0,
@@ -99,7 +99,7 @@ class _CollectionPage extends State<CollectionPage> {
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
               blurRadius: 8,
-              offset: Offset(3, 6),
+              offset: const Offset(3, 6),
             ),
           ],
         ),
@@ -126,7 +126,7 @@ class _CollectionPage extends State<CollectionPage> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 category,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -140,7 +140,7 @@ class _CollectionPage extends State<CollectionPage> {
 
   Widget _buildMiniImage(BuildContext context, String imageIndex) {
     return Container(
-      margin: EdgeInsets.all(2),
+      margin: const EdgeInsets.all(2),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(

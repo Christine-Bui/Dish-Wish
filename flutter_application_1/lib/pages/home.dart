@@ -299,7 +299,7 @@ class _HomePage extends State<HomePage> {
           tooltip: 'Show More',
           onPressed: () {
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => SettingsPage()),
+              MaterialPageRoute(builder: (context) => const SettingsPage()),
             );
           },
         ),
