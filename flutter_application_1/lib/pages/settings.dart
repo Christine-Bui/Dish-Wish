@@ -10,11 +10,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPage extends State<SettingsPage> {
   bool _darkTheme = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  double _textSize = 16; // Default text size
 
   @override
   Widget build(BuildContext context) {
@@ -28,22 +24,22 @@ class _SettingsPage extends State<SettingsPage> {
               child: Text('Settings',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 24,
+                    fontSize: _textSize + 8, // Use _textSize here
                     fontWeight: FontWeight.w600,
                   ))),
           const SizedBox(height: 10),
-          AppSettings(),
+          appSettings(),
           const SizedBox(height: 30),
-          const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Text('Help & Support',
+          Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: const Text('Help & Support',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 18,
+                    fontSize: _textSize + 2, // Slightly smaller text size
                     fontWeight: FontWeight.w600,
                   ))),
           const SizedBox(height: 10),
-          H_S('Frequency Asked Questions'),
+          H_S('Frequently Asked Questions'),
           const SizedBox(height: 10),
           H_S('About Us'),
         ],
@@ -51,7 +47,7 @@ class _SettingsPage extends State<SettingsPage> {
     );
   }
 
-  Column AppSettings() {
+  Column appSettings() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -64,7 +60,7 @@ class _SettingsPage extends State<SettingsPage> {
                 'App Settings',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 18,
+                  fontSize: _textSize + 2, // Use _textSize here
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -90,11 +86,11 @@ class _SettingsPage extends State<SettingsPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Dark Mode',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: _textSize, // Use _textSize here
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -109,7 +105,51 @@ class _SettingsPage extends State<SettingsPage> {
             ],
           ),
         ),
+        SizedBox(height: 10),
+        textSizeControl(), // Slider to control text size
       ],
+    );
+  }
+
+  Widget textSizeControl() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Text(
+            'Text Size',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: _textSize,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          Slider(
+            min: 12,
+            max: 22,
+            divisions: 4,
+            value: _textSize,
+            onChanged: (newSize) {
+              setState(() {
+                _textSize = newSize;
+              });
+            },
+          ),
+        ],
+      ),
     );
   }
 
@@ -148,7 +188,7 @@ class _SettingsPage extends State<SettingsPage> {
                 title,
                 style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: _textSize,
                   fontWeight: FontWeight.w400,
                 ),
               ),
