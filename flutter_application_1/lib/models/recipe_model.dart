@@ -10,9 +10,9 @@ class RecipeModel {
     required this.name,
     required this.iconPath,
     required this.description,
-    this.about,
-    this.ingredients,
-    this.instructions,
+    required this.about,
+    required this.ingredients,
+    required this.instructions,
   });
 
   static List<RecipeModel> getRecipes() {
@@ -52,11 +52,11 @@ class RecipeModel {
         'Black pepper',
       ],
       instructions: [
-          "Fry onions in oil until lightly browned. Remove and drain.",
-          "Rinse the beef bones, place in a stockpot, cover with cold water, and bring slowly to a boil. Reduce heat and simmer, uncovered, for 10–15 minutes. For a clear broth skim off foam.",
-          "After this initial cooking, add cooked onions, ginger, cinnamon, cardamom, star anise, cloves, garlic and peppercorns. Bring to a boil again and gently simmer the stock, partially covered, for a minimum of 6 hours but up to 12 hours if you can, skimming regularly. If necessary, add more water to keep the bones covered.",
-          "Strain stock to remove the vegetable and spices and discard them. Return the broth to the stove to keep it boiling hot.",
-          "In a large soup bowl, place a handful of cooked phở noodles, top with thinly sliced raw beef, and ladle on generous amounts of very hot broth, which will cook the raw beef. Garnish with sliced onions, scallions and coriander, and serve immediately.",
+        "Fry onions in oil until lightly browned. Remove and drain.",
+        "Rinse the beef bones, place in a stockpot, cover with cold water, and bring slowly to a boil. Reduce heat and simmer, uncovered, for 10–15 minutes. For a clear broth skim off foam.",
+        "After this initial cooking, add cooked onions, ginger, cinnamon, cardamom, star anise, cloves, garlic and peppercorns. Bring to a boil again and gently simmer the stock, partially covered, for a minimum of 6 hours but up to 12 hours if you can, skimming regularly. If necessary, add more water to keep the bones covered.",
+        "Strain stock to remove the vegetable and spices and discard them. Return the broth to the stove to keep it boiling hot.",
+        "In a large soup bowl, place a handful of cooked phở noodles, top with thinly sliced raw beef, and ladle on generous amounts of very hot broth, which will cook the raw beef. Garnish with sliced onions, scallions and coriander, and serve immediately.",
       ],
     ));
 
@@ -94,14 +94,14 @@ class RecipeModel {
         'Additional fish sauce',
       ],
       instructions: [
-          "Combine ingredients for seasoning pouch in a small strainer or a pouch made from cheesecloth and twine.",
-          "In a large stock pot, boil soup ingredients together with seasoning pouch until the chicken is thoroughly cooked.",
-          "Remove the chicken and strain broth back into the pot for additional simmering. Once the chicken is cool, pull apart the meat into bite sized pieces and discard bones.",
-          "In a separate pot, boil the pho noodles in sufficient water. Stop when they're no longer chewy (basically the way you'd boil spaghetti). Make sure you don't overdo it or the noodles will fall apart and you'll end up with porridge. When done, pour the noodles into a colander and rinse them with lukewarm water. Then, leave them to drain.",
-          "Once the noodles have drained, add them to a bowl. Combine the chicken, serving ingredients, and enough broth to cover the noodles.",
-    ],
+        "Combine ingredients for seasoning pouch in a small strainer or a pouch made from cheesecloth and twine.",
+        "In a large stock pot, boil soup ingredients together with seasoning pouch until the chicken is thoroughly cooked.",
+        "Remove the chicken and strain broth back into the pot for additional simmering. Once the chicken is cool, pull apart the meat into bite sized pieces and discard bones.",
+        "In a separate pot, boil the pho noodles in sufficient water. Stop when they're no longer chewy (basically the way you'd boil spaghetti). Make sure you don't overdo it or the noodles will fall apart and you'll end up with porridge. When done, pour the noodles into a colander and rinse them with lukewarm water. Then, leave them to drain.",
+        "Once the noodles have drained, add them to a bowl. Combine the chicken, serving ingredients, and enough broth to cover the noodles.",
+      ],
     ));
-    
+
     recipes.add(RecipeModel(
       name: 'Banh Xeo',
       iconPath: 'assets/icons/3.jpg',
@@ -146,7 +146,7 @@ class RecipeModel {
         'Cover the skillet and cook over moderately high heat until the bottom of the bánh xèo is golden and crisp, about 2 minutes.',
         'Slide the bánh xèo onto a plate. Serve with lettuce leaves, mint, and the Sweet and Spicy Vietnamese Dipping Sauce.',
         'Repeat with the remaining ingredients, serving the bánh xèo as soon as they are cooked.',
-    ],
+      ],
     ));
 
     return recipes;

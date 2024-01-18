@@ -34,7 +34,8 @@ class _RecipeState extends State<Recipe> {
         child: Stack(
           children: [
             SizedBox.fromSize(
-              size: const Size.fromHeight(300), // Set the desired height for the image
+              size: const Size.fromHeight(
+                  300), // Set the desired height for the image
               child: Image.asset(
                 selectedRecipe.iconPath,
                 fit: BoxFit.cover,
@@ -117,7 +118,8 @@ class _RecipeState extends State<Recipe> {
                         ),
                       ),
                     ),
-                  const SizedBox(height: 20), // Add bottom padding after instructions
+                  const SizedBox(
+                      height: 20), // Add bottom padding after instructions
                 ],
               ),
             ),
@@ -127,7 +129,8 @@ class _RecipeState extends State<Recipe> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _scrollController.animateTo(0,
-              duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut);
         },
         backgroundColor: Colors.white,
         child: const Icon(Icons.arrow_upward),
