@@ -87,7 +87,7 @@ class _RecipeState extends State<Recipe> {
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
                       child: Text(
-                        '• $ingredient',
+                        '$ingredient',
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           color: Colors.black,
@@ -110,7 +110,7 @@ class _RecipeState extends State<Recipe> {
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
                       child: Text(
-                        '${i + 1}. ${selectedRecipe.instructions[i]}',
+                        '${selectedRecipe.instructions[i]}',
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           color: Colors.black,
