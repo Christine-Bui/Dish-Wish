@@ -2,9 +2,9 @@ class RecipeModel {
   String name;
   String iconPath;
   String description;
-  String? about;
-  List<String>? ingredients;
-  List<String>? instructions;
+  String about;
+  List<String> ingredients;
+  List<String> instructions;
 
   RecipeModel({
     required this.name,
