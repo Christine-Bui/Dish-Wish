@@ -119,14 +119,23 @@ class _SettingsPage extends State<SettingsPage> {
             'Text Size',
             style: Theme.of(context).textTheme.bodySmall,
           ),
-          Slider(
-            min: 10,
-            max: 30,
-            divisions: 20,
-            value: appSettings.textSize,
-            onChanged: (newSize) {
-              appSettings.setTextSize(newSize);
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text('A', style: TextStyle(fontSize: 16)), // Small "A"
+              Expanded(
+                child: Slider(
+                  min: 10,
+                  max: 20,
+                  divisions: 20,
+                  value: appSettings.textSize,
+                  onChanged: (newSize) {
+                    appSettings.setTextSize(newSize);
+                  },
+                ),
+              ),
+              const Text('A', style: TextStyle(fontSize: 24)), // Large "A"
+            ],
           ),
         ],
       ),

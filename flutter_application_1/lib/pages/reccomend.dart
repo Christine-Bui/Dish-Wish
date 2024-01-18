@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
-class Reccomendations extends StatelessWidget {
+class Reccomendations extends StatefulWidget {
   const Reccomendations({super.key});
 
   @override
+  State<Reccomendations> createState() => _Recommendations();
+}
+
+class _Recommendations extends State<Reccomendations> {
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'All Reccomendations',
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('All Reccomendations'),
-          ),
-          body: const Text("All Reccomendations"),
-        ));
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('All Reccomendations'),
+      ),
+      body: const Text("All Reccomendations"),
+    );
   }
 }

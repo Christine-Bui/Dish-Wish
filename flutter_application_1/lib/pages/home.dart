@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/collection.dart';
+import 'package:flutter_application_1/pages/reccomend.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -73,11 +75,19 @@ class _HomePageState extends State<HomePage> {
           ),
           TextButton(
             onPressed: () {
-              // Add your "See All" button action here
+              // Navigate to a new page or perform other actions
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => Reccomendations()),
+              );
             },
             child: Text(
               'See All',
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: GoogleFonts.jetBrainsMono(
+                color: Colors.blue, // Set text color to blue
+                fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
+                fontWeight:
+                    Theme.of(context).textTheme.headlineSmall?.fontWeight,
+              ),
             ),
           ),
         ],
@@ -122,12 +132,14 @@ class _HomePageState extends State<HomePage> {
       ),
       padding: const EdgeInsets.all(10),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: SizedBox.fromSize(
-              size: const Size.fromRadius(108),
+          SizedBox(
+            height: 210, // Fixed height for all images
+            width: double.infinity, // Full width of the container
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
               child: Image.asset(
                 recipes[index].iconPath,
                 fit: BoxFit.cover,
@@ -139,9 +151,18 @@ class _HomePageState extends State<HomePage> {
             recipes[index].name,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
-          Text(
-            recipes[index].description,
-            style: Theme.of(context).textTheme.bodySmall,
+          Flexible(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                maxHeight: 150, // Adjust the maximum height as needed
+              ),
+              child: SingleChildScrollView(
+                child: Text(
+                  recipes[index].description,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ),
+            ),
           ),
         ],
       ),
