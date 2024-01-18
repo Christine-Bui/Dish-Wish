@@ -244,7 +244,6 @@ class _HomePage extends State<HomePage> {
         "Dish Wish",
         style: Theme.of(context).textTheme.titleLarge,
       ),
-      backgroundColor: Theme.of(context).cardColor,
       elevation: 0.0,
       centerTitle: false,
       actions: <Widget>[

@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
         bodyMedium: GoogleFonts.jetBrainsMono(
             fontSize: textSize - 2, fontWeight: FontWeight.w500),
         bodySmall: GoogleFonts.jetBrainsMono(
-            fontSize: textSize - 4, fontWeight: FontWeight.w300),
+            fontSize: textSize - 4, fontWeight: FontWeight.w400),
         // Define other styles as needed
       ),
       // Define other theme properties if needed

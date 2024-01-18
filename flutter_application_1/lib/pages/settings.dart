@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/app_setttings_model.dart';
+import 'package:flutter_application_1/pages/about.dart';
+import 'package:flutter_application_1/pages/faq.dart';
 import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -131,7 +133,7 @@ class _SettingsPage extends State<SettingsPage> {
     );
   }
 
-  Column helpSettings(String title) {
+  Widget helpSettings(String title) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -142,30 +144,45 @@ class _SettingsPage extends State<SettingsPage> {
             children: [],
           ),
         ),
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                spreadRadius: 2,
-                blurRadius: 5,
-                offset: const Offset(0, 3),
-              ),
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-              const Icon(Icons.arrow_forward_ios),
-            ],
+        GestureDetector(
+          onTap: () {
+            if (title == 'Frequently Asked Questions') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Faq()),
+              );
+            } else if (title == 'About Us') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const About()),
+              );
+            }
+          },
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  spreadRadius: 2,
+                  blurRadius: 5,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const Icon(Icons.arrow_forward_ios),
+              ],
+            ),
           ),
         ),
       ],
