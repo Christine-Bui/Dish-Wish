@@ -3,7 +3,8 @@ import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Recents extends StatefulWidget {
-  const Recents({super.key});
+  const Recents({Key? key}) : super(key: key);
+
   @override
   State<Recents> createState() => _Recents();
 }
@@ -24,8 +25,12 @@ class _Recents extends State<Recents> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Set the background color for the entire screen
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        title: const Text(
+          'Recently Viewed',
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
@@ -33,68 +38,13 @@ class _Recents extends State<Recents> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                  color: const Color(0xff1D1617).withOpacity(0.11),
-                  blurRadius: 40,
-                  spreadRadius: 0.0)
-            ]),
-            child: TextField(
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.all(15),
-                  hintText: 'Search',
-                  hintStyle: const TextStyle(color: Color(0xffDDDADA), fontSize: 14),
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: SvgPicture.asset('assets/icons/Search.svg'),
-                  ),
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: SvgPicture.asset('assets/icons/Filter.svg'),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide.none)),
-            ),
-          ),
-          const SizedBox(height: 20), // Adjust the spacing between the search bar and other content
           Padding(
             padding: const EdgeInsets.only(left: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Recently Viewed',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // Add your "See All" button action here
-                  },
-                  child: const Text(
-                    'See All',
-                    style: TextStyle(
-                      color: Colors.blue, // Change color as needed
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ],
+            child: const SizedBox(
+              height: 15,
             ),
           ),
-          const SizedBox(
-            height: 15,
-          ),
           Expanded(
-            // Wrapping ListView in Expanded
             child: ListView.separated(
               itemBuilder: (context, index) {
                 return Container(
@@ -103,9 +53,9 @@ class _Recents extends State<Recents> {
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1), // Shadow color
-                        blurRadius: 8, // Blur radius
-                        offset: const Offset(3, 6), // Offset in x and y axis
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 8,
+                        offset: const Offset(3, 6),
                       ),
                     ],
                   ),
@@ -116,14 +66,14 @@ class _Recents extends State<Recents> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: SizedBox.fromSize(
-                            size: const Size.fromRadius(75), // Adjust the image size
+                            size: const Size.fromRadius(75),
                             child: Image.asset(
                               recipes[index].iconPath,
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        const SizedBox(width: 20), // Adjust the spacing between image and text
+                        const SizedBox(width: 20),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +86,7 @@ class _Recents extends State<Recents> {
                                   fontSize: 16,
                                 ),
                               ),
-                              const SizedBox(height: 5), // Adjust the spacing between text and description
+                              const SizedBox(height: 5),
                               Text(
                                 recipes[index].description,
                                 style: const TextStyle(

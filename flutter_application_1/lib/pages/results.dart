@@ -26,6 +26,13 @@ class _Results extends State<Results> {
     return Scaffold(
       backgroundColor: Colors.white, // Set the background color for the entire screen
       appBar: AppBar(
+        title: const Text(
+          'Dish Wish', 
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
@@ -34,7 +41,7 @@ class _Results extends State<Results> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
+            margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
             decoration: BoxDecoration(boxShadow: [
               BoxShadow(
                   color: const Color(0xff1D1617).withOpacity(0.11),
@@ -73,18 +80,6 @@ class _Results extends State<Results> {
                     color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // Add your "See All" button action here
-                  },
-                  child: const Text(
-                    'See All',
-                    style: TextStyle(
-                      color: Colors.blue, // Change color as needed
-                      fontSize: 14,
-                    ),
                   ),
                 ),
               ],

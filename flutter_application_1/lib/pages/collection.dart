@@ -23,7 +23,13 @@ class _CollectionPage extends State<CollectionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Collections'),
+        title: const Text(
+          'Collections', // Add the title 'FAQ' to the AppBar
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
       body: Column(
         children: [
