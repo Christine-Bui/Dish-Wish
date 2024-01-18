@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/text_size_model.dart';
+import 'package:flutter_application_1/models/app_setttings_model.dart';
 import 'package:provider/provider.dart';
-// Other imports remain the same...
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -11,61 +10,47 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPage extends State<SettingsPage> {
-  bool _darkTheme = false; // Get the current text size
-  // Default text size
-
   @override
   Widget build(BuildContext context) {
-    double textSize = Provider.of<TextSizeModel>(context).textSize;
     return Scaffold(
       appBar: appBar(),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).cardColor,
       body: ListView(
         children: [
           Padding(
-              padding: EdgeInsets.only(left: 20),
+              padding: const EdgeInsets.only(left: 20),
               child: Text('Settings',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: textSize, // Use _textSize here
-                    fontWeight: FontWeight.w600,
-                  ))),
+                  style: Theme.of(context).textTheme.headlineMedium)),
           const SizedBox(height: 10),
-          AppSettings(textSize),
+          appSettingsWidget(),
           const SizedBox(height: 30),
           Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text('Help & Support',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: textSize, // Slightly smaller text size
-                    fontWeight: FontWeight.w600,
-                  ))),
+                  style: Theme.of(context).textTheme.headlineMedium)),
           const SizedBox(height: 10),
-          H_S('Frequently Asked Questions', textSize),
+          helpSettings('Frequently Asked Questions'),
           const SizedBox(height: 10),
-          H_S('About Us', textSize),
+          helpSettings('About Us'),
         ],
       ),
     );
   }
 
-  Column AppSettings(double textSize) {
+  Column appSettingsWidget() {
+    final appSettings = Provider.of<AppSettingsModel>(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'App Settings',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: textSize, // Use _textSize here
-                  fontWeight: FontWeight.w600,
-                ),
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
           ),
@@ -75,7 +60,7 @@ class _SettingsPage extends State<SettingsPage> {
           margin: const EdgeInsets.symmetric(horizontal: 20),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
@@ -91,42 +76,38 @@ class _SettingsPage extends State<SettingsPage> {
             children: [
               Text(
                 'Dark Mode',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: textSize, // Use _textSize here
-                  fontWeight: FontWeight.w400,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               Switch(
-                value: _darkTheme,
+                value: appSettings.darkMode,
                 onChanged: (bool value) {
-                  setState(() {
-                    _darkTheme = value;
-                  });
+                  appSettings.toggleDarkMode();
                 },
               ),
             ],
           ),
         ),
-        SizedBox(height: 10),
-        textSizeControl(textSize), // Slider to control text size
+        const SizedBox(height: 10),
+        textSizeControl(), // Slider to control text size
       ],
     );
   }
 
-  Widget textSizeControl(double textSize) {
+  Widget textSizeControl() {
+    final appSettings = Provider.of<AppSettingsModel>(context);
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 5,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -135,20 +116,15 @@ class _SettingsPage extends State<SettingsPage> {
         children: [
           Text(
             'Text Size',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: textSize,
-              fontWeight: FontWeight.w400,
-            ),
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           Slider(
-            min: 16,
-            max: 22,
-            divisions: 6,
-            value: textSize,
+            min: 10,
+            max: 30,
+            divisions: 20,
+            value: appSettings.textSize,
             onChanged: (newSize) {
-              Provider.of<TextSizeModel>(context, listen: false)
-                  .setTextSize(newSize);
+              appSettings.setTextSize(newSize);
             },
           ),
         ],
@@ -156,8 +132,7 @@ class _SettingsPage extends State<SettingsPage> {
     );
   }
 
-  Column H_S(String title, double textSize) {
-    // Accept a String parameter
+  Column helpSettings(String title) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -173,7 +148,7 @@ class _SettingsPage extends State<SettingsPage> {
           margin: const EdgeInsets.symmetric(horizontal: 20),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
@@ -189,11 +164,7 @@ class _SettingsPage extends State<SettingsPage> {
             children: [
               Text(
                 title,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: textSize,
-                  fontWeight: FontWeight.w400,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
               ),
               const Icon(Icons.arrow_forward_ios),
             ],
@@ -206,10 +177,4 @@ class _SettingsPage extends State<SettingsPage> {
   AppBar appBar() {
     return AppBar();
   }
-}
-
-void main() {
-  runApp(const MaterialApp(
-    home: SettingsPage(),
-  ));
 }

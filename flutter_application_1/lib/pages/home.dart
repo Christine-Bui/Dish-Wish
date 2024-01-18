@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/app_setttings_model.dart';
 import 'package:flutter_application_1/pages/collection.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
-import 'package:flutter_application_1/models/text_size_model.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -24,7 +24,6 @@ class _HomePage extends State<HomePage> {
     getInitialInfo();
     return Scaffold(
       appBar: appBar(),
-      backgroundColor: Colors.white,
       body: ListView(
         children: [
           searchField(),
@@ -54,12 +53,8 @@ class _HomePage extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Recommended for you',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: Provider.of<TextSizeModel>(context).textSize,
-                  fontWeight: FontWeight.w600,
-                ),
+                'Recommended Recipes',
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
               TextButton(
                 onPressed: () {
@@ -67,10 +62,7 @@ class _HomePage extends State<HomePage> {
                 },
                 child: Text(
                   'See All',
-                  style: TextStyle(
-                    color: Colors.blue, // Change color as needed
-                    fontSize: Provider.of<TextSizeModel>(context).textSize - 2,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
             ],
@@ -86,7 +78,7 @@ class _HomePage extends State<HomePage> {
               return Container(
                 width: 238,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -113,21 +105,11 @@ class _HomePage extends State<HomePage> {
                     const Padding(padding: EdgeInsets.only(top: 10)),
                     Text(
                       recipes[index].name,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                        fontSize:
-                            Provider.of<TextSizeModel>(context).textSize - 2,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Text(
                       recipes[index].description,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                        fontSize:
-                            Provider.of<TextSizeModel>(context).textSize - 4,
-                      ),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
                 ),
@@ -156,11 +138,7 @@ class _HomePage extends State<HomePage> {
             children: [
               Text(
                 'Popular Recipes',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: Provider.of<TextSizeModel>(context).textSize,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
               TextButton(
                 onPressed: () {
@@ -168,10 +146,7 @@ class _HomePage extends State<HomePage> {
                 },
                 child: Text(
                   'See All',
-                  style: TextStyle(
-                    color: Colors.blue, // Change color as needed
-                    fontSize: Provider.of<TextSizeModel>(context).textSize - 2,
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
             ],
@@ -187,7 +162,7 @@ class _HomePage extends State<HomePage> {
               return Container(
                 width: 238,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
@@ -214,21 +189,11 @@ class _HomePage extends State<HomePage> {
                     const Padding(padding: EdgeInsets.only(top: 10)),
                     Text(
                       recipes[index].name,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                        fontSize:
-                            Provider.of<TextSizeModel>(context).textSize - 2,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Text(
                       recipes[index].description,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                        fontSize:
-                            Provider.of<TextSizeModel>(context).textSize - 4,
-                      ),
+                      style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
                 ),
@@ -261,9 +226,7 @@ class _HomePage extends State<HomePage> {
             fillColor: Colors.white,
             contentPadding: const EdgeInsets.all(15),
             hintText: 'Search',
-            hintStyle: TextStyle(
-                color: Color(0xffDDDADA),
-                fontSize: Provider.of<TextSizeModel>(context).textSize - 2),
+            hintStyle: Theme.of(context).textTheme.bodyMedium,
             prefixIcon: Padding(
               padding: const EdgeInsets.all(12),
               child: SvgPicture.asset('assets/icons/Search.svg'),
@@ -283,13 +246,9 @@ class _HomePage extends State<HomePage> {
     return AppBar(
       title: Text(
         "Dish Wish",
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: Provider.of<TextSizeModel>(context).textSize + 2,
-          fontWeight: FontWeight.bold,
-        ),
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).cardColor,
       elevation: 0.0,
       centerTitle: false,
       actions: <Widget>[
