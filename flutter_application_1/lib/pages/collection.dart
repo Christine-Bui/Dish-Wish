@@ -24,12 +24,9 @@ class _CollectionPage extends State<CollectionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Collections',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
       body: Column(
@@ -48,7 +45,8 @@ class _CollectionPage extends State<CollectionPage> {
           // Add your logic to add collections here
         },
         child: const Icon(Icons.add),
-        backgroundColor: Colors.white, // Customize the background color
+        backgroundColor:
+            Theme.of(context).cardColor, // Customize the background color
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
@@ -66,10 +64,10 @@ class _CollectionPage extends State<CollectionPage> {
       child: TextField(
         decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.white,
+            fillColor: Theme.of(context).cardColor,
             contentPadding: const EdgeInsets.all(15),
             hintText: 'Search',
-            hintStyle: const TextStyle(color: Color(0xffDDDADA), fontSize: 14),
+            hintStyle: Theme.of(context).textTheme.bodySmall,
             prefixIcon: Padding(
               padding: const EdgeInsets.all(12),
               child: SvgPicture.asset('assets/icons/Search.svg'),
@@ -108,7 +106,7 @@ class _CollectionPage extends State<CollectionPage> {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(12),
           boxShadow: [
             BoxShadow(
@@ -141,10 +139,7 @@ class _CollectionPage extends State<CollectionPage> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 category,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
             ),
           ],
