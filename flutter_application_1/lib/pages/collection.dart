@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CollectionPage extends StatefulWidget {
-  CollectionPage({super.key});
+  CollectionPage({Key? key}) : super(key: key);
+
   final Map<String, List<String>> galleries = {
     'Favorites': ['1', '2', '3', '4'],
     'Other': ['5', '6', '7', '8'],
@@ -24,7 +25,7 @@ class _CollectionPage extends State<CollectionPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Collections', // Add the title 'FAQ' to the AppBar
+          'Collections',
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w600,
@@ -40,6 +41,16 @@ class _CollectionPage extends State<CollectionPage> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Handle the action when the plus icon is tapped
+          print('Add Collection tapped');
+          // Add your logic to add collections here
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.white, // Customize the background color
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
