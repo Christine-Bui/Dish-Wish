@@ -8,202 +8,143 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePage();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePage extends State<HomePage> {
+class _HomePageState extends State<HomePage> {
   List<RecipeModel> recipes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getInitialInfo();
+  }
+
   void getInitialInfo() {
     recipes = RecipeModel.getRecipes();
   }
 
   @override
   Widget build(BuildContext context) {
-    getInitialInfo();
     return Scaffold(
       appBar: appBar(),
       body: ListView(
         children: [
           searchField(),
-          const SizedBox(
-            height: 30,
+          const SizedBox(height: 30),
+          recommendSection(context),
+          const SizedBox(height: 30),
+          popularSection(context),
+          const SizedBox(height: 30),
+        ],
+      ),
+    );
+  }
+
+  Column recommendSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        sectionHeader(context, 'Recommended Recipes'),
+        recipeListView(context),
+      ],
+    );
+  }
+
+  Column popularSection(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        sectionHeader(context, 'Popular Recipes'),
+        recipeListView(context),
+      ],
+    );
+  }
+
+  Padding sectionHeader(BuildContext context, String title) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: Theme.of(context).textTheme.headlineLarge,
           ),
-          recommendSection(),
-          const SizedBox(
-            height: 30,
-          ),
-          popularSection(),
-          const SizedBox(
-            height: 30,
+          TextButton(
+            onPressed: () {
+              // Add your "See All" button action here
+            },
+            child: Text(
+              'See All',
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Column recommendSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Recommended Recipes',
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
-              TextButton(
-                onPressed: () {
-                  // Add your "See All" button action here
-                },
-                child: Text('See All',
-                    style: Theme.of(context).textTheme.headlineSmall),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        SizedBox(
-          height: 350,
-          child: ListView.separated(
-            itemBuilder: (context, index) {
-              return Container(
-                width: 238,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1), // Shadow color
-                      blurRadius: 8, // Blur radius
-                      offset: const Offset(3, 6), // Offset in x and y axis
-                    ),
-                  ],
-                ),
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: SizedBox.fromSize(
-                        size: const Size.fromRadius(108),
-                        child: Image.asset(
-                          recipes[index].iconPath,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    const Padding(padding: EdgeInsets.only(top: 10)),
-                    Text(
-                      recipes[index].name,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    Text(
-                      recipes[index].description,
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ),
-              );
+  SizedBox recipeListView(BuildContext context) {
+    return SizedBox(
+      height: 350,
+      child: ListView.separated(
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              // Handle recipe tap
+              print('Recipe ${recipes[index].name} clicked');
             },
-            separatorBuilder: (context, index) => const SizedBox(
-              width: 25,
-            ),
-            itemCount: recipes.length,
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-          ),
-        )
-      ],
+            child: recipeContainer(context, index),
+          );
+        },
+        separatorBuilder: (context, index) => const SizedBox(width: 25),
+        itemCount: recipes.length,
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+      ),
     );
   }
 
-  Column popularSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Popular Recipes',
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
-              TextButton(
-                onPressed: () {
-                  // Add your "See All" button action here
-                },
-                child: Text(
-                  'See All',
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-              ),
-            ],
+  Container recipeContainer(BuildContext context, int index) {
+    return Container(
+      width: 238,
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(3, 6),
           ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        SizedBox(
-          height: 350,
-          child: ListView.separated(
-            itemBuilder: (context, index) {
-              return Container(
-                width: 238,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1), // Shadow color
-                      blurRadius: 8, // Blur radius
-                      offset: const Offset(3, 6), // Offset in x and y axis
-                    ),
-                  ],
-                ),
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: SizedBox.fromSize(
-                        size: const Size.fromRadius(108),
-                        child: Image.asset(
-                          recipes[index].iconPath,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    const Padding(padding: EdgeInsets.only(top: 10)),
-                    Text(
-                      recipes[index].name,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    Text(
-                      recipes[index].description,
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
-                ),
-              );
-            },
-            separatorBuilder: (context, index) => const SizedBox(
-              width: 25,
+        ],
+      ),
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: SizedBox.fromSize(
+              size: const Size.fromRadius(108),
+              child: Image.asset(
+                recipes[index].iconPath,
+                fit: BoxFit.cover,
+              ),
             ),
-            itemCount: recipes.length,
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           ),
-        )
-      ],
+          const Padding(padding: EdgeInsets.only(top: 10)),
+          Text(
+            recipes[index].name,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          Text(
+            recipes[index].description,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ],
+      ),
     );
   }
 
