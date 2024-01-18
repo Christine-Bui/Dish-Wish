@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Recents extends StatefulWidget {
   const Recents({Key? key}) : super(key: key);
@@ -38,11 +37,9 @@ class _Recents extends State<Recents> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: const SizedBox(
-              height: 15,
-            ),
+          const Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: SizedBox(height: 15),
           ),
           Expanded(
             child: ListView.separated(

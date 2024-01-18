@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Faq extends StatefulWidget {
   const Faq({Key? key}) : super(key: key);
@@ -91,28 +90,28 @@ class _Faq extends State<Faq> {
                       'How to add to a collection?',
                       "Navigate to the 'Collections' page by first clicking on the heart icon in the top right of the screen and then locate and click on the plus icon at the bottom right. Enter a name for the collection and press 'ok'.",
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     buildQuestionContainer(
                       'How to search with ingredients?',
                       "Click on the filters icon in the search bar at top of the page and click on the option 'by ingredients'.",
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     buildQuestionContainer(
                       'How to delete from a collection?',
                       "Navigate to the 'Collections' page by first clicking on the heart icon in the top right of the screen then long press a collection for a pop-up dialog to appear and select the option to delete.",
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     buildQuestionContainer(
                       'How did Stardew Valley influence you?',
                       "It helped me learn about what to prioritize and how fun the game is.",
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                   ],
                 );
               },
-              separatorBuilder: (context, index) => SizedBox(height: 25),
+              separatorBuilder: (context, index) => const SizedBox(height: 25),
               itemCount: 1,
-              padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
             ),
           ),
         ],
