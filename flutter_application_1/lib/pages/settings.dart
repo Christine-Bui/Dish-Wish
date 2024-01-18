@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/text_size_model.dart';
+import 'package:provider/provider.dart';
 // Other imports remain the same...
 
 class SettingsPage extends StatefulWidget {
@@ -9,11 +11,12 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPage extends State<SettingsPage> {
-  bool _darkTheme = false;
-  double _textSize = 16; // Default text size
+  bool _darkTheme = false; // Get the current text size
+  // Default text size
 
   @override
   Widget build(BuildContext context) {
+    double textSize = Provider.of<TextSizeModel>(context).textSize;
     return Scaffold(
       appBar: appBar(),
       backgroundColor: Colors.white,
@@ -24,30 +27,30 @@ class _SettingsPage extends State<SettingsPage> {
               child: Text('Settings',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: _textSize + 8, // Use _textSize here
+                    fontSize: textSize, // Use _textSize here
                     fontWeight: FontWeight.w600,
                   ))),
           const SizedBox(height: 10),
-          appSettings(),
+          AppSettings(textSize),
           const SizedBox(height: 30),
           Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text('Help & Support',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: _textSize + 2, // Slightly smaller text size
+                    fontSize: textSize, // Slightly smaller text size
                     fontWeight: FontWeight.w600,
                   ))),
           const SizedBox(height: 10),
-          H_S('Frequently Asked Questions'),
+          H_S('Frequently Asked Questions', textSize),
           const SizedBox(height: 10),
-          H_S('About Us'),
+          H_S('About Us', textSize),
         ],
       ),
     );
   }
 
-  Column appSettings() {
+  Column AppSettings(double textSize) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -60,7 +63,7 @@ class _SettingsPage extends State<SettingsPage> {
                 'App Settings',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: _textSize + 2, // Use _textSize here
+                  fontSize: textSize, // Use _textSize here
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -90,7 +93,7 @@ class _SettingsPage extends State<SettingsPage> {
                 'Dark Mode',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: _textSize, // Use _textSize here
+                  fontSize: textSize, // Use _textSize here
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -106,12 +109,12 @@ class _SettingsPage extends State<SettingsPage> {
           ),
         ),
         SizedBox(height: 10),
-        textSizeControl(), // Slider to control text size
+        textSizeControl(textSize), // Slider to control text size
       ],
     );
   }
 
-  Widget textSizeControl() {
+  Widget textSizeControl(double textSize) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
       padding: const EdgeInsets.all(10),
@@ -128,24 +131,24 @@ class _SettingsPage extends State<SettingsPage> {
         ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Text Size',
             style: TextStyle(
               color: Colors.black,
-              fontSize: _textSize,
+              fontSize: textSize,
               fontWeight: FontWeight.w400,
             ),
           ),
           Slider(
-            min: 12,
+            min: 16,
             max: 22,
-            divisions: 4,
-            value: _textSize,
+            divisions: 6,
+            value: textSize,
             onChanged: (newSize) {
-              setState(() {
-                _textSize = newSize;
-              });
+              Provider.of<TextSizeModel>(context, listen: false)
+                  .setTextSize(newSize);
             },
           ),
         ],
@@ -153,7 +156,7 @@ class _SettingsPage extends State<SettingsPage> {
     );
   }
 
-  Column H_S(String title) {
+  Column H_S(String title, double textSize) {
     // Accept a String parameter
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -188,7 +191,7 @@ class _SettingsPage extends State<SettingsPage> {
                 title,
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: _textSize,
+                  fontSize: textSize,
                   fontWeight: FontWeight.w400,
                 ),
               ),

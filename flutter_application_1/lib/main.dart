@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_application_1/models/text_size_model.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => TextSizeModel(),
+      child: const MaterialApp(
+        home: SplashScreen(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

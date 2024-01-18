@@ -3,6 +3,8 @@ import 'package:flutter_application_1/pages/collection.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
+import 'package:flutter_application_1/models/text_size_model.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -51,11 +53,11 @@ class _HomePage extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Recommended for you',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 18,
+                  fontSize: Provider.of<TextSizeModel>(context).textSize,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -63,11 +65,11 @@ class _HomePage extends State<HomePage> {
                 onPressed: () {
                   // Add your "See All" button action here
                 },
-                child: const Text(
+                child: Text(
                   'See All',
                   style: TextStyle(
                     color: Colors.blue, // Change color as needed
-                    fontSize: 14,
+                    fontSize: Provider.of<TextSizeModel>(context).textSize - 2,
                   ),
                 ),
               ),
@@ -111,18 +113,18 @@ class _HomePage extends State<HomePage> {
                     const Padding(padding: EdgeInsets.only(top: 10)),
                     Text(
                       recipes[index].name,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: Provider.of<TextSizeModel>(context).textSize,
                       ),
                     ),
                     Text(
                       recipes[index].description,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
-                        fontSize: 14,
+                        fontSize: Provider.of<TextSizeModel>(context).textSize,
                       ),
                     ),
                   ],
@@ -150,11 +152,11 @@ class _HomePage extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Popular Recipes',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 18,
+                  fontSize: Provider.of<TextSizeModel>(context).textSize + 2,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -162,11 +164,11 @@ class _HomePage extends State<HomePage> {
                 onPressed: () {
                   // Add your "See All" button action here
                 },
-                child: const Text(
+                child: Text(
                   'See All',
                   style: TextStyle(
                     color: Colors.blue, // Change color as needed
-                    fontSize: 14,
+                    fontSize: Provider.of<TextSizeModel>(context).textSize - 2,
                   ),
                 ),
               ),
@@ -210,18 +212,19 @@ class _HomePage extends State<HomePage> {
                     const Padding(padding: EdgeInsets.only(top: 10)),
                     Text(
                       recipes[index].name,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: Provider.of<TextSizeModel>(context).textSize,
                       ),
                     ),
                     Text(
                       recipes[index].description,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
-                        fontSize: 14,
+                        fontSize:
+                            Provider.of<TextSizeModel>(context).textSize - 2,
                       ),
                     ),
                   ],
@@ -255,7 +258,9 @@ class _HomePage extends State<HomePage> {
             fillColor: Colors.white,
             contentPadding: const EdgeInsets.all(15),
             hintText: 'Search',
-            hintStyle: const TextStyle(color: Color(0xffDDDADA), fontSize: 14),
+            hintStyle: TextStyle(
+                color: Color(0xffDDDADA),
+                fontSize: Provider.of<TextSizeModel>(context).textSize - 2),
             prefixIcon: Padding(
               padding: const EdgeInsets.all(12),
               child: SvgPicture.asset('assets/icons/Search.svg'),
@@ -273,11 +278,11 @@ class _HomePage extends State<HomePage> {
 
   AppBar appBar() {
     return AppBar(
-      title: const Text(
+      title: Text(
         "Dish Wish",
         style: TextStyle(
           color: Colors.black,
-          fontSize: 18,
+          fontSize: Provider.of<TextSizeModel>(context).textSize + 2,
           fontWeight: FontWeight.bold,
         ),
       ),
