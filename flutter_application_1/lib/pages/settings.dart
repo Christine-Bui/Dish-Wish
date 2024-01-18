@@ -19,7 +19,7 @@ class _SettingsPage extends State<SettingsPage> {
       backgroundColor: Colors.white,
       body: ListView(
         children: [
-          const Padding(
+          Padding(
               padding: EdgeInsets.only(left: 20),
               child: Text('Settings',
                   style: TextStyle(
@@ -32,7 +32,7 @@ class _SettingsPage extends State<SettingsPage> {
           const SizedBox(height: 30),
           Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: const Text('Help & Support',
+              child: Text('Help & Support',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: _textSize + 2, // Slightly smaller text size
@@ -51,7 +51,7 @@ class _SettingsPage extends State<SettingsPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.only(left: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -186,7 +186,7 @@ class _SettingsPage extends State<SettingsPage> {
             children: [
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.black,
                   fontSize: _textSize,
                   fontWeight: FontWeight.w400,
