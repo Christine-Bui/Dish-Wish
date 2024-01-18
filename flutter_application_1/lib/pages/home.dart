@@ -116,7 +116,8 @@ class _HomePage extends State<HomePage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
-                        fontSize: Provider.of<TextSizeModel>(context).textSize,
+                        fontSize:
+                            Provider.of<TextSizeModel>(context).textSize - 2,
                       ),
                     ),
                     Text(
@@ -124,7 +125,8 @@ class _HomePage extends State<HomePage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
-                        fontSize: Provider.of<TextSizeModel>(context).textSize,
+                        fontSize:
+                            Provider.of<TextSizeModel>(context).textSize - 4,
                       ),
                     ),
                   ],
@@ -156,7 +158,7 @@ class _HomePage extends State<HomePage> {
                 'Popular Recipes',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: Provider.of<TextSizeModel>(context).textSize + 2,
+                  fontSize: Provider.of<TextSizeModel>(context).textSize,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -215,7 +217,8 @@ class _HomePage extends State<HomePage> {
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: Colors.black,
-                        fontSize: Provider.of<TextSizeModel>(context).textSize,
+                        fontSize:
+                            Provider.of<TextSizeModel>(context).textSize - 2,
                       ),
                     ),
                     Text(
@@ -224,7 +227,7 @@ class _HomePage extends State<HomePage> {
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                         fontSize:
-                            Provider.of<TextSizeModel>(context).textSize - 2,
+                            Provider.of<TextSizeModel>(context).textSize - 4,
                       ),
                     ),
                   ],

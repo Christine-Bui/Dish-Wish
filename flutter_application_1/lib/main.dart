@@ -8,9 +8,7 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => TextSizeModel(),
-      child: const MaterialApp(
-        home: SplashScreen(),
-      ),
+      child: const MyApp(),
     ),
   );
 }
