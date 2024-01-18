@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/pages/home.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -41,22 +42,23 @@ class _SplashScreenState extends State<SplashScreen>
           children: [
             SizedBox(
               height: 200, // Adjust the height as needed
-              width: 200,  // Adjust the width as needed
-              child: Image.asset('assets/icons/logo-black.jpg'), // Change to Image.asset
+              width: 200, // Adjust the width as needed
+              child: Image.asset(
+                  'assets/icons/logo-black.jpg'), // Change to Image.asset
             ),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               "Need a dish,",
-              style: TextStyle(
+              style: GoogleFonts.jetBrainsMono(
                 color: Colors.black,
                 fontWeight: FontWeight.normal,
                 fontSize: 24,
                 fontStyle: FontStyle.italic,
               ),
             ),
-            const Text(
+            Text(
               "We grant that wish!",
-              style: TextStyle(
+              style: GoogleFonts.jetBrainsMono(
                 color: Colors.black,
                 fontWeight: FontWeight.normal,
                 fontSize: 24,

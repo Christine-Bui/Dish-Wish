@@ -1,174 +1,144 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/recipe_model.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
-class Selection extends StatefulWidget {
-  const Selection({super.key});
-  @override
-  State<Selection> createState() => _Selection();
+void main() {
+  runApp(Selection());
 }
 
-class _Selection extends State<Selection> {
-  List<RecipeModel> recipes = [];
-
-  @override
-  void initState() {
-    super.initState();
-    getInitialInfo();
-  }
-
-  void getInitialInfo() {
-    recipes = RecipeModel.getRecipes();
-  }
-
+class Selection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      home: IngredientListPage(),
+    );
+  }
+}
+
+class IngredientListPage extends StatefulWidget {
+  @override
+  _IngredientListPageState createState() => _IngredientListPageState();
+}
+
+class _IngredientListPageState extends State<IngredientListPage> {
+  final List<Map<String, dynamic>> ingredients = [
+    {'name': 'Basil', 'imageUrl': 'https://img.icons8.com/color/48/basil.png'},
+    {
+      'name': 'Carrots',
+      'imageUrl': 'https://img.icons8.com/color/48/carrot.png'
+    },
+    {
+      'name': 'Cauliflower',
+      'imageUrl': 'https://img.icons8.com/color/48/cauliflower.png'
+    },
+    // Add the rest of the ingredients with their image URLs here...
+  ];
+
+  final Set<String> selectedIngredients = {};
+
+  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Set the background color for the entire screen
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
+        title: Text('Select Ingredients'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.filter_list),
+            onPressed: () {
+              // Add filter action here
+            },
+          ),
+        ],
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                  color: const Color(0xff1D1617).withOpacity(0.11),
-                  blurRadius: 40,
-                  spreadRadius: 0.0)
-            ]),
-            child: TextField(
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  contentPadding: const EdgeInsets.all(15),
-                  hintText: 'Search',
-                  hintStyle: const TextStyle(color: Color(0xffDDDADA), fontSize: 14),
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: SvgPicture.asset('assets/icons/Search.svg'),
-                  ),
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: SvgPicture.asset('assets/icons/Filter.svg'),
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide.none)),
-            ),
-          ),
-          const SizedBox(height: 20), // Adjust the spacing between the search bar and other content
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Recently Viewed',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // Add your "See All" button action here
-                  },
-                  child: const Text(
-                    'See All',
-                    style: TextStyle(
-                      color: Colors.blue, // Change color as needed
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
+          searchField(),
+          const SizedBox(height: 20),
           Expanded(
-            // Wrapping ListView in Expanded
-            child: ListView.separated(
+            child: ListView.builder(
+              itemCount: ingredients.length,
               itemBuilder: (context, index) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1), // Shadow color
-                        blurRadius: 8, // Blur radius
-                        offset: const Offset(3, 6), // Offset in x and y axis
-                      ),
-                    ],
+                var ingredient = ingredients[index];
+                bool isSelected =
+                    selectedIngredients.contains(ingredient['name']);
+                return Card(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: SizedBox.fromSize(
-                            size: const Size.fromRadius(75), // Adjust the image size
-                            child: Image.asset(
-                              recipes[index].iconPath,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 20), // Adjust the spacing between image and text
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                recipes[index].name,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              const SizedBox(height: 5), // Adjust the spacing between text and description
-                              Text(
-                                recipes[index].description,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black,
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                  elevation: 1,
+                  shadowColor: Colors.black.withOpacity(0.5),
+                  child: ListTile(
+                    leading: Image.network(
+                      ingredient['imageUrl'],
+                      width: 56,
+                      height: 56,
+                      fit: BoxFit.cover,
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace? stackTrace) {
+                        // Placeholder image or Icon when image fails to load
+                        return Icon(Icons.error);
+                      },
                     ),
+                    title: Text(ingredient['name']),
+                    trailing: Checkbox(
+                      value: isSelected,
+                      onChanged: (bool? newValue) {
+                        setState(() {
+                          if (newValue ?? false) {
+                            selectedIngredients.add(ingredient['name']);
+                          } else {
+                            selectedIngredients.remove(ingredient['name']);
+                          }
+                        });
+                      },
+                    ),
+                    onTap: () {
+                      setState(() {
+                        if (isSelected) {
+                          selectedIngredients.remove(ingredient['name']);
+                        } else {
+                          selectedIngredients.add(ingredient['name']);
+                        }
+                      });
+                    },
                   ),
                 );
               },
-              separatorBuilder: (context, index) => const SizedBox(
-                height: 25,
-              ),
-              itemCount: recipes.length,
-              scrollDirection: Axis.vertical,
-              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
             ),
           ),
         ],
       ),
     );
   }
-}
 
-void main() {
-  runApp(const MaterialApp(
-    home: Selection(),
-  ));
+  Container searchField() {
+    return Container(
+      margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+            color: const Color(0xff1D1617).withOpacity(0.11),
+            blurRadius: 40,
+            spreadRadius: 0.0)
+      ]),
+      child: TextField(
+        decoration: InputDecoration(
+            filled: true,
+            fillColor: Theme.of(context).cardColor,
+            contentPadding: const EdgeInsets.all(15),
+            hintText: 'Search',
+            hintStyle: Theme.of(context).textTheme.bodyMedium,
+            prefixIcon: Padding(
+              padding: const EdgeInsets.all(12),
+              child: SvgPicture.asset('assets/icons/Search.svg'),
+            ),
+            suffixIcon: Padding(
+              padding: const EdgeInsets.all(12),
+              child: SvgPicture.asset('assets/icons/Filter.svg'),
+            ),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(15),
+                borderSide: BorderSide.none)),
+      ),
+    );
+  }
 }

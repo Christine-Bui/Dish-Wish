@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/app_setttings_model.dart';
 import 'package:flutter_application_1/pages/about.dart';
 import 'package:flutter_application_1/pages/faq.dart';
+import 'package:flutter_application_1/pages/recents.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -23,6 +25,8 @@ class _SettingsPage extends State<SettingsPage> {
               child: Text('Settings',
                   style: Theme.of(context).textTheme.titleLarge)),
           const SizedBox(height: 15),
+          helpSettings('Recently Viewed'),
+          const SizedBox(height: 20),
           appSettingsWidget(),
           const SizedBox(height: 30),
           Padding(
@@ -122,7 +126,8 @@ class _SettingsPage extends State<SettingsPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('A', style: TextStyle(fontSize: 16)), // Small "A"
+              Text('A',
+                  style: GoogleFonts.jetBrainsMono(fontSize: 16)), // Small "A"
               Expanded(
                 child: Slider(
                   min: 10,
@@ -134,7 +139,8 @@ class _SettingsPage extends State<SettingsPage> {
                   },
                 ),
               ),
-              const Text('A', style: TextStyle(fontSize: 24)), // Large "A"
+              Text('A',
+                  style: GoogleFonts.jetBrainsMono(fontSize: 24)), // Large "A"
             ],
           ),
         ],
@@ -165,11 +171,19 @@ class _SettingsPage extends State<SettingsPage> {
                 context,
                 MaterialPageRoute(builder: (context) => const About()),
               );
+            } else {
+              {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Recents()),
+                );
+              }
+              ;
             }
           },
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(10),
@@ -189,7 +203,11 @@ class _SettingsPage extends State<SettingsPage> {
                   title,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
-                const Icon(Icons.arrow_forward_ios),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 10,
+                  color: Colors.black,
+                ),
               ],
             ),
           ),
