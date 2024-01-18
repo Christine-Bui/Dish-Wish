@@ -2,17 +2,17 @@ class RecipeModel {
   String name;
   String iconPath;
   String description;
-  String about;
-  List<String> ingredients;
-  List<String> instructions;
+  String? about;
+  List<String>? ingredients;
+  List<String>? instructions;
 
   RecipeModel({
     required this.name,
     required this.iconPath,
     required this.description,
-    required this.about,
-    required this.ingredients,
-    required this.instructions,
+    this.about,
+    this.ingredients,
+    this.instructions,
   });
 
   static List<RecipeModel> getRecipes() {
