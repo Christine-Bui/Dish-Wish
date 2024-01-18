@@ -33,16 +33,29 @@ class MyApp extends StatelessWidget {
     return ThemeData(
       primarySwatch: Colors.blue,
       brightness: brightness,
+      cardColor: brightness == Brightness.light
+          ? Colors.white
+          : const Color.fromRGBO(50, 50, 50, 1),
+      // Define the default font family.
       textTheme: TextTheme(
-        titleLarge: GoogleFonts.jetBrainsMono(fontSize: textSize),
-        titleMedium: GoogleFonts.jetBrainsMono(fontSize: textSize),
-        titleSmall: GoogleFonts.jetBrainsMono(fontSize: textSize),
-        headlineLarge: GoogleFonts.jetBrainsMono(fontSize: textSize),
-        headlineMedium: GoogleFonts.jetBrainsMono(fontSize: textSize),
-        headlineSmall: GoogleFonts.jetBrainsMono(fontSize: textSize),
-        bodyLarge: GoogleFonts.jetBrainsMono(fontSize: textSize),
-        bodyMedium: GoogleFonts.jetBrainsMono(fontSize: textSize),
-        bodySmall: GoogleFonts.jetBrainsMono(fontSize: textSize),
+        titleLarge: GoogleFonts.jetBrainsMono(
+            fontSize: textSize + 4, fontWeight: FontWeight.w600),
+        titleMedium: GoogleFonts.jetBrainsMono(
+            fontSize: textSize - 2, fontWeight: FontWeight.w700),
+        titleSmall: GoogleFonts.jetBrainsMono(
+            fontSize: textSize - 4, fontWeight: FontWeight.w700),
+        headlineLarge: GoogleFonts.jetBrainsMono(
+            fontSize: textSize, fontWeight: FontWeight.w600),
+        headlineMedium: GoogleFonts.jetBrainsMono(
+            fontSize: textSize - 2, fontWeight: FontWeight.w600),
+        headlineSmall: GoogleFonts.jetBrainsMono(
+            fontSize: textSize - 3, fontWeight: FontWeight.w600),
+        bodyLarge: GoogleFonts.jetBrainsMono(
+            fontSize: textSize, fontWeight: FontWeight.w600),
+        bodyMedium: GoogleFonts.jetBrainsMono(
+            fontSize: textSize - 2, fontWeight: FontWeight.w500),
+        bodySmall: GoogleFonts.jetBrainsMono(
+            fontSize: textSize - 4, fontWeight: FontWeight.w300),
         // Define other styles as needed
       ),
       // Define other theme properties if needed

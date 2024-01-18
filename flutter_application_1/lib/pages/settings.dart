@@ -14,21 +14,20 @@ class _SettingsPage extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(),
-      backgroundColor: Theme.of(context).cardColor,
       body: ListView(
         children: [
           Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text('Settings',
-                  style: Theme.of(context).textTheme.headlineMedium)),
-          const SizedBox(height: 10),
+                  style: Theme.of(context).textTheme.titleLarge)),
+          const SizedBox(height: 15),
           appSettingsWidget(),
           const SizedBox(height: 30),
           Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Text('Help & Support',
                   style: Theme.of(context).textTheme.headlineMedium)),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           helpSettings('Frequently Asked Questions'),
           const SizedBox(height: 10),
           helpSettings('About Us'),
@@ -64,7 +63,7 @@ class _SettingsPage extends State<SettingsPage> {
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
+                color: Colors.black.withOpacity(0.1),
                 spreadRadius: 2,
                 blurRadius: 5,
                 offset: const Offset(0, 3),
@@ -76,7 +75,7 @@ class _SettingsPage extends State<SettingsPage> {
             children: [
               Text(
                 'Dark Mode',
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               Switch(
                 value: appSettings.darkMode,
@@ -104,7 +103,7 @@ class _SettingsPage extends State<SettingsPage> {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: Colors.black.withOpacity(0.1),
             spreadRadius: 2,
             blurRadius: 5,
             offset: const Offset(0, 3),
@@ -116,7 +115,7 @@ class _SettingsPage extends State<SettingsPage> {
         children: [
           Text(
             'Text Size',
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
           Slider(
             min: 10,
@@ -143,7 +142,6 @@ class _SettingsPage extends State<SettingsPage> {
             children: [],
           ),
         ),
-        const SizedBox(height: 15),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
           padding: const EdgeInsets.all(10),
@@ -152,7 +150,7 @@ class _SettingsPage extends State<SettingsPage> {
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
+                color: Colors.black.withOpacity(0.1),
                 spreadRadius: 2,
                 blurRadius: 5,
                 offset: const Offset(0, 3),
@@ -164,7 +162,7 @@ class _SettingsPage extends State<SettingsPage> {
             children: [
               Text(
                 title,
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
               const Icon(Icons.arrow_forward_ios),
             ],

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/models/app_setttings_model.dart';
 import 'package:flutter_application_1/pages/collection.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -54,16 +52,14 @@ class _HomePage extends State<HomePage> {
             children: [
               Text(
                 'Recommended Recipes',
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
               TextButton(
                 onPressed: () {
                   // Add your "See All" button action here
                 },
-                child: Text(
-                  'See All',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                child: Text('See All',
+                    style: Theme.of(context).textTheme.headlineSmall),
               ),
             ],
           ),
@@ -138,7 +134,7 @@ class _HomePage extends State<HomePage> {
             children: [
               Text(
                 'Popular Recipes',
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
               TextButton(
                 onPressed: () {
@@ -146,7 +142,7 @@ class _HomePage extends State<HomePage> {
                 },
                 child: Text(
                   'See All',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ),
             ],
@@ -223,7 +219,7 @@ class _HomePage extends State<HomePage> {
       child: TextField(
         decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.white,
+            fillColor: Theme.of(context).cardColor,
             contentPadding: const EdgeInsets.all(15),
             hintText: 'Search',
             hintStyle: Theme.of(context).textTheme.bodyMedium,
@@ -246,7 +242,7 @@ class _HomePage extends State<HomePage> {
     return AppBar(
       title: Text(
         "Dish Wish",
-        style: Theme.of(context).textTheme.bodyLarge,
+        style: Theme.of(context).textTheme.titleLarge,
       ),
       backgroundColor: Theme.of(context).cardColor,
       elevation: 0.0,
