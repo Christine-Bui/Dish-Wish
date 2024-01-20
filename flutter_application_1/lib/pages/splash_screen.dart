@@ -71,3 +71,7 @@ class _SplashScreenState extends State<SplashScreen>
     );
   }
 }
+
+void main() {
+  runApp(SplashScreen());
+}

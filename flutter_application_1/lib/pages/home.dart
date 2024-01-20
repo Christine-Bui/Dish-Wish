@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.headlineLarge,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           TextButton(
             onPressed: () {
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
               'See All',
               style: GoogleFonts.jetBrainsMono(
                 color: Colors.blue, // Set text color to blue
-                fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
+                fontSize: Theme.of(context).textTheme.headlineMedium?.fontSize,
                 fontWeight:
                     Theme.of(context).textTheme.headlineSmall?.fontWeight,
               ),
@@ -230,4 +230,12 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+  // void navigateToDetailPage(RecipeModel recipe) {
+  // Navigator.push(
+  //   context,
+  //   MaterialPageRoute(
+  //     builder: (context) => RecipeDetail(recipe: recipe),
+  //   ),
+  // );
+// }
 }
