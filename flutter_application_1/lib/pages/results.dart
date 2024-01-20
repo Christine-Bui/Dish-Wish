@@ -24,7 +24,7 @@ class _Results extends State<Results> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Set the background color for the entire screen
+      backgroundColor: Theme.of(context).cardColor, // Set the background color for the entire screen
       appBar: AppBar(
         title: const Text(
           'Dish Wish', 
@@ -51,7 +51,7 @@ class _Results extends State<Results> {
             child: TextField(
               decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Theme.of(context).cardColor,
                   contentPadding: const EdgeInsets.all(15),
                   hintText: 'Search',
                   hintStyle: const TextStyle(color: Color(0xffDDDADA), fontSize: 14),
@@ -95,7 +95,7 @@ class _Results extends State<Results> {
                 return Container(
                   width: 238,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(

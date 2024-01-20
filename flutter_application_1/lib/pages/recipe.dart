@@ -28,7 +28,7 @@ class _RecipeState extends State<Recipe> {
     RecipeModel selectedRecipe = recipes[selectedRecipeIndex];
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).cardColor,
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Stack(
