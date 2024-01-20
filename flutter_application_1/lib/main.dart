@@ -40,19 +40,7 @@ class MyApp extends StatelessWidget {
       textTheme: TextTheme(
         titleLarge: GoogleFonts.jetBrainsMono(
             fontSize: textSize + 4, fontWeight: FontWeight.w600),
-        titleMedium: GoogleFonts.jetBrainsMono(
-            fontSize: textSize - 2, fontWeight: FontWeight.w700),
-        titleSmall: GoogleFonts.jetBrainsMono(
-            fontSize: textSize - 4, fontWeight: FontWeight.w700),
-        headlineLarge: GoogleFonts.jetBrainsMono(
-            fontSize: textSize, fontWeight: FontWeight.w600),
         headlineMedium: GoogleFonts.jetBrainsMono(
-            fontSize: textSize - 2, fontWeight: FontWeight.w600),
-        headlineSmall: GoogleFonts.jetBrainsMono(
-            fontSize: textSize - 3, fontWeight: FontWeight.w600),
-        bodyLarge: GoogleFonts.jetBrainsMono(
-            fontSize: textSize, fontWeight: FontWeight.w600),
-        bodyMedium: GoogleFonts.jetBrainsMono(
             fontSize: textSize - 2, fontWeight: FontWeight.w500),
         bodySmall: GoogleFonts.jetBrainsMono(
             fontSize: textSize - 4, fontWeight: FontWeight.w400),

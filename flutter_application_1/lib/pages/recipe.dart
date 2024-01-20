@@ -28,7 +28,6 @@ class _RecipeState extends State<Recipe> {
     RecipeModel selectedRecipe = recipes[selectedRecipeIndex];
 
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Stack(
@@ -57,29 +56,17 @@ class _RecipeState extends State<Recipe> {
                 children: [
                   Text(
                     selectedRecipe.name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                      fontSize: 16,
-                    ),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 5),
                   Text(
                     selectedRecipe.about,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
-                      fontSize: 14,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 5),
                   Text(
                     'Ingredients:',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                      fontSize: 14,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 5),
                   // Display Ingredients using Column
@@ -88,21 +75,13 @@ class _RecipeState extends State<Recipe> {
                       padding: const EdgeInsets.only(left: 16),
                       child: Text(
                         '$ingredient',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                          fontSize: 14,
-                        ),
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
                   const SizedBox(height: 5),
                   Text(
                     'Instructions:',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                      fontSize: 14,
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 5),
                   // Display Instructions using Column
@@ -111,11 +90,7 @@ class _RecipeState extends State<Recipe> {
                       padding: const EdgeInsets.only(left: 16),
                       child: Text(
                         '${selectedRecipe.instructions[i]}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                          fontSize: 14,
-                        ),
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
                   const SizedBox(

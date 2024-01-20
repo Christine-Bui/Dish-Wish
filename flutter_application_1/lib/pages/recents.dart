@@ -30,7 +30,6 @@ class _Recents extends State<Recents> {
           style: Theme.of(context).textTheme.titleLarge,
         ),
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +48,7 @@ class _Recents extends State<Recents> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
