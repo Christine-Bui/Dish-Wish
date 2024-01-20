@@ -28,7 +28,7 @@ class _RecipeState extends State<Recipe> {
     RecipeModel selectedRecipe = recipes[selectedRecipeIndex];
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).cardColor,
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Stack(
@@ -132,7 +132,7 @@ class _RecipeState extends State<Recipe> {
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeInOut);
         },
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).cardColor,
         child: const Icon(Icons.arrow_upward),
       ),
     );
