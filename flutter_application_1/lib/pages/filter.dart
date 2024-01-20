@@ -29,7 +29,6 @@ class _Filter extends State<Filter> {
         title: Text('Dish Wish'),
         backgroundColor: Theme.of(context).cardColor,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
