@@ -24,12 +24,11 @@ class _Filter extends State<Filter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).cardColor,
       appBar: AppBar(
         title: Text('Dish Wish'),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).cardColor,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +45,7 @@ class _Filter extends State<Filter> {
             child: TextField(
               decoration: InputDecoration(
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: Theme.of(context).cardColor,
                 contentPadding: const EdgeInsets.all(15),
                 hintText: 'Search',
                 hintStyle: const TextStyle(color: Color(0xffDDDADA), fontSize: 14),
@@ -74,7 +73,7 @@ class _Filter extends State<Filter> {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
@@ -119,7 +118,7 @@ class _Filter extends State<Filter> {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: [
                       BoxShadow(
