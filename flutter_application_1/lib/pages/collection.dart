@@ -139,7 +139,7 @@ class _CollectionPage extends State<CollectionPage> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 category,
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
           ],
