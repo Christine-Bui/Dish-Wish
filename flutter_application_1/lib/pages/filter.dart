@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Filter extends StatefulWidget {
   const Filter({super.key});
@@ -26,7 +27,7 @@ class _Filter extends State<Filter> {
     return Scaffold(
       backgroundColor: Theme.of(context).cardColor,
       appBar: AppBar(
-        title: Text('Dish Wish'),
+        title: Text('Dish Wish', style: GoogleFonts.jetBrainsMono()),
         backgroundColor: Theme.of(context).cardColor,
         elevation: 0,
       ),
@@ -48,7 +49,10 @@ class _Filter extends State<Filter> {
                 fillColor: Theme.of(context).cardColor,
                 contentPadding: const EdgeInsets.all(15),
                 hintText: 'Search',
-                hintStyle: const TextStyle(color: Color(0xffDDDADA), fontSize: 14),
+                hintStyle: TextStyle(
+                    color: Color(0xffDDDADA),
+                    fontSize: 14,
+                    fontFamily: GoogleFonts.jetBrainsMono().fontFamily),
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(12),
                   child: SvgPicture.asset('assets/icons/Search.svg'),
@@ -69,7 +73,8 @@ class _Filter extends State<Filter> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -91,30 +96,33 @@ class _Filter extends State<Filter> {
                       primary: Colors.black,
                     ),
                     // Inside the first TextButton
-                  // Inside the first TextButton
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8),
-                            child: Icon(Icons.apple), // Replace with the Microsoft icon for Ingredients
-                          ),
-                          Text(
-                            'By Ingredients',
-                          ),
-                        ],
+                    // Inside the first TextButton
+                    child: Container(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Icon(Icons
+                                  .apple), // Replace with the Microsoft icon for Ingredients
+                            ),
+                            Text(
+                              'By Ingredients',
+                              style: GoogleFonts.jetBrainsMono(),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
                   ),
                 ),
               ),
               const SizedBox(height: 10),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -144,7 +152,8 @@ class _Filter extends State<Filter> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 8),
-                              child: Icon(Icons.menu_book), // Replace with the Microsoft icon for Recipe
+                              child: Icon(Icons
+                                  .menu_book), // Replace with the Microsoft icon for Recipe
                             ),
                             Text(
                               'By Recipe',
