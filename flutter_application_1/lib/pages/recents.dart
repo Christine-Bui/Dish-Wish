@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
+import 'package:flutter_application_1/pages/recipe.dart';
 
 class Recents extends StatefulWidget {
   const Recents({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class _Recents extends State<Recents> {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    // TODO: Add action for when a recipe is tapped
+                    onRecipeTap(recipes[index]);
                     print('Recipe ${recipes[index].name} clicked');
                   },
                   child: Container(
@@ -106,6 +107,16 @@ class _Recents extends State<Recents> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  void onRecipeTap(RecipeModel recipe) {
+    // Navigate to recipe details page with the selected recipe
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Recipe(selectedRecipe: recipe),
       ),
     );
   }
