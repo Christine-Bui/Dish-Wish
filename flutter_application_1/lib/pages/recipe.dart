@@ -2,31 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
 
 class Recipe extends StatefulWidget {
-  const Recipe({Key? key}) : super(key: key);
+  final RecipeModel selectedRecipe;
+
+  const Recipe({required this.selectedRecipe});
 
   @override
-  State<Recipe> createState() => _RecipeState();
+  State<StatefulWidget> createState() => _RecipeState();
 }
 
 class _RecipeState extends State<Recipe> {
-  List<RecipeModel> recipes = [];
-  int selectedRecipeIndex = 0; // Set the default selected recipe index
   final ScrollController _scrollController = ScrollController();
 
   @override
-  void initState() {
-    super.initState();
-    getInitialInfo();
-  }
-
-  void getInitialInfo() {
-    recipes = RecipeModel.getRecipes();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    RecipeModel selectedRecipe = recipes[selectedRecipeIndex];
-
     return Scaffold(
       backgroundColor: Theme.of(context).cardColor,
       body: SingleChildScrollView(
@@ -34,10 +22,9 @@ class _RecipeState extends State<Recipe> {
         child: Stack(
           children: [
             SizedBox.fromSize(
-              size: const Size.fromHeight(
-                  300), // Set the desired height for the image
+              size: const Size.fromHeight(300),
               child: Image.asset(
-                selectedRecipe.iconPath,
+                widget.selectedRecipe.iconPath,
                 fit: BoxFit.cover,
               ),
             ),
@@ -56,12 +43,12 @@ class _RecipeState extends State<Recipe> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    selectedRecipe.name,
+                    widget.selectedRecipe.name,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    selectedRecipe.about,
+                    widget.selectedRecipe.about,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 5),
@@ -71,7 +58,7 @@ class _RecipeState extends State<Recipe> {
                   ),
                   const SizedBox(height: 5),
                   // Display Ingredients using Column
-                  for (String ingredient in selectedRecipe.ingredients)
+                  for (String ingredient in widget.selectedRecipe.ingredients)
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
                       child: Text(
@@ -86,16 +73,17 @@ class _RecipeState extends State<Recipe> {
                   ),
                   const SizedBox(height: 5),
                   // Display Instructions using Column
-                  for (int i = 0; i < selectedRecipe.instructions.length; i++)
+                  for (String instruction in widget.selectedRecipe.instructions)
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
                       child: Text(
-                        '${selectedRecipe.instructions[i]}',
+                        '$instruction',
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
                   const SizedBox(
-                      height: 20), // Add bottom padding after instructions
+                    height: 20,
+                  ),
                 ],
               ),
             ),
@@ -113,10 +101,4 @@ class _RecipeState extends State<Recipe> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(const MaterialApp(
-    home: Recipe(),
-  ));
 }

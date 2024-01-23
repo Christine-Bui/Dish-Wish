@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/collection.dart';
 import 'package:flutter_application_1/pages/reccomend.dart';
+import 'package:flutter_application_1/pages/recipe.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
@@ -84,7 +85,7 @@ class _HomePageState extends State<HomePage> {
               'See All',
               style: GoogleFonts.jetBrainsMono(
                 color: Colors.blue, // Set text color to blue
-                fontSize: Theme.of(context).textTheme.headlineMedium?.fontSize,
+                fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
                 fontWeight:
                     Theme.of(context).textTheme.headlineSmall?.fontWeight,
               ),
@@ -103,6 +104,7 @@ class _HomePageState extends State<HomePage> {
           return InkWell(
             onTap: () {
               // Handle recipe tap
+              onRecipeTap(recipes[index]);
               print('Recipe ${recipes[index].name} clicked');
             },
             child: recipeContainer(context, index),
@@ -149,7 +151,7 @@ class _HomePageState extends State<HomePage> {
           const Padding(padding: EdgeInsets.only(top: 10)),
           Text(
             recipes[index].name,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           Flexible(
             child: ConstrainedBox(
@@ -228,6 +230,16 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       ],
+    );
+  }
+
+  void onRecipeTap(RecipeModel recipe) {
+    // Navigate to recipe details page with the selected recipe
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Recipe(selectedRecipe: recipe),
+      ),
     );
   }
   // void navigateToDetailPage(RecipeModel recipe) {
