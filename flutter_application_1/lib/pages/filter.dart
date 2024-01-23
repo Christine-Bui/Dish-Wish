@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_application_1/pages/selection.dart';
 
 class Filter extends StatefulWidget {
   const Filter({super.key});
@@ -90,7 +91,8 @@ class _Filter extends State<Filter> {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      // Handle button press for "by ingredients"
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Selection()));
                     },
                     style: TextButton.styleFrom(
                       primary: Colors.black,

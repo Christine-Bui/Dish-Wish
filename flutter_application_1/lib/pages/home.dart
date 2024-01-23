@@ -6,6 +6,7 @@ import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_application_1/pages/filter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -182,22 +183,30 @@ class _HomePageState extends State<HomePage> {
       ]),
       child: TextField(
         decoration: InputDecoration(
-            filled: true,
-            fillColor: Theme.of(context).cardColor,
-            contentPadding: const EdgeInsets.all(15),
-            hintText: 'Search',
-            hintStyle: Theme.of(context).textTheme.bodyMedium,
-            prefixIcon: Padding(
-              padding: const EdgeInsets.all(12),
-              child: SvgPicture.asset('assets/icons/Search.svg'),
-            ),
-            suffixIcon: Padding(
+          filled: true,
+          fillColor: Theme.of(context).cardColor,
+          contentPadding: const EdgeInsets.all(15),
+          hintText: 'Search',
+          hintStyle: Theme.of(context).textTheme.bodyMedium,
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(12),
+            child: SvgPicture.asset('assets/icons/Search.svg'),
+          ),
+          suffixIcon: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Filter()));
+            },
+            child: Padding(
               padding: const EdgeInsets.all(12),
               child: SvgPicture.asset('assets/icons/Filter.svg'),
             ),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide.none)),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
+        ),
       ),
     );
   }
@@ -242,12 +251,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  // void navigateToDetailPage(RecipeModel recipe) {
-  // Navigator.push(
-  //   context,
-  //   MaterialPageRoute(
-  //     builder: (context) => RecipeDetail(recipe: recipe),
-  //   ),
-  // );
-// }
 }
