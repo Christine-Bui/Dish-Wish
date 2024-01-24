@@ -62,7 +62,7 @@ class _RecipeState extends State<Recipe> {
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
                       child: Text(
-                        '$ingredient',
+                        '- $ingredient',
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
