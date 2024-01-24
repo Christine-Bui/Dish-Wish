@@ -19,8 +19,8 @@ class _Recents extends State<Recents> {
   }
 
   void getInitialInfo() async {
-  RecipeModel recipe = await RecipeModel.fetchData(context);
-  recipes = [recipe];
+  List<RecipeModel> fetchedRecipes = await RecipeModel.fetchData(context);
+  recipes = fetchedRecipes;
 }
 
   @override

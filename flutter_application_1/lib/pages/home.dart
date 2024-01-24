@@ -25,8 +25,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void getInitialInfo() async {
-  RecipeModel recipe = await RecipeModel.fetchData(context);
-  recipes = [recipe];
+  List<RecipeModel> fetchedRecipes = await RecipeModel.fetchData(context);
+  recipes = fetchedRecipes;
 }
 
   @override

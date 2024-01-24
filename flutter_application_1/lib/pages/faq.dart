@@ -18,8 +18,8 @@ class _Faq extends State<Faq> {
   }
 
   void getInitialInfo() async {
-  RecipeModel recipe = await RecipeModel.fetchData(context);
-  recipes = [recipe];
+  List<RecipeModel> fetchedRecipes = await RecipeModel.fetchData(context);
+  recipes = fetchedRecipes;
 }
 
   Widget buildQuestionContainer(String question, String answer) {

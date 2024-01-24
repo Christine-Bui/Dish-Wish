@@ -29,13 +29,14 @@ class RecipeModel {
     );
   }
 
-  static Future<RecipeModel> fetchData(BuildContext context) async {
-    // Replace 'assets/recipes/recipes2.json' with the actual path to your JSON file
+  static Future<List<RecipeModel>> fetchData(BuildContext context) async {
     String jsonString =
         await DefaultAssetBundle.of(context).loadString('assets/recipes/recipes2.json');
-    Map<String, dynamic> jsonMap = json.decode(jsonString);
+    List<dynamic> jsonArray = json.decode(jsonString);
 
-    return RecipeModel.fromJson(jsonMap);
+    List<RecipeModel> recipes = jsonArray.map((json) => RecipeModel.fromJson(json)).toList();
+
+    return recipes;
   }
 }
 
@@ -43,27 +44,43 @@ class MyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: FutureBuilder<RecipeModel>(
+      child: FutureBuilder<List<RecipeModel>>(
         future: RecipeModel.fetchData(context),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Text('No recipes found.');
           } else {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ListTile(
-                  title: Text(snapshot.data!.name),
-                  subtitle: Text(snapshot.data!.description),
-                ),
-                // Add widgets to display other properties like author, url, ingredients, and method
-              ],
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                return RecipeTile(recipe: snapshot.data![index]);
+              },
             );
           }
         },
       ),
+    );
+  }
+}
+
+class RecipeTile extends StatelessWidget {
+  final RecipeModel recipe;
+
+  RecipeTile({required this.recipe});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(recipe.name),
+      subtitle: Text(recipe.description),
+      onTap: () {
+        // Handle recipe tap
+        // You can navigate to a detailed view or perform other actions here
+      },
     );
   }
 }

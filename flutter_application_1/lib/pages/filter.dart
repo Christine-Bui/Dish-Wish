@@ -21,8 +21,8 @@ class _Filter extends State<Filter> {
   }
 
   void getInitialInfo() async {
-  RecipeModel recipe = await RecipeModel.fetchData(context);
-  recipes = [recipe];
+  List<RecipeModel> fetchedRecipes = await RecipeModel.fetchData(context);
+  recipes = fetchedRecipes;
 }
 
   @override

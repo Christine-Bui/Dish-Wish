@@ -18,8 +18,8 @@ class _Results extends State<Results> {
   }
 
   void getInitialInfo() async {
-  RecipeModel recipe = await RecipeModel.fetchData(context);
-  recipes = [recipe];
+  List<RecipeModel> fetchedRecipes = await RecipeModel.fetchData(context);
+  recipes = fetchedRecipes;
 }
 
   @override
