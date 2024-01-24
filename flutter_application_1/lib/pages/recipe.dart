@@ -53,6 +53,16 @@ class _RecipeState extends State<Recipe> {
                   ),
                   const SizedBox(height: 5),
                   Text(
+                    widget.selectedRecipe.url,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    widget.selectedRecipe.description,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                    const SizedBox(height: 5),
+                  Text(
                     'Ingredients:',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
