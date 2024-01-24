@@ -21,13 +21,13 @@ class _RecipeState extends State<Recipe> {
         controller: _scrollController,
         child: Stack(
           children: [
-            SizedBox.fromSize(
-              size: const Size.fromHeight(300),
-              child: Image.asset(
-                widget.selectedRecipe.iconPath,
-                fit: BoxFit.cover,
-              ),
-            ),
+            // SizedBox.fromSize(
+            //   size: const Size.fromHeight(300),
+            //   child: Image.asset(
+            //     widget.selectedRecipe.iconPath,
+            //     fit: BoxFit.cover,
+            //   ),
+            // ),
             Padding(
               padding: const EdgeInsets.only(left: 20, top: 20),
               child: IconButton(
@@ -48,7 +48,7 @@ class _RecipeState extends State<Recipe> {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    widget.selectedRecipe.about,
+                    widget.selectedRecipe.author,
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 5),
@@ -73,7 +73,7 @@ class _RecipeState extends State<Recipe> {
                   ),
                   const SizedBox(height: 5),
                   // Display Instructions using Column
-                  for (String instruction in widget.selectedRecipe.instructions)
+                  for (String instruction in widget.selectedRecipe.method)
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
                       child: Text(

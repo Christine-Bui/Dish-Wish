@@ -64,16 +64,16 @@ class _Recents extends State<Recents> {
                       padding: const EdgeInsets.all(20),
                       child: Row(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: SizedBox.fromSize(
-                              size: const Size.fromRadius(75),
-                              child: Image.asset(
-                                recipes[index].iconPath,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
+                          // ClipRRect(
+                          //   borderRadius: BorderRadius.circular(20),
+                          //   child: SizedBox.fromSize(
+                          //     size: const Size.fromRadius(75),
+                          //     child: Image.asset(
+                          //       recipes[index].iconPath,
+                          //       fit: BoxFit.cover,
+                          //     ),
+                          //   ),
+                          // ),
                           const SizedBox(width: 20),
                           Expanded(
                             child: Column(

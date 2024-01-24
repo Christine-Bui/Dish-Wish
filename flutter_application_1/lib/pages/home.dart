@@ -139,17 +139,17 @@ class _HomePageState extends State<HomePage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 210, // Fixed height for all images
-            width: double.infinity, // Full width of the container
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                recipes[index].iconPath,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          // SizedBox(
+          //   height: 210, // Fixed height for all images
+          //   width: double.infinity, // Full width of the container
+          //   child: ClipRRect(
+          //     borderRadius: BorderRadius.circular(20),
+          //     child: Image.asset(
+          //       recipes[index].iconPath,
+          //       fit: BoxFit.cover,
+          //     ),
+          //   ),
+          // ),
           const Padding(padding: EdgeInsets.only(top: 10)),
           Text(
             recipes[index].name,

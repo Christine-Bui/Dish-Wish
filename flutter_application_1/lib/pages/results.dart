@@ -111,16 +111,16 @@ class _Results extends State<Results> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: SizedBox.fromSize(
-                            size: const Size.fromRadius(150),
-                            child: Image.asset(
-                              recipes[index].iconPath,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                        // ClipRRect(
+                        //   borderRadius: BorderRadius.circular(20),
+                        //   child: SizedBox.fromSize(
+                        //     size: const Size.fromRadius(150),
+                        //     child: Image.asset(
+                        //       recipes[index].iconPath,
+                        //       fit: BoxFit.cover,
+                        //     ),
+                        //   ),
+                        // ),
                         const SizedBox(height: 10), // Adjust the spacing between image and text
                         Text(
                           recipes[index].name,
