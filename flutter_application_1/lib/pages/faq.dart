@@ -17,9 +17,10 @@ class _Faq extends State<Faq> {
     getInitialInfo();
   }
 
-  void getInitialInfo() {
-    recipes = RecipeModel.getRecipes();
-  }
+  void getInitialInfo() async {
+  RecipeModel recipe = await RecipeModel.fetchData(context);
+  recipes = [recipe];
+}
 
   Widget buildQuestionContainer(String question, String answer) {
     return Container(

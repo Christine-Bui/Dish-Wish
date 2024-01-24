@@ -24,9 +24,10 @@ class _HomePageState extends State<HomePage> {
     getInitialInfo();
   }
 
-  void getInitialInfo() {
-    recipes = RecipeModel.getRecipes();
-  }
+  void getInitialInfo() async {
+  RecipeModel recipe = await RecipeModel.fetchData(context);
+  recipes = [recipe];
+}
 
   @override
   Widget build(BuildContext context) {

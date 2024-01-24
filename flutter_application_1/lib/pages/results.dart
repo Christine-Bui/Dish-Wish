@@ -17,9 +17,10 @@ class _Results extends State<Results> {
     getInitialInfo();
   }
 
-  void getInitialInfo() {
-    recipes = RecipeModel.getRecipes();
-  }
+  void getInitialInfo() async {
+  RecipeModel recipe = await RecipeModel.fetchData(context);
+  recipes = [recipe];
+}
 
   @override
   Widget build(BuildContext context) {
