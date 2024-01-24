@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:flutter_application_1/pages/collection.dart';
+import 'package:flutter_application_1/pages/filter.dart';
 import 'package:flutter_application_1/pages/reccomend.dart';
 import 'package:flutter_application_1/pages/recipe.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_application_1/pages/filter.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -25,9 +25,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   void getInitialInfo() async {
-  List<RecipeModel> fetchedRecipes = await RecipeModel.fetchData(context);
-  recipes = fetchedRecipes;
-}
+    List<RecipeModel> fetchedRecipes = await RecipeModel.fetchData(context);
+    setState(() {
+      recipes = fetchedRecipes;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         sectionHeader(context, 'Recommended Recipes'),
-        recipeListView(context),
+        recipeListView(context, recipes), // Pass recipes to the list view
       ],
     );
   }
@@ -61,7 +63,7 @@ class _HomePageState extends State<HomePage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         sectionHeader(context, 'Popular Recipes'),
-        recipeListView(context),
+        recipeListView(context, recipes), // Pass recipes to the list view
       ],
     );
   }
@@ -74,11 +76,10 @@ class _HomePageState extends State<HomePage> {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.headlineMedium,
+            style: Theme.of(context).textTheme.headline6,
           ),
           TextButton(
             onPressed: () {
-              // Navigate to a new page or perform other actions
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => Reccomendations()),
               );
@@ -86,10 +87,10 @@ class _HomePageState extends State<HomePage> {
             child: Text(
               'See All',
               style: GoogleFonts.jetBrainsMono(
-                color: Colors.blue, // Set text color to blue
-                fontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
+                color: Colors.blue,
+                fontSize: Theme.of(context).textTheme.subtitle1?.fontSize,
                 fontWeight:
-                    Theme.of(context).textTheme.headlineSmall?.fontWeight,
+                    Theme.of(context).textTheme.subtitle1?.fontWeight,
               ),
             ),
           ),
@@ -98,29 +99,30 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  SizedBox recipeListView(BuildContext context) {
-    return SizedBox(
-      height: 350,
-      child: ListView.separated(
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              // Handle recipe tap
-              onRecipeTap(recipes[index]);
-              print('Recipe ${recipes[index].name} clicked');
-            },
-            child: recipeContainer(context, index),
-          );
-        },
-        separatorBuilder: (context, index) => const SizedBox(width: 25),
-        itemCount: recipes.length,
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-      ),
-    );
-  }
+  SizedBox recipeListView(BuildContext context, List<RecipeModel> recipes) {
+  int itemCount = recipes.length < 10 ? recipes.length : 10;
 
-  Container recipeContainer(BuildContext context, int index) {
+  return SizedBox(
+    height: 350,
+    child: ListView.separated(
+      itemBuilder: (context, index) {
+        return InkWell(
+          onTap: () {
+            onRecipeTap(recipes[index]);
+          },
+          child: recipeContainer(context, index, recipes),
+        );
+      },
+      separatorBuilder: (context, index) => const SizedBox(width: 25),
+      itemCount: itemCount,
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+    ),
+  );
+}
+
+
+  Container recipeContainer(BuildContext context, int index, List<RecipeModel> recipes) {
     return Container(
       width: 238,
       decoration: BoxDecoration(
@@ -139,31 +141,20 @@ class _HomePageState extends State<HomePage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // SizedBox(
-          //   height: 210, // Fixed height for all images
-          //   width: double.infinity, // Full width of the container
-          //   child: ClipRRect(
-          //     borderRadius: BorderRadius.circular(20),
-          //     child: Image.asset(
-          //       recipes[index].iconPath,
-          //       fit: BoxFit.cover,
-          //     ),
-          //   ),
-          // ),
           const Padding(padding: EdgeInsets.only(top: 10)),
           Text(
             recipes[index].name,
-            style: Theme.of(context).textTheme.headlineMedium,
+            style: Theme.of(context).textTheme.headline6,
           ),
           Flexible(
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                maxHeight: 150, // Adjust the maximum height as needed
+                maxHeight: 150,
               ),
               child: SingleChildScrollView(
                 child: Text(
                   recipes[index].description,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
             ),
@@ -178,9 +169,10 @@ class _HomePageState extends State<HomePage> {
       margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
-            color: const Color(0xff1D1617).withOpacity(0.11),
-            blurRadius: 40,
-            spreadRadius: 0.0)
+          color: const Color(0xff1D1617).withOpacity(0.11),
+          blurRadius: 40,
+          spreadRadius: 0.0,
+        )
       ]),
       child: TextField(
         decoration: InputDecoration(
@@ -188,7 +180,7 @@ class _HomePageState extends State<HomePage> {
           fillColor: Theme.of(context).cardColor,
           contentPadding: const EdgeInsets.all(15),
           hintText: 'Search',
-          hintStyle: Theme.of(context).textTheme.bodyMedium,
+          hintStyle: Theme.of(context).textTheme.bodyText2,
           prefixIcon: Padding(
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset('assets/icons/Search.svg'),
@@ -196,7 +188,9 @@ class _HomePageState extends State<HomePage> {
           suffixIcon: GestureDetector(
             onTap: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Filter()));
+                context,
+                MaterialPageRoute(builder: (context) => Filter()),
+              );
             },
             child: Padding(
               padding: const EdgeInsets.all(12),
@@ -216,7 +210,7 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
       title: Text(
         "Dish Wish",
-        style: Theme.of(context).textTheme.titleLarge,
+        style: Theme.of(context).textTheme.headline4,
       ),
       elevation: 0.0,
       centerTitle: false,
@@ -244,7 +238,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   void onRecipeTap(RecipeModel recipe) {
-    // Navigate to recipe details page with the selected recipe
     Navigator.push(
       context,
       MaterialPageRoute(
