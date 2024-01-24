@@ -36,10 +36,13 @@ class MyApp extends StatelessWidget {
       cardColor: brightness == Brightness.light
           ? Colors.white
           : const Color.fromRGBO(50, 50, 50, 1),
+
       // Define the default font family.
       textTheme: TextTheme(
         titleLarge: GoogleFonts.jetBrainsMono(
-            fontSize: textSize + 4, fontWeight: FontWeight.w600),
+          fontSize: textSize + 4,
+          fontWeight: FontWeight.w600,
+        ),
         headlineMedium: GoogleFonts.jetBrainsMono(
             fontSize: textSize + 2, fontWeight: FontWeight.w500),
         headlineSmall: GoogleFonts.jetBrainsMono(

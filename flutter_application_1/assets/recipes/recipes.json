@@ -1,0 +1,320 @@
+{
+    "recipes":[
+        {   
+            "id": 1,
+            "name":"Chicken Alfredo Pasta",
+            "description":"Chicken Alfredo Pasta is a creamy, rich pasta dish that is simple to make and pleases the whole family.",
+            "icon_path":"",
+            "ingredients":[
+                {
+                    "section":"",
+                    "items":[
+                        "8 oz fettuccine pasta",
+                        "1 lb boneless, skinless chicken breasts, diced",
+                        "2 cups heavy cream",
+                        "1 cup grated Parmesan cheese",
+                        "1/2 cup unsalted butter",
+                        "2 cloves garlic, minced",
+                        "Salt and pepper to taste",
+                        "Fresh parsley for garnish"
+                    ]
+                }
+            ],
+
+            "instructions":{
+                "1":"Cook the fettuccine pasta according to package instructions. Drain and set aside.",
+                "2":"Season diced chicken with salt and pepper. In a large skillet, cook chicken until browned and cooked through. Remove from skillet and set aside",
+                "3":"In the same skillet, melt butter and sauté minced garlic until fragrant. Pour in heavy cream, stirring constantly. Add Parmesan cheese and continue to stir until the sauce thickens.",
+                "4":"Garnish with parsley and serve."
+            }
+        },
+        {
+            "id": 2,
+            "name":"Beef Tacos with Avocado Salsa",
+            "description":"Flavorful and juicy beef tacos topped with a refreshing avocado salsa.",
+            "icon_path":"",
+            "ingredients":[
+                {
+                    "section":"",
+                    "items":[
+                        "1 lb ground beef",
+                        "1 packet taco seasoning",
+                        "8 small taco shells",
+                        "1 cup shredded lettuce",
+                        "1 cup diced tomatoes",
+                        "1 cup shredded cheddar cheese",
+                        "1 avocado, diced",
+                        "1/4 cup chopped cilantro",
+                        "Lime wedges for serving"
+                    ]
+                }
+            ],
+            "instructions":{
+                "1":"In a skillet, brown ground beef over medium heat. Drain excess fat.",
+                "2":"Add taco seasoning and water (as per packet instructions) to the beef, simmer until thickened.",
+                "3":"Warm taco shells in the oven.",
+                "4":"Assemble tacos with seasoned beef, lettuce, tomatoes, cheese, avocado, and cilantro.",
+                "5": "Serve with lime wedges on the side."
+            }
+        },
+        {
+            "id": 3,
+            "name":"Vegetarian Quinoa Salad",
+            "description":"Nutrient-packed quinoa salad with fresh vegetables and a zesty vinaigrette.",
+            "icon_path":"",
+            "ingredients":[
+                {
+                    "section":"",
+                    "items":[
+                        "1 cup quinoa, cooked and cooled",
+                        "1 cucumber, diced",
+                        "1 bell pepper, diced",
+                        "1 cup cherry tomatoes, halved",
+                        "1/2 cup red onion, finely chopped",
+                        "1/4 cup feta cheese, crumbled",
+                        "1/4 cup Kalamata olives, sliced",
+                        "Fresh parsley, chopped"
+                    ]
+                }
+            ],
+            
+            "instructions":{
+                "1":"In a large bowl, combine quinoa, cucumber, bell pepper, cherry tomatoes, and red onion.",
+                "2":"Add feta cheese and olives to the bowl.",
+                "3":"Drizzle with your favorite vinaigrette and toss to combine.",
+                "4":"Garnish with fresh parsley before serving."
+            }
+        },
+        {
+            "id": 4,
+            "name":"Grilled Lemon Herb Salmon",
+            "description":"Light and flavorful grilled salmon with a zesty lemon herb marinade.",
+            "icon_path":"",
+            "ingredients":[
+                {
+                    "section":"",
+                    "items":[
+                        "4 salmon fillets",
+                        "1/4 cup olive oil",
+                        "2 tablespoons fresh lemon juice",
+                        "2 cloves garlic, minced",
+                        "1 teaspoon dried oregano",
+                        "1 teaspoon dried thyme",
+                        "Salt and pepper to taste",
+                        "Lemon wedges for serving"
+                    ]
+                }
+            ],
+            "instructions":{
+                "1":"In a bowl, whisk together olive oil, lemon juice, minced garlic, oregano, thyme, salt, and pepper.",
+                "2":"Place salmon fillets in a shallow dish and pour the marinade over them. Let it marinate for at least 30 minutes.",
+                "3":"Preheat the grill to medium-high heat.",
+                "4":"Grill the salmon for about 4-5 minutes per side or until cooked through.",
+                "5": "Serve with lemon wedges." 
+            }
+        },
+        {
+            "id": 5,
+            "name":"Spinach and Feta Stuffed Chicken Breast",
+            "description":"Juicy chicken breasts stuffed with a delicious spinach and feta filling.",
+            "icon_path":"",
+            "ingredients":[
+                {
+                    "section":"",
+                    "items":[
+                        "4 boneless, skinless chicken breasts",
+                        "2 cups fresh spinach, chopped",
+                        "1/2 cup feta cheese, crumbled",
+                        "1/4 cup sun-dried tomatoes, chopped",
+                        "2 cloves garlic, minced",
+                        "Salt and pepper to taste",
+                        "Olive oil for cooking"
+                    ]
+                }
+            ],
+            "instructions":{
+                "1":"Preheat the oven to 375°F (190°C).",
+                "2":"In a bowl, combine chopped spinach, feta cheese, sun-dried tomatoes, minced garlic, salt, and pepper.",
+                "3":"Cut a pocket into each chicken breast and stuff with the spinach and feta mixture.",
+                "4":"Heat olive oil in an oven-safe skillet. Sear the stuffed chicken breasts on both sides.",
+                "5": "Transfer the skillet to the preheated oven and bake for about 20 minutes or until chicken is cooked through."
+            }
+        },
+        {
+            "id": 6,
+            "name":"Phở bò",
+            "description":"Traditional Vietnamese beef noodle soup.",
+            "icon_path":"assets/icons/1.jpg",
+            "ingredients":[
+                {
+                    "section":"Broth:",
+                    "items":[
+                        "2 large white onions, cut into quarters",
+                        "1 tablespoon vegetable or peanut oil",
+                        "5 lbs beef bones (choose ones with a bit of meat on them)",
+                        "1 small knob of ginger, chopped",
+                        "1 small cinnamon stick",
+                        "2 whole cardamom pods",
+                        "4 whole cloves",
+                        "1 star anise pod",
+                        "1 tablespoon whole black peppercorns"
+                    ]
+
+                },
+                {
+                    "section":"Serving",
+                    "item":[
+                        "Phở noodles (thin, flat rice noodles), soaked in hot water until soft and drained",
+                        "Finely sliced white onion",
+                        "Finely sliced scallions",
+                        "Chopped coriander leaf",
+                        "Finely sliced beef sirloin"
+                    ] 
+                    
+                },
+                {
+                    "section":"Condiments",
+                    "items":[
+                        "Whole chili peppers",
+                        "Bean sprouts",
+                        "Limes, cut into wedges",
+                        "Thai basil",
+                        "Nước mắm",
+                        "Hot sauce",
+                        "Hoisin sauce",
+                        "Black pepper"
+                    ]
+                }
+            ],
+            "instructions":{
+                "1":"Fry onions in oil until lightly browned. Remove and drain.",
+                "2":"Rinse the beef bones, place in a stockpot, cover with cold water, and bring slowly to a boil. Reduce heat and simmer, uncovered, for 10–15 minutes. For a clear broth skim off foam.",
+                "3":"After this initial cooking, add cooked onions, ginger, cinnamon, cardamom, star anise, cloves, garlic and peppercorns. Bring to a boil again and gently simmer the stock, partially covered, for a minimum of 6 hours but up to 12 hours if you can, skimming regularly. If necessary, add more water to keep the bones covered.",
+                "4":"Strain stock to remove the vegetable and spices and discard them. Return the broth to the stove to keep it boiling hot.",
+                "5":"In a large soup bowl, place a handful of cooked phở noodles, top with thinly sliced raw beef, and ladle on generous amounts of very hot broth, which will cook the raw beef. Garnish with sliced onions, scallions and coriander, and serve immediately."
+            }
+        },
+        {
+            "id": 6,
+            "name":"Phở Gà",
+            "description":"Traditional Vietnamese chicken noodle soup.",
+            "icon_path":"assets/icons/2.jpg",
+            "ingredients":[
+                {
+                    "section":"Seasoning Pouch:",
+                    "items":[
+                        "1 tsp fennel seed",
+                        "1 tsp peppercorns",
+                        "3 whole star anise",
+                        "1–2 dried cardamom pods",
+                        "1/2 stick cinnamon",
+                        "3 whole cloves"
+                    ]
+                },
+                {
+                    "section":"Soup",
+                    "items":[
+                        "1 small to medium chicken (whole)",
+                        "12 cups chicken broth",
+                        "3–4 slices of fresh ginger (whole)",
+                        "1 medium whole brown onion, peeled",
+                        "1 tbsp salt or more (to taste)",
+                        "Fish sauce, to taste"
+                    ]
+                },
+                {
+                    "section":"Serving",
+                    "items":[
+                        "Pho rice noodles (often called bánh phở, rice noodles, or rice sticks)",
+                        "Chopped cilantro and green onion",
+                        "A few fresh basil leaves, torn",
+                        "Fresh bean sprouts",
+                        "Thinly sliced brown or white onion (several pieces per serving)",
+                        "Hoisin sauce (1 tsp per serving, or to taste)",
+                        "Lime (squeezed into broth before eating)",
+                        "Jalapeños, serranos, or other chilli peppers",
+                        "Sriracha or similar chilli sauce",
+                        "Additional fish sauc"
+                    ]   
+                }
+            ],
+            "instructions":{
+                "1":"Combine ingredients for seasoning pouch in a small strainer or a pouch made from cheesecloth and twine.",
+                "2":"In a large stock pot, boil soup ingredients together with seasoning pouch until the chicken is thoroughly cooked.",
+                "3":"Remove the chicken and strain broth back into the pot for additional simmering. Once the chicken is cool, pull apart the meat into bite sized pieces and discard bones.",
+                "4:":"In a separate pot, boil the pho noodles in sufficient water. Stop when they're no longer chewy (basically the way you'd boil spaghetti). Make sure you don't overdo it or the noodles will fall apart and you'll end up with porridge. When done, pour the noodles into a colander and rinse them with lukewarm water. Then, leave them to drain.",
+                "5":"Once the noodles have drained, add them to a bowl. Combine the chicken, serving ingredients, and enough broth to cover the noodles."
+            }
+        },
+        {
+            "id": 7,
+            "name":"Banh Xeo",
+            "description":"Traditional Vietnamese beef noodle soup.",
+            "icon_path":"assets/icons/3.jpg",
+            "ingredients":[
+                {
+                    "section":"Sweet and Spicy Vietnamese Dipping Sauce:",
+                    "items":[
+                            "2 large garlic cloves, coarsely chopped",
+                            "1 Thai chile, thinly sliced",
+                            "1/4 cup plus 2 tablespoons sugar",
+                            "1/4 cup unseasoned rice vinegar",
+                            "1/2 cup fish sauce",
+                            "1 1/2 cups water"
+                    ]
+                },
+                {
+                    "section":"Crêpes:",
+                    "items":[
+                        "1/2 cup dried mung beans",
+                        "1 cup unsweetened coconut milk, stirred before using",
+                        "2 cups white rice flour",
+                        "1 cup cornstarch",
+                        "4 cups water",
+                        "2 scallions, thinly sliced",
+                        "1 1/2 teaspoons turmeric",
+                        "Kosher salt"
+                    ]
+                },
+                {
+                    "section":"Filling:",
+                    "items":[
+                        "Vegetable oil, for pan-frying",
+                        "3/4 pound boneless pork loin, cut into 1/4-inch-thick slices",
+                        "3/4 pound medium shrimp, shelled, deveined, and halved lengthwise",
+                        "1 medium white onion, halved lengthwise and thinly sliced",
+                        "3 cups bean sprouts",
+                        "Red leaf lettuce, for serving",
+                        "Mint leaves, for serving"
+                    ]   
+                }
+            ],
+            "instructions":[
+                {
+                    "section":"Make the dipping sauce:",
+                    "items":[
+                        "1. In a large mortar, pound the chopped garlic with the chile. Add the sugar and mash the ingredients to a paste, adding a few drops of the rice vinegar as needed to moisten the mixture. Pound until the sugar is completely dissolved. Stir in the remaining rice vinegar along with the fish sauce and the water and transfer the dipping sauce to a bowl."
+                    ]
+                },
+                {
+                    "section":"Make the bánh xèo batter:",
+                    "items":[
+                        "1. In a small bowl, cover the mung beans with water and let stand overnight. Drain the beans and transfer them to a blender. Add the coconut milk and 1/2 cup of water and blend until smooth. Transfer the mixture to a large bowl. Add the rice flour, cornstarch, the remaining 3 1/2 cups of water, the scallions, and turmeric and whisk until smooth. Season the batter with salt and let stand for 1 hour."
+                    ]
+                },
+                {
+                    "section":"Make the filling and crêpes",
+                    "items":[
+                        "1. Heat 1 teaspoon of vegetable oil in a 10-inch nonstick skillet. Add a few slices of pork, a couple of shrimp, and a few slivers of white onion and cook for 30 seconds.",
+                        "2. Stir the batter and pour 2/3 cup of it into the pan; tilt and swirl the pan to coat the bottom with a very thin layer of batter, letting it come up the side of the pan. Scatter 1/4 cup of the bean sprouts over the bánh xèo and drizzle 2 teaspoons of vegetable oil around the edges.",
+                        "3. Cover the skillet and cook over moderately high heat until the bottom of the bánh xèo is golden and crisp, about 2 minutes.",
+                        "4. Slide the bánh xèo onto a plate. Serve with lettuce leaves, mint, and the Sweet and Spicy Vietnamese Dipping Sauce.",
+                        "5. Repeat with the remaining ingredients, serving the bánh xèo as soon as they are cooked."
+                    ]
+                }
+            ]
+                
+        }
+    ]
+}
+

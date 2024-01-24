@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-void main() {
-  runApp(Selection());
-}
-
-class Selection extends StatelessWidget {
+class Selection extends StatefulWidget {
+  const Selection({super.key});
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: IngredientListPage(),
-    );
-  }
+  State<Selection> createState() => _Selection();
 }
 
-class IngredientListPage extends StatefulWidget {
-  @override
-  _IngredientListPageState createState() => _IngredientListPageState();
-}
-
-class _IngredientListPageState extends State<IngredientListPage> {
+class _Selection extends State<Selection> {
   final List<Map<String, dynamic>> ingredients = [
     {'name': 'Basil', 'imageUrl': 'https://img.icons8.com/color/48/basil.png'},
     {
@@ -35,17 +23,21 @@ class _IngredientListPageState extends State<IngredientListPage> {
 
   final Set<String> selectedIngredients = {};
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Ingredients'),
+        title: Text(
+          'Search by Ingredients',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.filter_list),
-            onPressed: () {
-              // Add filter action here
-            },
-          ),
+          // IconButton(
+          //   icon: Icon(Icons.filter_list),
+          //   onPressed: () {
+          //     // Add filter action here
+          //   },
+          // ),
         ],
       ),
       body: Column(
@@ -79,7 +71,10 @@ class _IngredientListPageState extends State<IngredientListPage> {
                         return Icon(Icons.error);
                       },
                     ),
-                    title: Text(ingredient['name']),
+                    title: Text(
+                      ingredient['name'],
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                     trailing: Checkbox(
                       value: isSelected,
                       onChanged: (bool? newValue) {

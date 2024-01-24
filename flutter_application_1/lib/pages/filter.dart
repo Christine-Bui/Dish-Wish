@@ -6,6 +6,7 @@ import 'package:flutter_application_1/pages/selection.dart';
 
 class Filter extends StatefulWidget {
   const Filter({super.key});
+  
   @override
   State<Filter> createState() => _Filter();
 }
@@ -91,12 +92,14 @@ class _Filter extends State<Filter> {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Selection()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Selection()));
                     },
                     style: TextButton.styleFrom(
-                      primary: Colors.black,
-                    ),
+                        foregroundColor: Colors.black,
+                        disabledForegroundColor: Colors.white),
                     // Inside the first TextButton
                     // Inside the first TextButton
                     child: Container(
@@ -175,8 +178,8 @@ class _Filter extends State<Filter> {
   }
 }
 
-void main() {
-  runApp(const MaterialApp(
-    home: Filter(),
-  ));
-}
+// void main() {
+//   runApp(const MaterialApp(
+//     home: Filter(),
+//   ));
+// }
