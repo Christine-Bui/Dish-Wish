@@ -18,17 +18,6 @@ class RecipeModel {
     required this.method,
   });
 
-  // factory RecipeModel.fromJson(Map<String, dynamic> json) {
-  //   return RecipeModel(
-  //     name: json['Name'],
-  //     url: json['url'],
-  //     description: json['Description'],
-  //     author: json['Author'],
-  //     ingredients: List<String>.from(json['Ingredients']),
-  //     method: List<String>.from(json['Method']),
-  //   );
-  // }
-
   factory RecipeModel.fromJson(Map<String, dynamic> json) {
   return RecipeModel(
     name: json['Name'] ?? '',
