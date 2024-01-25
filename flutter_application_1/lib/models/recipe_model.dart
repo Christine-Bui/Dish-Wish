@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' as htmlParser;
-import 'package:html/dom.dart' as htmlDom;
 
 class RecipeModel {
   String name;
   String author;
+  String image_url;
   String url;
   String description;
   List<String> ingredients;
@@ -14,6 +14,7 @@ class RecipeModel {
 
   RecipeModel({
     required this.name,
+    required this.image_url,
     required this.url,
     required this.description,
     required this.author,
@@ -24,6 +25,7 @@ class RecipeModel {
   factory RecipeModel.fromJson(Map<String, dynamic> json) {
     return RecipeModel(
       name: json['Name'] ?? '',
+      image_url: getImageUrl(json['url'] ?? ''), // Correct key for the URL
       url: json['url'] ?? '',
       description: json['Description'] ?? '',
       author: json['Author'] ?? '',
@@ -89,8 +91,12 @@ class RecipeTile extends StatelessWidget {
   }
 }
 
+getImageUrl(String imageUrl) async {
+  String image = await grabImageUrl(imageUrl);
+  return image;
+}
+
 Future<String> grabImageUrl(String imageUrl) async {
-  String _imageUrl = '';
   try {
     final response = await http.get(Uri.parse(imageUrl));
     final document = htmlParser.parse(response.body);
@@ -105,14 +111,13 @@ Future<String> grabImageUrl(String imageUrl) async {
           ogImageElement.attributes['content'] ?? 'No og:image URL found';
 
       // Remove the query parameters from the URL
-      _imageUrl = imageUrlWithQueryParams.replaceFirst(RegExp(r'\?.*'), '');
+      return imageUrlWithQueryParams.replaceFirst(RegExp(r'\?.*'), '');
     } else {
       return 'No og:image meta tag found';
     }
   } catch (e) {
     return 'Error fetching metadata: $e';
   }
-  return _imageUrl;
 }
 
 void main() => runApp(MyApp());
