@@ -1,5 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:html/parser.dart' as htmlParser;
+import 'package:html/dom.dart' as htmlDom;
 
 class RecipeModel {
   String name;
@@ -19,22 +22,23 @@ class RecipeModel {
   });
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) {
-  return RecipeModel(
-    name: json['Name'] ?? '',
-    url: json['url'] ?? '',
-    description: json['Description'] ?? '',
-    author: json['Author'] ?? '',
-    ingredients: List<String>.from(json['Ingredients'] ?? []),
-    method: List<String>.from(json['Method'] ?? []),
-  );
-}
+    return RecipeModel(
+      name: json['Name'] ?? '',
+      url: json['url'] ?? '',
+      description: json['Description'] ?? '',
+      author: json['Author'] ?? '',
+      ingredients: List<String>.from(json['Ingredients'] ?? []),
+      method: List<String>.from(json['Method'] ?? []),
+    );
+  }
 
   static Future<List<RecipeModel>> fetchData(BuildContext context) async {
-    String jsonString =
-        await DefaultAssetBundle.of(context).loadString('assets/recipes/recipes2.json');
+    String jsonString = await DefaultAssetBundle.of(context)
+        .loadString('assets/recipes/recipes2.json');
     List<dynamic> jsonArray = json.decode(jsonString);
 
-    List<RecipeModel> recipes = jsonArray.map((json) => RecipeModel.fromJson(json)).toList();
+    List<RecipeModel> recipes =
+        jsonArray.map((json) => RecipeModel.fromJson(json)).toList();
 
     return recipes;
   }
@@ -83,6 +87,32 @@ class RecipeTile extends StatelessWidget {
       },
     );
   }
+}
+
+Future<String> grabImageUrl(String imageUrl) async {
+  String _imageUrl = '';
+  try {
+    final response = await http.get(Uri.parse(imageUrl));
+    final document = htmlParser.parse(response.body);
+
+    // Extracting og:image URL
+    final ogImageElement =
+        document.head!.querySelector('meta[property="og:image"]') ??
+            document.head!.querySelector('meta[name="og:image"]');
+
+    if (ogImageElement != null) {
+      final imageUrlWithQueryParams =
+          ogImageElement.attributes['content'] ?? 'No og:image URL found';
+
+      // Remove the query parameters from the URL
+      _imageUrl = imageUrlWithQueryParams.replaceFirst(RegExp(r'\?.*'), '');
+    } else {
+      return 'No og:image meta tag found';
+    }
+  } catch (e) {
+    return 'Error fetching metadata: $e';
+  }
+  return _imageUrl;
 }
 
 void main() => runApp(MyApp());
