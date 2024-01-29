@@ -42,6 +42,7 @@ class _RecipeState extends State<Recipe> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Image.network(widget.selectedRecipe.image_url),
                   Text(
                     widget.selectedRecipe.name,
                     style: Theme.of(context).textTheme.titleLarge,
@@ -61,7 +62,7 @@ class _RecipeState extends State<Recipe> {
                     widget.selectedRecipe.description,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
-                    const SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     'Ingredients:',
                     style: Theme.of(context).textTheme.bodyMedium,

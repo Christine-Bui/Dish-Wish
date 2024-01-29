@@ -89,8 +89,7 @@ class _HomePageState extends State<HomePage> {
               style: GoogleFonts.jetBrainsMono(
                 color: Colors.blue,
                 fontSize: Theme.of(context).textTheme.subtitle1?.fontSize,
-                fontWeight:
-                    Theme.of(context).textTheme.subtitle1?.fontWeight,
+                fontWeight: Theme.of(context).textTheme.subtitle1?.fontWeight,
               ),
             ),
           ),
@@ -100,29 +99,29 @@ class _HomePageState extends State<HomePage> {
   }
 
   SizedBox recipeListView(BuildContext context, List<RecipeModel> recipes) {
-  int itemCount = recipes.length < 10 ? recipes.length : 10;
+    int itemCount = recipes.length < 10 ? recipes.length : 10;
 
-  return SizedBox(
-    height: 350,
-    child: ListView.separated(
-      itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () {
-            onRecipeTap(recipes[index]);
-          },
-          child: recipeContainer(context, index, recipes),
-        );
-      },
-      separatorBuilder: (context, index) => const SizedBox(width: 25),
-      itemCount: itemCount,
-      scrollDirection: Axis.horizontal,
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-    ),
-  );
-}
+    return SizedBox(
+      height: 350,
+      child: ListView.separated(
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              onRecipeTap(recipes[index]);
+            },
+            child: recipeContainer(context, index, recipes),
+          );
+        },
+        separatorBuilder: (context, index) => const SizedBox(width: 25),
+        itemCount: itemCount,
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+      ),
+    );
+  }
 
-
-  Container recipeContainer(BuildContext context, int index, List<RecipeModel> recipes) {
+  Container recipeContainer(
+      BuildContext context, int index, List<RecipeModel> recipes) {
     return Container(
       width: 238,
       decoration: BoxDecoration(
@@ -141,6 +140,16 @@ class _HomePageState extends State<HomePage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: SizedBox.fromSize(
+              size: const Size.fromRadius(108),
+              child: Image.network(
+                recipes[index].image_url,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
           const Padding(padding: EdgeInsets.only(top: 10)),
           Text(
             recipes[index].name,
