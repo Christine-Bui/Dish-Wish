@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:html/parser.dart' as htmlParser;
 
 class RecipeModel {
   String name;
@@ -25,7 +23,7 @@ class RecipeModel {
   factory RecipeModel.fromJson(Map<String, dynamic> json) {
     return RecipeModel(
       name: json['Name'] ?? '',
-      image_url: getImageUrl(json['url'] ?? ''), // Correct key for the URL
+      image_url: json['imageUrl'] ?? '', // Correct key for the URL
       url: json['url'] ?? '',
       description: json['Description'] ?? '',
       author: json['Author'] ?? '',
@@ -36,7 +34,7 @@ class RecipeModel {
 
   static Future<List<RecipeModel>> fetchData(BuildContext context) async {
     String jsonString = await DefaultAssetBundle.of(context)
-        .loadString('assets/recipes/recipes2.json');
+        .loadString('assets/recipes/recipes3.json');
     List<dynamic> jsonArray = json.decode(jsonString);
 
     List<RecipeModel> recipes =
@@ -81,6 +79,7 @@ class RecipeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      leading: Image.network(recipe.image_url),
       title: Text(recipe.name),
       subtitle: Text(recipe.description),
       onTap: () {
@@ -88,35 +87,6 @@ class RecipeTile extends StatelessWidget {
         // You can navigate to a detailed view or perform other actions here
       },
     );
-  }
-}
-
-getImageUrl(String imageUrl) async {
-  String image = await grabImageUrl(imageUrl);
-  return image;
-}
-
-Future<String> grabImageUrl(String imageUrl) async {
-  try {
-    final response = await http.get(Uri.parse(imageUrl));
-    final document = htmlParser.parse(response.body);
-
-    // Extracting og:image URL
-    final ogImageElement =
-        document.head!.querySelector('meta[property="og:image"]') ??
-            document.head!.querySelector('meta[name="og:image"]');
-
-    if (ogImageElement != null) {
-      final imageUrlWithQueryParams =
-          ogImageElement.attributes['content'] ?? 'No og:image URL found';
-
-      // Remove the query parameters from the URL
-      return imageUrlWithQueryParams.replaceFirst(RegExp(r'\?.*'), '');
-    } else {
-      return 'No og:image meta tag found';
-    }
-  } catch (e) {
-    return 'Error fetching metadata: $e';
   }
 }
 
