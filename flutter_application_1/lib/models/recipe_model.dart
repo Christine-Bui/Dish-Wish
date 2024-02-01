@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
+var recentlyViewed = List<RecipeModel>.empty(growable: true);
+
 class RecipeModel {
   String name;
   String author;
@@ -88,6 +90,20 @@ class RecipeTile extends StatelessWidget {
       },
     );
   }
+}
+
+void addRecent(RecipeModel recipe) {
+  if (recentlyViewed.length == 10) {
+    recentlyViewed.removeLast();
+  }
+  if (recentlyViewed.contains(recipe)) {
+    if (recipe == recentlyViewed[0]) return;
+    recentlyViewed.remove(recipe);
+    recentlyViewed.insert(0, recipe);
+    return;
+  }
+  recentlyViewed.insert(0, recipe);
+  return;
 }
 
 void main() => runApp(MyApp());

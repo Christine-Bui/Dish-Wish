@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Text(
             title,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           TextButton(
             onPressed: () {
@@ -88,8 +88,8 @@ class _HomePageState extends State<HomePage> {
               'See All',
               style: GoogleFonts.jetBrainsMono(
                 color: Colors.blue,
-                fontSize: Theme.of(context).textTheme.subtitle1?.fontSize,
-                fontWeight: Theme.of(context).textTheme.subtitle1?.fontWeight,
+                fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
+                fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight,
               ),
             ),
           ),
@@ -107,6 +107,7 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
+              addRecent(recipes[index]);
               onRecipeTap(recipes[index]);
             },
             child: recipeContainer(context, index, recipes),
@@ -153,7 +154,7 @@ class _HomePageState extends State<HomePage> {
           const Padding(padding: EdgeInsets.only(top: 10)),
           Text(
             recipes[index].name,
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           Flexible(
             child: ConstrainedBox(
@@ -163,7 +164,7 @@ class _HomePageState extends State<HomePage> {
               child: SingleChildScrollView(
                 child: Text(
                   recipes[index].description,
-                  style: Theme.of(context).textTheme.bodyText2,
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
               ),
             ),
@@ -189,7 +190,7 @@ class _HomePageState extends State<HomePage> {
           fillColor: Theme.of(context).cardColor,
           contentPadding: const EdgeInsets.all(15),
           hintText: 'Search',
-          hintStyle: Theme.of(context).textTheme.bodyText2,
+          hintStyle: Theme.of(context).textTheme.bodySmall,
           prefixIcon: Padding(
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset('assets/icons/Search.svg'),

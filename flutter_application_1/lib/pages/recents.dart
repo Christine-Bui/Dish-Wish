@@ -19,9 +19,9 @@ class _Recents extends State<Recents> {
   }
 
   void getInitialInfo() async {
-  List<RecipeModel> fetchedRecipes = await RecipeModel.fetchData(context);
-  recipes = fetchedRecipes;
-}
+    List<RecipeModel> fetchedRecipes = recentlyViewed;
+    recipes = fetchedRecipes;
+  }
 
   @override
   Widget build(BuildContext context) {

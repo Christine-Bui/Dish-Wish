@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class Recipe extends StatefulWidget {
   final RecipeModel selectedRecipe;
-
-  const Recipe({required this.selectedRecipe});
+  const Recipe({super.key, required this.selectedRecipe});
 
   @override
   State<StatefulWidget> createState() => _RecipeState();
 }
+
+var count = 0;
 
 class _RecipeState extends State<Recipe> {
   final ScrollController _scrollController = ScrollController();
@@ -52,9 +54,19 @@ class _RecipeState extends State<Recipe> {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 5),
-                  Text(
-                    widget.selectedRecipe.url,
-                    style: Theme.of(context).textTheme.titleSmall,
+                  InkWell(
+                    onTap: () {
+                      launchUrlString(widget.selectedRecipe.url);
+                    },
+                    child: Text(
+                      widget.selectedRecipe.url,
+                      style: TextStyle(
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline,
+                        fontStyle:
+                            Theme.of(context).textTheme.bodySmall?.fontStyle,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 5),
                   Text(
@@ -68,6 +80,7 @@ class _RecipeState extends State<Recipe> {
                   ),
                   const SizedBox(height: 5),
                   // Display Ingredients using Column
+
                   for (String ingredient in widget.selectedRecipe.ingredients)
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
@@ -82,15 +95,15 @@ class _RecipeState extends State<Recipe> {
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 5),
+
                   // Display Instructions using Column
                   for (String instruction in widget.selectedRecipe.method)
                     Padding(
-                      padding: const EdgeInsets.only(left: 16),
-                      child: Text(
-                        '$instruction',
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ),
+                        padding: const EdgeInsets.only(left: 16),
+                        child: Text(
+                          "${count++}. $instruction",
+                          style: Theme.of(context).textTheme.bodySmall,
+                        )),
                   const SizedBox(
                     height: 20,
                   ),
