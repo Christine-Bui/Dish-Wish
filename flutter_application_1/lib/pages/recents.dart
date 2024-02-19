@@ -64,31 +64,39 @@ class _Recents extends State<Recents> {
                       padding: const EdgeInsets.all(20),
                       child: Row(
                         children: [
-                          // ClipRRect(
-                          //   borderRadius: BorderRadius.circular(20),
-                          //   child: SizedBox.fromSize(
-                          //     size: const Size.fromRadius(75),
-                          //     child: Image.asset(
-                          //       recipes[index].iconPath,
-                          //       fit: BoxFit.cover,
-                          //     ),
-                          //   ),
-                          // ),
+                          ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: SizedBox.fromSize(
+                            size: const Size.fromRadius(60),
+                            child: Image.network(
+                              recipes[index].image_url,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                           const SizedBox(width: 20),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
                                   recipes[index].name,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headlineMedium,
+                                      .headlineSmall,
+                                  ),
                                 ),
                                 const SizedBox(height: 5),
-                                Text(
-                                  recipes[index].description,
-                                  style: Theme.of(context).textTheme.bodySmall,
+                                Container(
+                                  height: 80, // Adjust the height as needed
+                                  child: SingleChildScrollView(
+                                    child: Text(
+                                    recipes[index].description,
+                                    style: Theme.of(context).textTheme.bodySmall,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
