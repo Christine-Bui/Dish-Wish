@@ -99,7 +99,7 @@ class _CollectionPage extends State<CollectionPage> {
         childAspectRatio: 1.0,
       ),
       padding: EdgeInsets.symmetric(horizontal: 20.0),
-      itemCount: favoriteImageUrls.length,
+      itemCount: widget.galleries.length, // The number of categories to display
       itemBuilder: (context, index) {
         return _buildFolder(context, "Favorites", favoriteImageUrls);
       },
