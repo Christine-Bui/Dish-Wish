@@ -107,55 +107,64 @@ class _CollectionPage extends State<CollectionPage> {
   }
 
   Widget _buildFolder(
-      BuildContext context, String category, List<String> imageIndices) {
-    return GestureDetector(
-      onTap: () {
-        // Handle folder tap
-        print('Folder tapped: $category');
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 8,
-              offset: const Offset(3, 6),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(child: _buildMiniImage(context, imageIndices[0])),
-                  Expanded(child: _buildMiniImage(context, imageIndices[1])),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Row(
-                children: [
-                  // Expanded(child: _buildMiniImage(context, imageIndices[2])),
-                  // Expanded(child: _buildMiniImage(context, imageIndices[3])),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                category,
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ),
-          ],
-        ),
+    BuildContext context, String category, List<String> imageIndices) {
+  final int numRecipes = imageIndices.length;
+
+  return GestureDetector(
+    onTap: () {
+      // Handle folder tap
+      print('Folder tapped: $category');
+    },
+    child: Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(3, 6),
+          ),
+        ],
       ),
-    );
-  }
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: numRecipes >= 4
+                ? Row(
+                    children: [
+                      Expanded(child: _buildMiniImage(context, imageIndices[0])),
+                      Expanded(child: _buildMiniImage(context, imageIndices[1])),
+                    ],
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(8.0), // Additional padding around the single image
+                    child: _buildMiniImage(context, imageIndices[0]),
+                  ),
+          ),
+          if (numRecipes >= 4)
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(child: _buildMiniImage(context, imageIndices[2])),
+                  Expanded(child: _buildMiniImage(context, imageIndices[3])),
+                ],
+              ),
+            ),
+          Padding(
+            padding: const EdgeInsets.all(8.0), // Padding around the "Favorites" text
+            child: Text(
+              category,
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 
   Widget _buildMiniImage(BuildContext context, String imageIndex) {
     return Container(
