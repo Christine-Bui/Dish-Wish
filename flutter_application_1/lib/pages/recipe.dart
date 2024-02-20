@@ -4,7 +4,13 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class Recipe extends StatefulWidget {
   final RecipeModel selectedRecipe;
-  const Recipe({super.key, required this.selectedRecipe});
+  final void Function(RecipeModel)? addToFavorites; // Nullable function type
+
+  const Recipe({
+    Key? key,
+    required this.selectedRecipe,
+    this.addToFavorites, // Nullable parameter
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _RecipeState();
@@ -14,6 +20,21 @@ var count = 0;
 
 class _RecipeState extends State<Recipe> {
   final ScrollController _scrollController = ScrollController();
+  bool isFavorite = false; // Track the favorite state
+
+  void _defaultAddToFavorites(RecipeModel recipe) {
+    // Default function that does nothing
+  }
+
+  // Function to add recipe to favorites
+  void _addToFavoritesFunction(RecipeModel recipe) {
+    if (widget.addToFavorites != null) {
+      widget.addToFavorites!(recipe);
+    } else {
+      // If the addToFavorites function is not provided, use the default function
+      _defaultAddToFavorites(recipe);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +57,24 @@ class _RecipeState extends State<Recipe> {
                 icon: const Icon(Icons.arrow_back, color: Colors.white),
                 onPressed: () {
                   Navigator.of(context).pop();
+                },
+              ),
+            ),
+            Positioned(
+              top: 20,
+              right: 20,
+              child: IconButton(
+                icon: Icon(
+                  isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  // Add your favorite button functionality here
+                  setState(() {
+                    isFavorite = !isFavorite; // Toggle the favorite state
+                  });
+                  // Call addToFavorites function
+                  _addToFavoritesFunction(widget.selectedRecipe);
                 },
               ),
             ),
@@ -99,11 +138,12 @@ class _RecipeState extends State<Recipe> {
                   // Display Instructions using Column
                   for (String instruction in widget.selectedRecipe.method)
                     Padding(
-                        padding: const EdgeInsets.only(left: 16),
-                        child: Text(
-                          "${count++}. $instruction",
-                          style: Theme.of(context).textTheme.bodySmall,
-                        )),
+                      padding: const EdgeInsets.only(left: 16),
+                      child: Text(
+                        "${count++}. $instruction",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ),
                   const SizedBox(
                     height: 20,
                   ),

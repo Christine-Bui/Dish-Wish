@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CollectionPage extends StatefulWidget {
@@ -19,6 +20,7 @@ class _CollectionPage extends State<CollectionPage> {
   void initState() {
     super.initState();
   }
+  List<RecipeModel> favorites = [];
 
   @override
   Widget build(BuildContext context) {
