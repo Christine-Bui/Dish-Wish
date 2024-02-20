@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
+import 'package:flutter_application_1/pages/collection_list.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CollectionPage extends StatefulWidget {
@@ -107,13 +108,18 @@ class _CollectionPage extends State<CollectionPage> {
   }
 
   Widget _buildFolder(
-    BuildContext context, String category, List<String> imageIndices) {
+  BuildContext context, String category, List<String> imageIndices) {
   final int numRecipes = imageIndices.length;
 
   return GestureDetector(
     onTap: () {
-      // Handle folder tap
-      print('Folder tapped: $category');
+      // Navigate to CollectionList page passing the recipes
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CollectionList(recipes: recipes),
+        ),
+      );
     },
     child: Container(
       decoration: BoxDecoration(
@@ -130,20 +136,19 @@ class _CollectionPage extends State<CollectionPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (numRecipes > 0) // Check if there are recipes in the folder
-            Expanded(
-              child: numRecipes >= 4
-                  ? Row(
-                      children: [
-                        Expanded(child: _buildMiniImage(context, imageIndices[0])),
-                        Expanded(child: _buildMiniImage(context, imageIndices[1])),
-                      ],
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.all(8.0), // Additional padding around the single image
-                      child: _buildMiniImage(context, imageIndices[0]),
-                    ),
-            ),
+          Expanded(
+            child: numRecipes >= 4
+                ? Row(
+                    children: [
+                      Expanded(child: _buildMiniImage(context, imageIndices[0])),
+                      Expanded(child: _buildMiniImage(context, imageIndices[1])),
+                    ],
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(8.0), // Additional padding around the single image
+                    child: _buildMiniImage(context, imageIndices[0]),
+                  ),
+          ),
           if (numRecipes >= 4)
             Expanded(
               child: Row(
@@ -160,23 +165,11 @@ class _CollectionPage extends State<CollectionPage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ),
-          if (numRecipes == 0) // If no recipes, display a placeholder
-            Expanded(
-              child: Center(
-                child: Text(
-                  'Empty Folder', // Placeholder text
-                  style: TextStyle(
-                    color: Colors.grey, // Placeholder text color
-                  ),
-                ),
-              ),
-            ),
         ],
       ),
     ),
   );
 }
-
 
   Widget _buildMiniImage(BuildContext context, String imageIndex) {
     return Container(

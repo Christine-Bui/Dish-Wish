@@ -3,7 +3,8 @@ import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:flutter_application_1/pages/recipe.dart';
 
 class CollectionList extends StatefulWidget {
-  const CollectionList({Key? key}) : super(key: key);
+  final List<RecipeModel> recipes;
+  const CollectionList({Key? key, required this.recipes}) : super(key: key);
 
   @override
   State<CollectionList> createState() => _CollectionList();
@@ -19,8 +20,7 @@ class _CollectionList extends State<CollectionList> {
   }
 
   void getInitialInfo() async {
-    List<RecipeModel> fetchedRecipes = recentlyViewed;
-    recipes = fetchedRecipes;
+    recipes = widget.recipes;
   }
 
   @override
@@ -129,10 +129,4 @@ class _CollectionList extends State<CollectionList> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(const MaterialApp(
-    home: CollectionList(),
-  ));
 }
