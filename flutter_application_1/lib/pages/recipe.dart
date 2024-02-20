@@ -76,6 +76,7 @@ class _RecipeState extends State<Recipe> {
                   // Add your favorite button functionality here
                   setState(() {
                     isFavorite = !isFavorite; // Toggle the favorite state
+                    _showAddToFavoritesDialog();
                   });
                   // Call addToFavorites function
                   _addToFavoritesFunction(widget.selectedRecipe);
@@ -169,4 +170,62 @@ class _RecipeState extends State<Recipe> {
       ),
     );
   }
+  void _showAddToFavoritesDialog() {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start, // Align text to the left
+                  children: [
+                    Text(
+                      'Save recipe to...',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Divider(), // Add a separating line
+                SizedBox(height: 10),
+                Expanded(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: 5, // Example: replace with your collection count
+                    itemBuilder: (BuildContext context, int index) {
+                      return CheckboxListTile(
+                        title: Text('Collection ${index + 1}'),
+                        value: false,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            // Handle checkbox state changes
+                          });
+                        },
+                      );
+                    },
+                  ),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context); // Close the bottom sheet
+                  },
+                  child: Text('Done'),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    },
+  );
+}
 }
