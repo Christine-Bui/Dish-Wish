@@ -165,6 +165,17 @@ class _CollectionPage extends State<CollectionPage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ),
+          if (numRecipes == 0) // If no recipes, display a placeholder
+            Expanded(
+              child: Center(
+                child: Text(
+                  'Empty Folder', // Placeholder text
+                  style: TextStyle(
+                    color: Colors.grey, // Placeholder text color
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     ),
