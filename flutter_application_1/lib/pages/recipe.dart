@@ -171,6 +171,8 @@ class _RecipeState extends State<Recipe> {
     );
   }
   void _showAddToFavoritesDialog() {
+  List<bool> checkboxStates = List.filled(5, false); // Initialize with 5 checkboxes
+
   showModalBottomSheet(
     context: context,
     builder: (BuildContext context) {
@@ -182,7 +184,7 @@ class _RecipeState extends State<Recipe> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start, // Align text to the left
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
                       'Save recipe to...',
@@ -194,19 +196,19 @@ class _RecipeState extends State<Recipe> {
                   ],
                 ),
                 SizedBox(height: 10),
-                Divider(), // Add a separating line
+                Divider(),
                 SizedBox(height: 10),
                 Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: 5, // Example: replace with your collection count
+                    itemCount: 5,
                     itemBuilder: (BuildContext context, int index) {
                       return CheckboxListTile(
                         title: Text('Collection ${index + 1}'),
-                        value: false,
+                        value: checkboxStates[index],
                         onChanged: (bool? value) {
                           setState(() {
-                            // Handle checkbox state changes
+                            checkboxStates[index] = value ?? false;
                           });
                         },
                       );
@@ -216,6 +218,8 @@ class _RecipeState extends State<Recipe> {
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
+                    // Print the selected collections
+                    print('Selected collections: $checkboxStates');
                     Navigator.pop(context); // Close the bottom sheet
                   },
                   child: Text('Done'),
