@@ -108,7 +108,7 @@ class _CollectionPage extends State<CollectionPage> {
   }
 
   Widget _buildFolder(
-  BuildContext context, String category, List<String> imageIndices) {
+    BuildContext context, String category, List<String> imageIndices) {
   final int numRecipes = imageIndices.length;
 
   return GestureDetector(
@@ -136,19 +136,20 @@ class _CollectionPage extends State<CollectionPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: numRecipes >= 4
-                ? Row(
-                    children: [
-                      Expanded(child: _buildMiniImage(context, imageIndices[0])),
-                      Expanded(child: _buildMiniImage(context, imageIndices[1])),
-                    ],
-                  )
-                : Padding(
-                    padding: const EdgeInsets.all(8.0), // Additional padding around the single image
-                    child: _buildMiniImage(context, imageIndices[0]),
-                  ),
-          ),
+          if (numRecipes > 0) // Display images only if there are recipes
+            Expanded(
+              child: numRecipes >= 4
+                  ? Row(
+                      children: [
+                        Expanded(child: _buildMiniImage(context, imageIndices[0])),
+                        Expanded(child: _buildMiniImage(context, imageIndices[1])),
+                      ],
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0), // Additional padding around the single image
+                      child: _buildMiniImage(context, imageIndices[0]),
+                    ),
+            ),
           if (numRecipes >= 4)
             Expanded(
               child: Row(
@@ -166,7 +167,8 @@ class _CollectionPage extends State<CollectionPage> {
             ),
           ),
           if (numRecipes == 0) // If no recipes, display a placeholder
-            Expanded(
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Center(
                 child: Text(
                   'Empty Folder', // Placeholder text
@@ -181,6 +183,7 @@ class _CollectionPage extends State<CollectionPage> {
     ),
   );
 }
+
 
   Widget _buildMiniImage(BuildContext context, String imageIndex) {
     return Container(
