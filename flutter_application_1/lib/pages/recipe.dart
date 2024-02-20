@@ -76,7 +76,7 @@ class _RecipeState extends State<Recipe> {
                   // Add your favorite button functionality here
                   setState(() {
                     isFavorite = !isFavorite; // Toggle the favorite state
-                    _showAddToFavoritesDialog();
+                    _showAddToFavoritesDialog(widget.selectedRecipe);
                   });
                   // Call addToFavorites function
                   _addToFavoritesFunction(widget.selectedRecipe);
@@ -170,66 +170,69 @@ class _RecipeState extends State<Recipe> {
       ),
     );
   }
-  void _showAddToFavoritesDialog() {
-  List<bool> checkboxStates = List.filled(5, false); // Initialize with 5 checkboxes
 
-  showModalBottomSheet(
-    context: context,
-    builder: (BuildContext context) {
-      return StatefulBuilder(
-        builder: (BuildContext context, StateSetter setState) {
-          return Container(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Save recipe to...',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+  void _showAddToFavoritesDialog(RecipeModel recipe) {
+    List<bool> checkboxStates =
+        List.filled(5, false); // Initialize with 5 checkboxes
+
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return Container(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Save recipe to...',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
-                Divider(),
-                SizedBox(height: 10),
-                Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) {
-                      return CheckboxListTile(
-                        title: Text('Collection ${index + 1}'),
-                        value: checkboxStates[index],
-                        onChanged: (bool? value) {
-                          setState(() {
-                            checkboxStates[index] = value ?? false;
-                          });
-                        },
-                      );
-                    },
+                    ],
                   ),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    // Print the selected collections
-                    print('Selected collections: $checkboxStates');
-                    Navigator.pop(context); // Close the bottom sheet
-                  },
-                  child: Text('Done'),
-                ),
-              ],
-            ),
-          );
-        },
-      );
-    },
-  );
-}
+                  SizedBox(height: 10),
+                  Divider(),
+                  SizedBox(height: 10),
+                  Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 1,
+                      itemBuilder: (BuildContext context, int index) {
+                        return CheckboxListTile(
+                          title: Text('Collection ${index + 1}'),
+                          value: checkboxStates[index],
+                          onChanged: (bool? value) {
+                            setState(() {
+                              checkboxStates[index] = value ?? false;
+                            });
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Print the selected collections
+                      print('Selected collections: $checkboxStates');
+                      Navigator.pop(context); // Close the bottom sheet
+                      addToFavorites(recipe);
+                    },
+                    child: Text('Done'),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
 }

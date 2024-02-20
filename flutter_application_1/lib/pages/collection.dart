@@ -7,7 +7,6 @@ class CollectionPage extends StatefulWidget {
 
   final Map<String, List<String>> galleries = {
     'Favorites': ['1', '2', '3', '4'],
-    'Other': ['5', '6', '7', '8'],
     // Add more categories as needed
   };
 
@@ -16,11 +15,17 @@ class CollectionPage extends StatefulWidget {
 }
 
 class _CollectionPage extends State<CollectionPage> {
+  List<RecipeModel> recipes = [];
   @override
   void initState() {
     super.initState();
+    getInitialInfo();
   }
-  List<RecipeModel> favorites = [];
+
+  void getInitialInfo() async {
+    List<RecipeModel> fetchedRecipes = favorites;
+    recipes = fetchedRecipes;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +87,10 @@ class _CollectionPage extends State<CollectionPage> {
   }
 
   Widget _buildGallery() {
+    var favoriteRecipes = recipes;
+    var favoriteImageUrls =
+        favoriteRecipes.map((recipe) => recipe.image_url).toList();
+
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -90,11 +99,9 @@ class _CollectionPage extends State<CollectionPage> {
         childAspectRatio: 1.0,
       ),
       padding: EdgeInsets.symmetric(horizontal: 20.0),
-      itemCount: widget.galleries.length,
+      itemCount: favoriteImageUrls.length,
       itemBuilder: (context, index) {
-        var category = widget.galleries.keys.elementAt(index);
-        var imageIndices = widget.galleries[category]!;
-        return _buildFolder(context, category, imageIndices);
+        return _buildFolder(context, "Favorites", favoriteImageUrls);
       },
     );
   }
@@ -132,8 +139,8 @@ class _CollectionPage extends State<CollectionPage> {
             Expanded(
               child: Row(
                 children: [
-                  Expanded(child: _buildMiniImage(context, imageIndices[2])),
-                  Expanded(child: _buildMiniImage(context, imageIndices[3])),
+                  // Expanded(child: _buildMiniImage(context, imageIndices[2])),
+                  // Expanded(child: _buildMiniImage(context, imageIndices[3])),
                 ],
               ),
             ),
@@ -156,7 +163,8 @@ class _CollectionPage extends State<CollectionPage> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(
-          image: AssetImage('assets/icons/$imageIndex.jpg'),
+          image: Image.network(imageIndex).image,
+          // image: AssetImage('assets/icons/$imageIndex.jpg'),
           fit: BoxFit.cover,
         ),
       ),

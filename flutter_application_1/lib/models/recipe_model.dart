@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 var recentlyViewed = List<RecipeModel>.empty(growable: true);
+var favorites = List<RecipeModel>.empty(growable: true);
 
 class RecipeModel {
   String name;
@@ -89,6 +90,14 @@ class RecipeTile extends StatelessWidget {
         // You can navigate to a detailed view or perform other actions here
       },
     );
+  }
+}
+
+void addToFavorites(RecipeModel recipe) {
+  if (favorites.contains(recipe)) {
+    favorites.remove(recipe);
+  } else {
+    favorites.add(recipe);
   }
 }
 
