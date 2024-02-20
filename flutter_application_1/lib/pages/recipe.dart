@@ -16,14 +16,18 @@ class Recipe extends StatefulWidget {
   State<StatefulWidget> createState() => _RecipeState();
 }
 
-var count = 0;
-
 class _RecipeState extends State<Recipe> {
   final ScrollController _scrollController = ScrollController();
   bool isFavorite = false; // Track the favorite state
-
+  var count = 1;
   void _defaultAddToFavorites(RecipeModel recipe) {
     // Default function that does nothing
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    count = 1; // Reset count to 1 when the state is initialized
   }
 
   // Function to add recipe to favorites
@@ -136,6 +140,7 @@ class _RecipeState extends State<Recipe> {
                   const SizedBox(height: 5),
 
                   // Display Instructions using Column
+
                   for (String instruction in widget.selectedRecipe.method)
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
