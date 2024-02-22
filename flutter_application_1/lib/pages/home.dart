@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
           TextButton(
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => Reccomendations()),
+                MaterialPageRoute(builder: (context) => const Reccomendations()),
               );
             },
             child: Text(
@@ -146,7 +146,7 @@ class _HomePageState extends State<HomePage> {
             child: SizedBox.fromSize(
               size: const Size.fromRadius(108),
               child: Image.network(
-                recipes[index].image_url,
+                recipes[index].imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -158,7 +158,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Flexible(
             child: ConstrainedBox(
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 maxHeight: 150,
               ),
               child: SingleChildScrollView(
@@ -199,7 +199,7 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Filter()),
+                MaterialPageRoute(builder: (context) => const Filter()),
               );
             },
             child: Padding(
@@ -220,7 +220,7 @@ class _HomePageState extends State<HomePage> {
     return AppBar(
       title: Text(
         "Dish Wish",
-        style: Theme.of(context).textTheme.headline4,
+        style: Theme.of(context).textTheme.headlineMedium,
       ),
       elevation: 0.0,
       centerTitle: false,

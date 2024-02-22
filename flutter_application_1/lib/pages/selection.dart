@@ -31,7 +31,7 @@ class _Selection extends State<Selection> {
           'Search by Ingredients',
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        actions: [
+        actions: const [
           // IconButton(
           //   icon: Icon(Icons.filter_list),
           //   onPressed: () {
@@ -68,7 +68,7 @@ class _Selection extends State<Selection> {
                       errorBuilder: (BuildContext context, Object exception,
                           StackTrace? stackTrace) {
                         // Placeholder image or Icon when image fails to load
-                        return Icon(Icons.error);
+                        return const Icon(Icons.error);
                       },
                     ),
                     title: Text(

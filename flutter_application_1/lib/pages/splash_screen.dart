@@ -73,5 +73,5 @@ class _SplashScreenState extends State<SplashScreen>
 }
 
 void main() {
-  runApp(SplashScreen());
+  runApp(const SplashScreen());
 }

@@ -52,9 +52,9 @@ class _CollectionPage extends State<CollectionPage> {
           print('Add Collection tapped');
           // Add your logic to add collections here
         },
-        child: const Icon(Icons.add),
         backgroundColor:
-            Theme.of(context).cardColor, // Customize the background color
+            Theme.of(context).cardColor,
+        child: const Icon(Icons.add), // Customize the background color
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
@@ -63,12 +63,14 @@ class _CollectionPage extends State<CollectionPage> {
   Container searchField() {
     return Container(
       margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
+      decoration: BoxDecoration(
+        boxShadow: [BoxShadow(
             color: const Color(0xff1D1617).withOpacity(0.11),
             blurRadius: 40,
-            spreadRadius: 0.0)
-      ]),
+            spreadRadius: 0.0
+          )
+        ]
+      ),
       child: TextField(
         decoration: InputDecoration(
             filled: true,
@@ -82,7 +84,9 @@ class _CollectionPage extends State<CollectionPage> {
             ),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide.none)),
+                borderSide: BorderSide.none
+            )
+        ),
       ),
     );
   }
@@ -90,7 +94,7 @@ class _CollectionPage extends State<CollectionPage> {
   Widget _buildGallery() {
     var favoriteRecipes = recipes;
     var favoriteImageUrls =
-        favoriteRecipes.map((recipe) => recipe.image_url).toList();
+        favoriteRecipes.map((recipe) => recipe.imageUrl).toList();
 
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -99,7 +103,7 @@ class _CollectionPage extends State<CollectionPage> {
         mainAxisSpacing: 10.0,
         childAspectRatio: 1.0,
       ),
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       itemCount: widget.galleries.length, // The number of categories to display
       itemBuilder: (context, index) {
         return _buildFolder(context, "Favorites", favoriteImageUrls);
@@ -167,8 +171,8 @@ class _CollectionPage extends State<CollectionPage> {
             ),
           ),
           if (numRecipes == 0) // If no recipes, display a placeholder
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Center(
                 child: Text(
                   'Empty Folder', // Placeholder text

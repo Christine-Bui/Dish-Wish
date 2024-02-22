@@ -7,7 +7,7 @@ var favorites = List<RecipeModel>.empty(growable: true);
 class RecipeModel {
   String name;
   String author;
-  String image_url;
+  String imageUrl;
   String url;
   String description;
   List<String> ingredients;
@@ -15,7 +15,7 @@ class RecipeModel {
 
   RecipeModel({
     required this.name,
-    required this.image_url,
+    required this.imageUrl,
     required this.url,
     required this.description,
     required this.author,
@@ -26,7 +26,7 @@ class RecipeModel {
   factory RecipeModel.fromJson(Map<String, dynamic> json) {
     return RecipeModel(
       name: json['Name'] ?? '',
-      image_url: json['imageUrl'] ?? '', // Correct key for the URL
+      imageUrl: json['imageUrl'] ?? '', // Correct key for the URL
       url: json['url'] ?? '',
       description: json['Description'] ?? '',
       author: json['Author'] ?? '',
@@ -48,6 +48,8 @@ class RecipeModel {
 }
 
 class MyCard extends StatelessWidget {
+  const MyCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -55,11 +57,11 @@ class MyCard extends StatelessWidget {
         future: RecipeModel.fetchData(context),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Text('No recipes found.');
+            return const Text('No recipes found.');
           } else {
             return ListView.builder(
               itemCount: snapshot.data!.length,
@@ -77,12 +79,12 @@ class MyCard extends StatelessWidget {
 class RecipeTile extends StatelessWidget {
   final RecipeModel recipe;
 
-  RecipeTile({required this.recipe});
+  const RecipeTile({super.key, required this.recipe});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.network(recipe.image_url),
+      leading: Image.network(recipe.imageUrl),
       title: Text(recipe.name),
       subtitle: Text(recipe.description),
       onTap: () {
@@ -115,17 +117,19 @@ void addRecent(RecipeModel recipe) {
   return;
 }
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Flutter JSON Card Example'),
+          title: const Text('Flutter JSON Card Example'),
         ),
-        body: MyCard(),
+        body: const MyCard(),
       ),
     );
   }

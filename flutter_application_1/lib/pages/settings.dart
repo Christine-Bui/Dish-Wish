@@ -178,7 +178,6 @@ class _SettingsPage extends State<SettingsPage> {
                   MaterialPageRoute(builder: (context) => const Recents()),
                 );
               }
-              ;
             }
           },
           child: Container(

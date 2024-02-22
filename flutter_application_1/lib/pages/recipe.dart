@@ -51,7 +51,7 @@ class _RecipeState extends State<Recipe> {
             SizedBox.fromSize(
               size: const Size.fromHeight(300),
               child: Image.network(
-                widget.selectedRecipe.image_url,
+                widget.selectedRecipe.imageUrl,
                 fit: BoxFit.cover,
               ),
             ),
@@ -181,11 +181,11 @@ class _RecipeState extends State<Recipe> {
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
@@ -197,9 +197,9 @@ class _RecipeState extends State<Recipe> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
-                  Divider(),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
+                  const Divider(),
+                  const SizedBox(height: 10),
                   Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
@@ -217,7 +217,7 @@ class _RecipeState extends State<Recipe> {
                       },
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       // Print the selected collections
@@ -225,7 +225,7 @@ class _RecipeState extends State<Recipe> {
                       Navigator.pop(context); // Close the bottom sheet
                       addToFavorites(recipe);
                     },
-                    child: Text('Done'),
+                    child: const Text('Done'),
                   ),
                 ],
               ),

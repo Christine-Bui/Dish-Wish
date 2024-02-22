@@ -69,7 +69,7 @@ class _Recents extends State<Recents> {
                           child: SizedBox.fromSize(
                             size: const Size.fromRadius(60),
                             child: Image.network(
-                              recipes[index].image_url,
+                              recipes[index].imageUrl,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -89,7 +89,7 @@ class _Recents extends State<Recents> {
                                   ),
                                 ),
                                 const SizedBox(height: 5),
-                                Container(
+                                SizedBox(
                                   height: 80, // Adjust the height as needed
                                   child: SingleChildScrollView(
                                     child: Text(

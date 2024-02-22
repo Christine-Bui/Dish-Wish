@@ -53,7 +53,7 @@ class _Filter extends State<Filter> {
                 contentPadding: const EdgeInsets.all(15),
                 hintText: 'Search',
                 hintStyle: TextStyle(
-                    color: Color(0xffDDDADA),
+                    color: const Color(0xffDDDADA),
                     fontSize: 14,
                     fontFamily: GoogleFonts.jetBrainsMono().fontFamily),
                 prefixIcon: Padding(
@@ -109,8 +109,8 @@ class _Filter extends State<Filter> {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8),
+                            const Padding(
+                              padding: EdgeInsets.only(right: 8),
                               child: Icon(Icons
                                   .apple), // Replace with the Microsoft icon for Ingredients
                             ),
@@ -147,17 +147,17 @@ class _Filter extends State<Filter> {
                       // Handle button press for "by recipe"
                     },
                     style: TextButton.styleFrom(
-                      primary: Colors.black,
+                      foregroundColor: Colors.black,
                     ),
                     // Inside the second TextButton
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(right: 8),
+                              padding: EdgeInsets.only(right: 8),
                               child: Icon(Icons
                                   .menu_book), // Replace with the Microsoft icon for Recipe
                             ),

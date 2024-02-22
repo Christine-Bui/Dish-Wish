@@ -70,12 +70,12 @@ class _Results extends State<Results> {
             ),
           ),
           const SizedBox(height: 20), // Adjust the spacing between the search bar and other content
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
+          const Padding(
+            padding: EdgeInsets.only(left: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'All Results',
                   style: TextStyle(
                     color: Colors.black,
