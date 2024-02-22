@@ -47,18 +47,52 @@ class _CollectionPage extends State<CollectionPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Handle the action when the plus icon is tapped
-          print('Add Collection tapped');
-          // Add your logic to add collections here
-        },
-        backgroundColor:
-            Theme.of(context).cardColor,
-        child: const Icon(Icons.add), // Customize the background color
-      ),
+      onPressed: _showAddCollectionDialog,
+      backgroundColor: Theme.of(context).cardColor,
+      child: const Icon(Icons.add),
+    ),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
+
+  void _showAddCollectionDialog() {
+  TextEditingController _folderNameController = TextEditingController();
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Add Collection'),
+        content: TextField(
+          controller: _folderNameController,
+          decoration: InputDecoration(hintText: 'Enter folder name'),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              String folderName = _folderNameController.text;
+              if (folderName.isNotEmpty) {
+                // Create a new empty list for the newly created collection
+                setState(() {
+                  widget.galleries[folderName] = [];
+                });
+                Navigator.of(context).pop();
+              }
+            },
+            child: Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
+}
 
   Container searchField() {
     return Container(
@@ -92,24 +126,32 @@ class _CollectionPage extends State<CollectionPage> {
   }
 
   Widget _buildGallery() {
-    var favoriteRecipes = recipes;
-    var favoriteImageUrls =
-        favoriteRecipes.map((recipe) => recipe.imageUrl).toList();
+  return GridView.builder(
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      crossAxisSpacing: 10.0,
+      mainAxisSpacing: 10.0,
+      childAspectRatio: 1.0,
+    ),
+    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+    itemCount: widget.galleries.length, // The number of categories to display
+    itemBuilder: (context, index) {
+      String collectionName = widget.galleries.keys.elementAt(index);
+      List<String> imageIndices = [];
+      if (collectionName == 'Favorites') {
+        // Fetch image URLs from the actual 'favorites' list
+        imageIndices = favorites.map((recipe) => recipe.imageUrl).toList();
+      } else {
+        // For other collections, fetch image URLs from the corresponding collection
+        imageIndices = widget.galleries[collectionName] ?? [];
+      }
+      return _buildFolder(context, collectionName, imageIndices);
+    },
+  );
+}
 
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 10.0,
-        mainAxisSpacing: 10.0,
-        childAspectRatio: 1.0,
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      itemCount: widget.galleries.length, // The number of categories to display
-      itemBuilder: (context, index) {
-        return _buildFolder(context, "Favorites", favoriteImageUrls);
-      },
-    );
-  }
+
+
 
   Widget _buildFolder(
     BuildContext context, String category, List<String> imageIndices) {
