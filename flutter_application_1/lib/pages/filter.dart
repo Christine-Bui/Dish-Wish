@@ -6,7 +6,7 @@ import 'package:flutter_application_1/pages/selection.dart';
 
 class Filter extends StatefulWidget {
   const Filter({super.key});
-  
+
   @override
   State<Filter> createState() => _Filter();
 }
@@ -21,9 +21,9 @@ class _Filter extends State<Filter> {
   }
 
   void getInitialInfo() async {
-  List<RecipeModel> fetchedRecipes = await RecipeModel.fetchData(context);
-  recipes = fetchedRecipes;
-}
+    List<RecipeModel> fetchedRecipes = await RecipeModel.fetchData(context);
+    recipes = fetchedRecipes;
+  }
 
   @override
   Widget build(BuildContext context) {
