@@ -177,51 +177,49 @@ class _HomePageState extends State<HomePage> {
     );
   }     
   
-  Widget searchField(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SearchBar(
-            onTap: () {
-              setState(() {
-                _isSearchClicked = true;
-              });
-            },
-            controller: _searchController,
-          ),
-          if (_isSearchClicked)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 10),
-                  Text(
-                    'Matching Ingredients:',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  SizedBox(height: 10),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: _searchByIngredients.length, // Number of ingredients
-                    itemBuilder: (context, index) {
-                      return CheckboxListTile(
-                        title: Text('Ingredient $index'), // Replace with real ingredient
-                        value: _searchByIngredients[index],
-                        onChanged: (newValue) {
-                          setState(() {
-                            _searchByIngredients[index] = newValue ?? false;
-                          });
-                        },
-                      );
-                    },
-                  ),
-                ],
-              ),
+ Widget searchField(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SearchBar(
+          onTap: () {
+            setState(() {
+              _isSearchClicked = true;
+            });
+          },
+          controller: _searchController,
+        ),
+        if (_isSearchClicked)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                Text(
+                  'Matching Ingredients:',
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+                const SizedBox(height: 10),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _searchByIngredients.length, // Number of ingredients
+                  itemBuilder: (context, index) {
+                    return CheckboxListTile(
+                      title: Text('Ingredient $index'), // Replace with real ingredient
+                      value: _searchByIngredients[index],
+                      onChanged: (newValue) {
+                        setState(() {
+                          _searchByIngredients[index] = newValue ?? false;
+                        });
+                      },
+                    );
+                  },
+                ),
+              ],
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 
