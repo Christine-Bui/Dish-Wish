@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:flutter_application_1/pages/collection.dart';
-import 'package:flutter_application_1/pages/filter.dart';
 import 'package:flutter_application_1/pages/reccomend.dart';
 import 'package:flutter_application_1/pages/recipe.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_application_1/pages/search_bar.dart'; 
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,6 +17,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<RecipeModel> recipes = [];
+  bool _isSearchClicked = false;
+  List<bool> _searchByIngredients = List.filled(5, false); // State for each ingredient
+  TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -37,7 +40,7 @@ class _HomePageState extends State<HomePage> {
       appBar: appBar(),
       body: ListView(
         children: [
-          searchField(),
+          searchField(context),
           const SizedBox(height: 30),
           recommendSection(context),
           const SizedBox(height: 30),
@@ -172,49 +175,56 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  }
-
-  Container searchField() {
-    return Container(
-      margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-          color: const Color(0xff1D1617).withOpacity(0.11),
-          blurRadius: 40,
-          spreadRadius: 0.0,
-        )
-      ]),
-      child: TextField(
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Theme.of(context).cardColor,
-          contentPadding: const EdgeInsets.all(15),
-          hintText: 'Search',
-          hintStyle: Theme.of(context).textTheme.bodySmall,
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset('assets/icons/Search.svg'),
-          ),
-          suffixIcon: GestureDetector(
+  }     
+  
+  Widget searchField(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SearchBar(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const Filter()),
-              );
+              setState(() {
+                _isSearchClicked = true;
+              });
             },
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: SvgPicture.asset('assets/icons/Filter.svg'),
+            controller: _searchController,
+          ),
+          if (_isSearchClicked)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 10),
+                  Text(
+                    'Matching Ingredients:',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  SizedBox(height: 10),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _searchByIngredients.length, // Number of ingredients
+                    itemBuilder: (context, index) {
+                      return CheckboxListTile(
+                        title: Text('Ingredient $index'), // Replace with real ingredient
+                        value: _searchByIngredients[index],
+                        onChanged: (newValue) {
+                          setState(() {
+                            _searchByIngredients[index] = newValue ?? false;
+                          });
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide.none,
-          ),
-        ),
+        ],
       ),
     );
   }
+
 
   AppBar appBar() {
     return AppBar(
