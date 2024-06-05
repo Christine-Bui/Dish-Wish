@@ -5,11 +5,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SearchBar extends StatelessWidget {
   final VoidCallback onTap;
   final TextEditingController controller;
+  final ValueChanged<String>? onChanged;
 
   const SearchBar({
     Key? key,
     required this.onTap,
     required this.controller,
+    this.onChanged,
   }) : super(key: key);
 
   @override

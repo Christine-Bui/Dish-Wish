@@ -6,7 +6,7 @@ import 'package:flutter_application_1/pages/recipe.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_application_1/pages/search_bar.dart'; 
+import 'package:flutter_application_1/pages/search_bar.dart' as custom; 
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,7 +18,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<RecipeModel> recipes = [];
   bool _isSearchClicked = false;
-  List<bool> _searchByIngredients = List.filled(5, false); // State for each ingredient
+  bool _searchByIngredients = false;
+  List<String> _matchingIngredients = [];
+  List<String> _selectedIngredients = [];
   TextEditingController _searchController = TextEditingController();
 
   @override
@@ -32,6 +34,12 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       recipes = fetchedRecipes;
     });
+  }
+
+  Future<List<String>> fetchMatchingIngredients(String query) async {
+    // Simulate fetching matching ingredients from an API or local data
+    List<String> allIngredients = ['Tomato', 'Potato', 'Carrot', 'Onion', 'Garlic'];
+    return allIngredients.where((ingredient) => ingredient.toLowerCase().contains(query.toLowerCase())).toList();
   }
 
   @override
@@ -181,13 +189,25 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SearchBar(
+        custom.SearchBar(
           onTap: () {
             setState(() {
               _isSearchClicked = true;
             });
           },
           controller: _searchController,
+          onChanged: (value) async {
+            if (value.isNotEmpty && _searchByIngredients) {
+              List<String> ingredients = await fetchMatchingIngredients(value);
+              setState(() {
+                _matchingIngredients = ingredients;
+              });
+            } else {
+              setState(() {
+                _matchingIngredients = [];
+              });
+            }
+          },
         ),
         if (_isSearchClicked)
           Padding(
@@ -196,26 +216,50 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 10),
-                Text(
-                  'Matching Ingredients:',
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-                const SizedBox(height: 10),
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: _searchByIngredients.length, // Number of ingredients
-                  itemBuilder: (context, index) {
-                    return CheckboxListTile(
-                      title: Text('Ingredient $index'), // Replace with real ingredient
-                      value: _searchByIngredients[index],
-                      onChanged: (newValue) {
-                        setState(() {
-                          _searchByIngredients[index] = newValue ?? false;
-                        });
-                      },
-                    );
+                CheckboxListTile(
+                  title: const Text('Search by Ingredients'),
+                  value: _searchByIngredients,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _searchByIngredients = newValue ?? false;
+                      if (!_searchByIngredients) {
+                        _matchingIngredients = [];
+                        _searchController.clear();
+                      }
+                    });
                   },
                 ),
+                if (_searchByIngredients && _matchingIngredients.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 10),
+                      Text(
+                        'Matching Ingredients:',
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      const SizedBox(height: 10),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: _matchingIngredients.length,
+                        itemBuilder: (context, index) {
+                          return CheckboxListTile(
+                            title: Text(_matchingIngredients[index]),
+                            value: _selectedIngredients.contains(_matchingIngredients[index]),
+                            onChanged: (newValue) {
+                              setState(() {
+                                if (newValue ?? false) {
+                                  _selectedIngredients.add(_matchingIngredients[index]);
+                                } else {
+                                  _selectedIngredients.remove(_matchingIngredients[index]);
+                                }
+                              });
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
               ],
             ),
           ),
