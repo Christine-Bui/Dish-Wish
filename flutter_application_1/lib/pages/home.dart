@@ -36,11 +36,30 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Future<List<String>> fetchMatchingIngredients(String query) async {
-    // Simulate fetching matching ingredients from an API or local data
-    List<String> allIngredients = ['Tomato', 'Potato', 'Carrot', 'Onion', 'Garlic'];
-    return allIngredients.where((ingredient) => ingredient.toLowerCase().contains(query.toLowerCase())).toList();
-  }
+  Future<List<String>> fetchMatchingIngredients(String searchTerm) async {
+  // Simulated list of ingredients for demonstration
+  List<String> allIngredients = [
+    'Tomato',
+    'Potato',
+    'Onion',
+    'Garlic',
+    'Bell Pepper',
+    'Carrot',
+    'Broccoli',
+    'Spinach',
+    'Lettuce',
+    'Cucumber',
+  ];
+
+  // Filter ingredients based on search term
+  List<String> matchingIngredients = allIngredients
+      .where((ingredient) =>
+          ingredient.toLowerCase().contains(searchTerm.toLowerCase()))
+      .toList();
+
+  return matchingIngredients;
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -185,87 +204,83 @@ class _HomePageState extends State<HomePage> {
     );
   }     
   
- Widget searchField(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        custom.SearchBar(
-          onTap: () {
+Widget searchField(BuildContext context) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      custom.SearchBar(
+        onTap: () {
+          setState(() {
+            _isSearchClicked = true;
+          });
+        },
+        controller: _searchController,
+        onChanged: (value) async {
+          if (_searchByIngredients) {
+            List<String> ingredients = await fetchMatchingIngredients(value);
             setState(() {
-              _isSearchClicked = true;
+              _matchingIngredients = ingredients;
             });
-          },
-          controller: _searchController,
-          onChanged: (value) async {
-            if (value.isNotEmpty && _searchByIngredients) {
-              List<String> ingredients = await fetchMatchingIngredients(value);
-              setState(() {
-                _matchingIngredients = ingredients;
-              });
-            } else {
-              setState(() {
-                _matchingIngredients = [];
-              });
-            }
-          },
-        ),
-        if (_isSearchClicked)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                CheckboxListTile(
-                  title: const Text('Search by Ingredients'),
-                  value: _searchByIngredients,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _searchByIngredients = newValue ?? false;
-                      if (!_searchByIngredients) {
-                        _matchingIngredients = [];
-                        _searchController.clear();
-                      }
-                    });
-                  },
+          }
+        },
+      ),
+      if (_isSearchClicked)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10),
+              CheckboxListTile(
+                title: const Text('By Ingredients'),
+                value: _searchByIngredients,
+                onChanged: (newValue) {
+                  setState(() {
+                    _searchByIngredients = newValue ?? false;
+                    if (!_searchByIngredients) {
+                      _matchingIngredients = [];
+                      _searchController.clear();
+                    }
+                  });
+                },
+              ),
+              if (_searchByIngredients && _matchingIngredients.isNotEmpty)
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
+                    Text(
+                      'Matching Ingredients:',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    const SizedBox(height: 10),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: _matchingIngredients.length,
+                      itemBuilder: (context, index) {
+                        return CheckboxListTile(
+                          title: Text(_matchingIngredients[index]),
+                          value: _selectedIngredients.contains(_matchingIngredients[index]),
+                          onChanged: (newValue) {
+                            setState(() {
+                              if (newValue ?? false) {
+                                _selectedIngredients.add(_matchingIngredients[index]);
+                              } else {
+                                _selectedIngredients.remove(_matchingIngredients[index]);
+                              }
+                            });
+                          },
+                        );
+                      },
+                    ),
+                  ],
                 ),
-                if (_searchByIngredients && _matchingIngredients.isNotEmpty)
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 10),
-                      Text(
-                        'Matching Ingredients:',
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                      const SizedBox(height: 10),
-                      ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: _matchingIngredients.length,
-                        itemBuilder: (context, index) {
-                          return CheckboxListTile(
-                            title: Text(_matchingIngredients[index]),
-                            value: _selectedIngredients.contains(_matchingIngredients[index]),
-                            onChanged: (newValue) {
-                              setState(() {
-                                if (newValue ?? false) {
-                                  _selectedIngredients.add(_matchingIngredients[index]);
-                                } else {
-                                  _selectedIngredients.remove(_matchingIngredients[index]);
-                                }
-                              });
-                            },
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-              ],
-            ),
+            ],
           ),
-      ],
-    );
-  }
+        ),
+    ],
+  );
+}
 
 
   AppBar appBar() {
