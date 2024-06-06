@@ -6,7 +6,7 @@ import 'package:flutter_application_1/pages/recipe.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_application_1/pages/search_bar.dart' as custom; 
+import 'package:flutter_application_1/pages/selection.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,11 +17,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<RecipeModel> recipes = [];
-  bool _isSearchClicked = false;
-  bool _searchByIngredients = false;
-  List<String> _matchingIngredients = [];
-  List<String> _selectedIngredients = [];
-  TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -36,30 +31,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  Future<List<String>> fetchMatchingIngredients(String searchTerm) async {
-  // Simulated list of ingredients for demonstration
-  List<String> allIngredients = [
-    'Tomato',
-    'Potato',
-    'Onion',
-    'Garlic',
-    'Bell Pepper',
-    'Carrot',
-    'Broccoli',
-    'Spinach',
-    'Lettuce',
-    'Cucumber',
-  ];
-
-  // Filter ingredients based on search term
-  List<String> matchingIngredients = allIngredients
-      .where((ingredient) =>
-          ingredient.toLowerCase().contains(searchTerm.toLowerCase()))
-      .toList();
-
-  return matchingIngredients;
-}
-
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +38,7 @@ class _HomePageState extends State<HomePage> {
       appBar: appBar(),
       body: ListView(
         children: [
-          searchField(context),
+          searchField(context, onIngredientsSelected),
           const SizedBox(height: 30),
           recommendSection(context),
           const SizedBox(height: 30),
@@ -204,84 +175,43 @@ class _HomePageState extends State<HomePage> {
     );
   }     
   
-Widget searchField(BuildContext context) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      custom.SearchBar(
-        onTap: () {
-          setState(() {
-            _isSearchClicked = true;
-          });
-        },
-        controller: _searchController,
-        onChanged: (value) async {
-          if (_searchByIngredients) {
-            List<String> ingredients = await fetchMatchingIngredients(value);
-            setState(() {
-              _matchingIngredients = ingredients;
-            });
-          }
-        },
-      ),
-      if (_isSearchClicked)
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10),
-              CheckboxListTile(
-                title: const Text('By Ingredients'),
-                value: _searchByIngredients,
-                onChanged: (newValue) {
-                  setState(() {
-                    _searchByIngredients = newValue ?? false;
-                    if (!_searchByIngredients) {
-                      _matchingIngredients = [];
-                      _searchController.clear();
-                    }
-                  });
-                },
-              ),
-              if (_searchByIngredients && _matchingIngredients.isNotEmpty)
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 10),
-                    Text(
-                      'Matching Ingredients:',
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    const SizedBox(height: 10),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _matchingIngredients.length,
-                      itemBuilder: (context, index) {
-                        return CheckboxListTile(
-                          title: Text(_matchingIngredients[index]),
-                          value: _selectedIngredients.contains(_matchingIngredients[index]),
-                          onChanged: (newValue) {
-                            setState(() {
-                              if (newValue ?? false) {
-                                _selectedIngredients.add(_matchingIngredients[index]);
-                              } else {
-                                _selectedIngredients.remove(_matchingIngredients[index]);
-                              }
-                            });
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                ),
-            ],
-          ),
+Widget searchField(BuildContext context, Function(List<String>) onIngredientsSelected) {
+  TextEditingController controller = TextEditingController(); // Initialize TextEditingController
+  return Container(
+    margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+    decoration: BoxDecoration(boxShadow: [
+      BoxShadow(
+        color: const Color(0xff1D1617).withOpacity(0.11),
+        blurRadius: 40,
+        spreadRadius: 0.0,
+      )
+    ]),
+    child: TextField(
+      controller: controller,
+      onChanged: (value) {
+        // Split the input string into a list of ingredients based on spaces
+        List<String> ingredients = value.split(' ');
+        // Call the callback function with the list of ingredients
+        onIngredientsSelected(ingredients);
+      },
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Theme.of(context).cardColor,
+        contentPadding: const EdgeInsets.all(15),
+        hintText: 'Search',
+        hintStyle: Theme.of(context).textTheme.bodyText1,
+        prefixIcon: Padding(
+          padding: const EdgeInsets.all(12),
+          child: SvgPicture.asset('assets/icons/Search.svg'),
         ),
-    ],
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide.none,
+        ),
+      ),
+    ),
   );
 }
-
 
   AppBar appBar() {
     return AppBar(
@@ -313,6 +243,11 @@ Widget searchField(BuildContext context) {
       ],
     );
   }
+
+  void onIngredientsSelected(List<String> selectedIngredients) {
+  // Implement the logic to handle the selected ingredients
+  // For example, you can update the state or perform any other action
+}
 
   void onRecipeTap(RecipeModel recipe) {
     Navigator.push(

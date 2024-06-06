@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Selection extends StatefulWidget {
-  const Selection({super.key});
+  final Function(List<String>) onIngredientsSelected; // Declare callback function
+  const Selection({Key? key, required this.onIngredientsSelected}) : super(key: key);
+
   @override
   State<Selection> createState() => _Selection();
 }
@@ -42,7 +44,6 @@ class _Selection extends State<Selection> {
       ),
       body: Column(
         children: [
-          searchField(),
           const SizedBox(height: 20),
           Expanded(
             child: ListView.builder(
@@ -85,6 +86,7 @@ class _Selection extends State<Selection> {
                             selectedIngredients.remove(ingredient['name']);
                           }
                         });
+                        widget.onIngredientsSelected(selectedIngredients.toList()); // Pass selected ingredients to the callback
                       },
                     ),
                     onTap: () {
@@ -102,37 +104,6 @@ class _Selection extends State<Selection> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Container searchField() {
-    return Container(
-      margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-            color: const Color(0xff1D1617).withOpacity(0.11),
-            blurRadius: 40,
-            spreadRadius: 0.0)
-      ]),
-      child: TextField(
-        decoration: InputDecoration(
-            filled: true,
-            fillColor: Theme.of(context).cardColor,
-            contentPadding: const EdgeInsets.all(15),
-            hintText: 'Search',
-            hintStyle: Theme.of(context).textTheme.bodyMedium,
-            prefixIcon: Padding(
-              padding: const EdgeInsets.all(12),
-              child: SvgPicture.asset('assets/icons/Search.svg'),
-            ),
-            suffixIcon: Padding(
-              padding: const EdgeInsets.all(12),
-              child: SvgPicture.asset('assets/icons/Filter.svg'),
-            ),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: BorderSide.none)),
       ),
     );
   }
