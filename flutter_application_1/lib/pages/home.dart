@@ -245,14 +245,14 @@ Widget searchField(BuildContext context, Function(List<String>) onIngredientsSel
         if (value.isEmpty) {
           
         } 
-        else if (value.endsWith(' ')){
-          // If a word is completed (ends with space) and Enter is not pressed,
-          // add it to the typed ingredients list
-          setState(() {
-            typedIngredients.add(value.trim());
-            controller.clear();
-          });     
-  }
+        // else if (value.endsWith('')){
+        //   // If a word is completed (ends with space) and Enter is not pressed,
+        //   // add it to the typed ingredients list
+        //   setState(() {
+        //     typedIngredients.add(value.trim());
+            
+        //   });     
+        // }
         // Update the selected ingredients based on the typed ingredients
         onIngredientsSelected(typedIngredients);
         // Reset the flag whenever the text changes
@@ -262,10 +262,21 @@ Widget searchField(BuildContext context, Function(List<String>) onIngredientsSel
       },
       onSubmitted: (value) {
         // Add the value as a chip only if it's not empty
-        if (value.trim().isNotEmpty) {
-          setState(() {
-            typedIngredients.add(value.trim());
-          });
+        if (value.isNotEmpty) {
+          if (value.contains(",")){
+            setState(() {
+              List<String> separatedIng = value.trim().split(',');
+              typedIngredients.addAll(separatedIng);
+              controller.clear();
+            });
+          }
+
+          else{
+            setState(() {
+              typedIngredients.add(value.trim());
+              controller.clear();
+            });
+        }
         }
         // Reset the flag
         // setState(() {
