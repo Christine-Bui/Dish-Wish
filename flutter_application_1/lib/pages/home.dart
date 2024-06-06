@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:flutter_application_1/pages/collection.dart';
 import 'package:flutter_application_1/pages/reccomend.dart';
@@ -205,7 +206,7 @@ class _HomePageState extends State<HomePage> {
         ),
         SizedBox(height: 10),
         // Display the list of typed ingredients dynamically
-        if (typedIngredients.length == 1 && typedIngredients[0].isNotEmpty)
+        if (typedIngredients.isNotEmpty)
           Wrap(
             children: typedIngredients.map((ingredient) {
               return Chip(
@@ -242,17 +243,16 @@ Widget searchField(BuildContext context, Function(List<String>) onIngredientsSel
       controller: controller,
       onChanged: (value) {
         if (value.isEmpty) {
-          // Clear the typed ingredients list if the search field is empty
-          setState(() {
-            typedIngredients.clear();
-          });
-        } else if (value.endsWith(' ') && !isEnterPressed) {
+          
+        } 
+        else if (value.endsWith(' ')){
           // If a word is completed (ends with space) and Enter is not pressed,
           // add it to the typed ingredients list
           setState(() {
             typedIngredients.add(value.trim());
-          });
-        }
+            controller.clear();
+          });     
+  }
         // Update the selected ingredients based on the typed ingredients
         onIngredientsSelected(typedIngredients);
         // Reset the flag whenever the text changes
@@ -268,9 +268,9 @@ Widget searchField(BuildContext context, Function(List<String>) onIngredientsSel
           });
         }
         // Reset the flag
-        setState(() {
-          isEnterPressed = true;
-        });
+        // setState(() {
+        //   isEnterPressed = true;
+        // });
         // Handle the submitted value if needed
       },
       decoration: InputDecoration(
