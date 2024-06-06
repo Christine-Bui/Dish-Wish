@@ -7,15 +7,20 @@ import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_application_1/pages/selection.dart';
+import 'dart:async';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-
+  
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController controller = TextEditingController();
+  List<String> typedIngredients = [];
+  Set<String> selectedIngredients = {};
+  bool isFilterOpen = false;
   List<RecipeModel> recipes = [];
 
   @override
@@ -39,6 +44,7 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         children: [
           searchField(context, onIngredientsSelected),
+          if (isFilterOpen) filterByIngredients(context),
           const SizedBox(height: 30),
           recommendSection(context),
           const SizedBox(height: 30),
@@ -173,45 +179,87 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  }     
-  
-Widget searchField(BuildContext context, Function(List<String>) onIngredientsSelected) {
-  TextEditingController controller = TextEditingController(); // Initialize TextEditingController
-  return Container(
-    margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-    decoration: BoxDecoration(boxShadow: [
-      BoxShadow(
-        color: const Color(0xff1D1617).withOpacity(0.11),
-        blurRadius: 40,
-        spreadRadius: 0.0,
-      )
-    ]),
-    child: TextField(
-      controller: controller,
-      onChanged: (value) {
-        // Split the input string into a list of ingredients based on spaces
-        List<String> ingredients = value.split(' ');
-        // Call the callback function with the list of ingredients
-        onIngredientsSelected(ingredients);
+  } 
+
+  Widget filterByIngredients(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Your filter dropdown code here
+          // You can use a ListView.builder to display the list of ingredients
+        ],
+      ),
+    );
+  }    
+
+   void showFilterPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Filter by Ingredients'),
+          content: Text('Select ingredients to filter recipes.'),
+        );
       },
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Theme.of(context).cardColor,
-        contentPadding: const EdgeInsets.all(15),
-        hintText: 'Search',
-        hintStyle: Theme.of(context).textTheme.bodyText1,
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(12),
-          child: SvgPicture.asset('assets/icons/Search.svg'),
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide.none,
+    );
+    // Close the dialog after 2 seconds
+    Timer(Duration(seconds: 2), () {
+      Navigator.of(context).pop();
+    });
+  }
+
+  Widget searchField(BuildContext context, Function(List<String>) onIngredientsSelected) {
+    return Container(
+      margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xff1D1617).withOpacity(0.11),
+            blurRadius: 40,
+            spreadRadius: 0.0,
+          ),
+        ],
+      ),
+      child: TextField(
+        controller: controller,
+        onChanged: (value) {
+          setState(() {
+            typedIngredients = value.split(' ');
+          });
+          onIngredientsSelected(typedIngredients);
+        },
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Theme.of(context).cardColor,
+          contentPadding: const EdgeInsets.all(15),
+          hintText: 'Search',
+          hintStyle: Theme.of(context).textTheme.bodyText1,
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(12),
+            child: SvgPicture.asset('assets/icons/Search.svg'),
+          ),
+          suffixIcon: IconButton(
+            icon: Icon(Icons.filter_list, color: isFilterOpen ? Colors.black : Colors.grey),
+            onPressed: () {
+              setState(() {
+                isFilterOpen = !isFilterOpen;
+                if (isFilterOpen) {
+                  showFilterPopup(context);
+                }
+              });
+            },
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
+  }
+
 
   AppBar appBar() {
     return AppBar(
