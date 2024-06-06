@@ -22,6 +22,15 @@ class _HomePageState extends State<HomePage> {
   Set<String> selectedIngredients = {};
   bool isFilterOpen = false;
   List<RecipeModel> recipes = [];
+  List<String> ingredients = [
+    'carrots',
+    'celery',
+    'butter',
+    'fish',
+    'lobsters',
+    // Add more ingredients as needed
+  ];
+  bool isEnterPressed = false;
 
   @override
   void initState() {
@@ -181,84 +190,116 @@ class _HomePageState extends State<HomePage> {
     );
   } 
 
-  Widget filterByIngredients(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Your filter dropdown code here
-          // You can use a ListView.builder to display the list of ingredients
-        ],
-      ),
-    );
-  }    
-
-   void showFilterPopup(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Filter by Ingredients'),
-          content: Text('Select ingredients to filter recipes.'),
-        );
-      },
-    );
-    // Close the dialog after 2 seconds
-    Timer(Duration(seconds: 2), () {
-      Navigator.of(context).pop();
-    });
-  }
-
-  Widget searchField(BuildContext context, Function(List<String>) onIngredientsSelected) {
-    return Container(
-      margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xff1D1617).withOpacity(0.11),
-            blurRadius: 40,
-            spreadRadius: 0.0,
-          ),
-        ],
-      ),
-      child: TextField(
-        controller: controller,
-        onChanged: (value) {
-          setState(() {
-            typedIngredients = value.split(' ');
-          });
-          onIngredientsSelected(typedIngredients);
-        },
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Theme.of(context).cardColor,
-          contentPadding: const EdgeInsets.all(15),
-          hintText: 'Search',
-          hintStyle: Theme.of(context).textTheme.bodyText1,
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(12),
-            child: SvgPicture.asset('assets/icons/Search.svg'),
-          ),
-          suffixIcon: IconButton(
-            icon: Icon(Icons.filter_list, color: isFilterOpen ? Colors.black : Colors.grey),
-            onPressed: () {
-              setState(() {
-                isFilterOpen = !isFilterOpen;
-                if (isFilterOpen) {
-                  showFilterPopup(context);
-                }
-              });
-            },
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide.none,
+   Widget filterByIngredients(BuildContext context) {
+  return Container(
+    margin: const EdgeInsets.symmetric(horizontal: 20),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Filter by Ingredients',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
           ),
         ),
+        SizedBox(height: 10),
+        // Display the list of typed ingredients dynamically
+        if (typedIngredients.length == 1 && typedIngredients[0].isNotEmpty)
+          Wrap(
+            children: typedIngredients.map((ingredient) {
+              return Chip(
+                label: Text(ingredient),
+                deleteIcon: Icon(Icons.cancel),
+                onDeleted: () {
+                  setState(() {
+                    typedIngredients.remove(ingredient);
+                    onIngredientsSelected(typedIngredients);
+                  });
+                },
+              );
+            }).toList(),
+          ),
+        // You can replace the Chip with CheckboxListTile for selection
+      ],
+    ),
+  );
+}
+
+Widget searchField(BuildContext context, Function(List<String>) onIngredientsSelected) {
+  return Container(
+    margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+    decoration: BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+          color: const Color(0xff1D1617).withOpacity(0.11),
+          blurRadius: 40,
+          spreadRadius: 0.0,
+        ),
+      ],
+    ),
+    child: TextField(
+      controller: controller,
+      onChanged: (value) {
+        if (value.isEmpty) {
+          // Clear the typed ingredients list if the search field is empty
+          setState(() {
+            typedIngredients.clear();
+          });
+        } else if (value.endsWith(' ') && !isEnterPressed) {
+          // If a word is completed (ends with space) and Enter is not pressed,
+          // add it to the typed ingredients list
+          setState(() {
+            typedIngredients.add(value.trim());
+          });
+        }
+        // Update the selected ingredients based on the typed ingredients
+        onIngredientsSelected(typedIngredients);
+        // Reset the flag whenever the text changes
+        setState(() {
+          isEnterPressed = false;
+        });
+      },
+      onSubmitted: (value) {
+        // Add the value as a chip only if it's not empty
+        if (value.trim().isNotEmpty) {
+          setState(() {
+            typedIngredients.add(value.trim());
+          });
+        }
+        // Reset the flag
+        setState(() {
+          isEnterPressed = true;
+        });
+        // Handle the submitted value if needed
+      },
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Theme.of(context).cardColor,
+        contentPadding: const EdgeInsets.all(15),
+        hintText: 'Search',
+        hintStyle: Theme.of(context).textTheme.bodyText1,
+        prefixIcon: Padding(
+          padding: const EdgeInsets.all(12),
+          child: SvgPicture.asset('assets/icons/Search.svg'),
+        ),
+        suffixIcon: IconButton(
+          icon: Icon(Icons.filter_list, color: isFilterOpen ? Colors.black : Colors.grey),
+          onPressed: () {
+            setState(() {
+              isFilterOpen = !isFilterOpen;
+            });
+          },
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide.none,
+        ),
       ),
-    );
-  }
+    ),
+  );
+}
+
 
 
   AppBar appBar() {
