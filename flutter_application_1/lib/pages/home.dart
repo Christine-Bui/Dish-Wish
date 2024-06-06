@@ -278,7 +278,7 @@ Widget searchField(BuildContext context, Function(List<String>) onIngredientsSel
         fillColor: Theme.of(context).cardColor,
         contentPadding: const EdgeInsets.all(15),
         hintText: 'Search',
-        hintStyle: Theme.of(context).textTheme.bodyText1,
+        hintStyle: Theme.of(context).textTheme.bodySmall,
         prefixIcon: Padding(
           padding: const EdgeInsets.all(12),
           child: SvgPicture.asset('assets/icons/Search.svg'),
