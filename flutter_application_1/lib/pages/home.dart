@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:flutter_application_1/pages/collection.dart';
 import 'package:flutter_application_1/pages/reccomend.dart';
+import 'package:flutter_application_1/pages/popular.dart';
 import 'package:flutter_application_1/pages/recipe.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        sectionHeader(context, 'Recommended Recipes'),
+        sectionHeader1(context, 'Recommended Recipes'),
         recipeListView(context, recipes), // Pass recipes to the list view
       ],
     );
@@ -76,13 +77,13 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        sectionHeader(context, 'Popular Recipes'),
+        sectionHeader2(context, 'Popular Recipes'),
         recipeListView(context, recipes), // Pass recipes to the list view
       ],
     );
   }
 
-  Padding sectionHeader(BuildContext context, String title) {
+  Padding sectionHeader1(BuildContext context, String title) {
     return Padding(
       padding: const EdgeInsets.only(left: 20),
       child: Row(
@@ -96,6 +97,36 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const Reccomendations()),
+              );
+            },
+            child: Text(
+              'See All',
+              style: GoogleFonts.jetBrainsMono(
+                color: Colors.blue,
+                fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
+                fontWeight: Theme.of(context).textTheme.bodySmall?.fontWeight,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding sectionHeader2(BuildContext context, String title) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const Popular()),
               );
             },
             child: Text(

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:flutter_application_1/pages/recipe.dart';
 
-class Reccomendations extends StatefulWidget {
-  const Reccomendations({Key? key}) : super(key: key);
+class Popular extends StatefulWidget {
+  const Popular({Key? key}) : super(key: key);
 
   @override
-  State<Reccomendations> createState() => _Recents();
+  State<Popular> createState() => _Recents();
 }
 
-class _Recents extends State<Reccomendations> {
+class _Recents extends State<Popular> {
   List<RecipeModel> recipes = [];
 
   @override
@@ -30,7 +30,7 @@ class _Recents extends State<Reccomendations> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Reccomendations',
+          "What's Popular?",
           style: Theme.of(context).textTheme.titleLarge,
         ),
         elevation: 0,
@@ -135,7 +135,6 @@ class _Recents extends State<Reccomendations> {
 
 void main() {
   runApp(const MaterialApp(
-    home: Reccomendations(),
+    home: Popular(),
   ));
 }
-
