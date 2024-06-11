@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class Selection extends StatefulWidget {
   final Function(List<String>) onIngredientsSelected; // Declare callback function

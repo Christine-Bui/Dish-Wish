@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_application_1/models/recipe_model.dart';
 import 'package:flutter_application_1/pages/collection.dart';
 import 'package:flutter_application_1/pages/reccomend.dart';
@@ -7,8 +6,6 @@ import 'package:flutter_application_1/pages/recipe.dart';
 import 'package:flutter_application_1/pages/settings.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_application_1/pages/selection.dart';
-import 'dart:async';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
