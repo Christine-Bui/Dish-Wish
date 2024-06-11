@@ -12,6 +12,7 @@ class RecipeModel {
   String description;
   List<String> ingredients;
   List<String> method;
+  int viewCount; // Add viewCount property
 
   RecipeModel({
     required this.name,
@@ -21,12 +22,13 @@ class RecipeModel {
     required this.author,
     required this.ingredients,
     required this.method,
+    this.viewCount = 0, // Initialize viewCount with a default value
   });
 
   factory RecipeModel.fromJson(Map<String, dynamic> json) {
     return RecipeModel(
       name: json['Name'] ?? '',
-      imageUrl: json['imageUrl'] ?? '', // Correct key for the URL
+      imageUrl: json['imageUrl'] ?? '',
       url: json['url'] ?? '',
       description: json['Description'] ?? '',
       author: json['Author'] ?? '',
@@ -44,6 +46,11 @@ class RecipeModel {
         jsonArray.map((json) => RecipeModel.fromJson(json)).toList();
 
     return recipes;
+  }
+
+  static Future<List<RecipeModel>> fetchMostViewedData(BuildContext context) async {
+    // Assuming fetching from the same JSON for demo purposes
+    return fetchData(context);
   }
 }
 
@@ -89,7 +96,6 @@ class RecipeTile extends StatelessWidget {
       subtitle: Text(recipe.description),
       onTap: () {
         // Handle recipe tap
-        // You can navigate to a detailed view or perform other actions here
       },
     );
   }
@@ -114,7 +120,6 @@ void addRecent(RecipeModel recipe) {
     return;
   }
   recentlyViewed.insert(0, recipe);
-  return;
 }
 
 void main() => runApp(const MyApp());

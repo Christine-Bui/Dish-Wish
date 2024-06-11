@@ -20,6 +20,7 @@ class _RecipeState extends State<Recipe> {
   final ScrollController _scrollController = ScrollController();
   bool isFavorite = false; // Track the favorite state
   var count = 1;
+
   void _defaultAddToFavorites(RecipeModel recipe) {
     // Default function that does nothing
   }
@@ -28,6 +29,16 @@ class _RecipeState extends State<Recipe> {
   void initState() {
     super.initState();
     count = 1; // Reset count to 1 when the state is initialized
+    _incrementViewCount(widget.selectedRecipe);
+  }
+
+  void _incrementViewCount(RecipeModel recipe) {
+    // Increment the view count
+    setState(() {
+      recipe.viewCount++;
+    });
+
+    print('View count for ${recipe.name} is now ${recipe.viewCount}');
   }
 
   // Function to add recipe to favorites
@@ -124,7 +135,6 @@ class _RecipeState extends State<Recipe> {
                   ),
                   const SizedBox(height: 5),
                   // Display Ingredients using Column
-
                   for (String ingredient in widget.selectedRecipe.ingredients)
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
@@ -141,7 +151,6 @@ class _RecipeState extends State<Recipe> {
                   const SizedBox(height: 5),
 
                   // Display Instructions using Column
-
                   for (String instruction in widget.selectedRecipe.method)
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
@@ -203,7 +212,7 @@ class _RecipeState extends State<Recipe> {
                   Expanded(
                     child: ListView.builder(
                       shrinkWrap: true,
-                      itemCount: 1,
+                      itemCount: 5,
                       itemBuilder: (BuildContext context, int index) {
                         return CheckboxListTile(
                           title: Text('Collection ${index + 1}'),

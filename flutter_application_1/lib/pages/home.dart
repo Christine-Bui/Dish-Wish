@@ -10,7 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-  
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -44,7 +44,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,11 +73,15 @@ class _HomePageState extends State<HomePage> {
   }
 
   Column popularSection(BuildContext context) {
+    // Sort recipes by viewCount in descending order to show popular recipes first
+    List<RecipeModel> popularRecipes = List.from(recipes);
+    popularRecipes.sort((a, b) => b.viewCount.compareTo(a.viewCount));
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         sectionHeader2(context, 'Popular Recipes'),
-        recipeListView(context, recipes), // Pass recipes to the list view
+        recipeListView(context, popularRecipes), // Pass sorted recipes to the list view
       ],
     );
   }
@@ -217,129 +220,104 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  } 
+  }
 
-   Widget filterByIngredients(BuildContext context) {
-  return Container(
-    margin: const EdgeInsets.symmetric(horizontal: 20),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Filter by Ingredients',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+  Widget filterByIngredients(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Filter by Ingredients',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        SizedBox(height: 10),
-        // Display the list of typed ingredients dynamically
-        if (typedIngredients.isNotEmpty)
-          Wrap(
-            children: typedIngredients.map((ingredient) {
-              return Chip(
-                label: Text(ingredient),
-                deleteIcon: Icon(Icons.cancel),
-                onDeleted: () {
-                  setState(() {
-                    typedIngredients.remove(ingredient);
-                    onIngredientsSelected(typedIngredients);
-                  });
-                },
-              );
-            }).toList(),
-          ),
-        // You can replace the Chip with CheckboxListTile for selection
-      ],
-    ),
-  );
-}
+          const SizedBox(height: 10),
+          if (typedIngredients.isNotEmpty)
+            Wrap(
+              children: typedIngredients.map((ingredient) {
+                return Chip(
+                  label: Text(ingredient),
+                  deleteIcon: const Icon(Icons.cancel),
+                  onDeleted: () {
+                    setState(() {
+                      typedIngredients.remove(ingredient);
+                      onIngredientsSelected(typedIngredients);
+                    });
+                  },
+                );
+              }).toList(),
+            ),
+        ],
+      ),
+    );
+  }
 
-Widget searchField(BuildContext context, Function(List<String>) onIngredientsSelected) {
-  return Container(
-    margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
-    decoration: BoxDecoration(
-      boxShadow: [
-        BoxShadow(
-          color: const Color(0xff1D1617).withOpacity(0.11),
-          blurRadius: 40,
-          spreadRadius: 0.0,
-        ),
-      ],
-    ),
-    child: TextField(
-      controller: controller,
-      onChanged: (value) {
-        if (value.isEmpty) {
-          
-        } 
-        // else if (value.endsWith('')){
-        //   // If a word is completed (ends with space) and Enter is not pressed,
-        //   // add it to the typed ingredients list
-        //   setState(() {
-        //     typedIngredients.add(value.trim());
-            
-        //   });     
-        // }
-        // Update the selected ingredients based on the typed ingredients
-        onIngredientsSelected(typedIngredients);
-        // Reset the flag whenever the text changes
-        setState(() {
-          isEnterPressed = false;
-        });
-      },
-      onSubmitted: (value) {
-        // Add the value as a chip only if it's not empty
-        if (value.isNotEmpty) {
-          if (value.contains(",")){
-            setState(() {
-              List<String> separatedIng = value.trim().split(',');
-              typedIngredients.addAll(separatedIng);
-              controller.clear();
-            });
+  Widget searchField(BuildContext context, Function(List<String>) onIngredientsSelected) {
+    return Container(
+      margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xff1D1617).withOpacity(0.11),
+            blurRadius: 40,
+            spreadRadius: 0.0,
+          ),
+        ],
+      ),
+      child: TextField(
+        controller: controller,
+        onChanged: (value) {
+          onIngredientsSelected(typedIngredients);
+          setState(() {
+            isEnterPressed = false;
+          });
+        },
+        onSubmitted: (value) {
+          if (value.isNotEmpty) {
+            if (value.contains(",")) {
+              setState(() {
+                List<String> separatedIng = value.trim().split(',');
+                typedIngredients.addAll(separatedIng);
+                controller.clear();
+              });
+            } else {
+              setState(() {
+                typedIngredients.add(value.trim());
+                controller.clear();
+              });
+            }
           }
-
-          else{
-            setState(() {
-              typedIngredients.add(value.trim());
-              controller.clear();
-            });
-        }
-        }
-        // Reset the flag
-        // setState(() {
-        //   isEnterPressed = true;
-        // });
-        // Handle the submitted value if needed
-      },
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Theme.of(context).cardColor,
-        contentPadding: const EdgeInsets.all(15),
-        hintText: 'Search',
-        hintStyle: Theme.of(context).textTheme.bodySmall,
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(12),
-          child: SvgPicture.asset('assets/icons/Search.svg'),
-        ),
-        suffixIcon: IconButton(
-          icon: Icon(Icons.filter_list, color: isFilterOpen ? Colors.black : Colors.grey),
-          onPressed: () {
-            setState(() {
-              isFilterOpen = !isFilterOpen;
-            });
-          },
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide.none,
+        },
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Theme.of(context).cardColor,
+          contentPadding: const EdgeInsets.all(15),
+          hintText: 'Search',
+          hintStyle: Theme.of(context).textTheme.bodySmall,
+          prefixIcon: Padding(
+            padding: const EdgeInsets.all(12),
+            child: SvgPicture.asset('assets/icons/Search.svg'),
+          ),
+          suffixIcon: IconButton(
+            icon: Icon(Icons.filter_list, color: isFilterOpen ? Colors.black : Colors.grey),
+            onPressed: () {
+              setState((){
+                isFilterOpen = !isFilterOpen;
+              });
+            },
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15),
+            borderSide: BorderSide.none,
+          ),
         ),
       ),
-    ),
-  );
-}
-
-
+    );
+  }
 
   AppBar appBar() {
     return AppBar(
@@ -373,9 +351,9 @@ Widget searchField(BuildContext context, Function(List<String>) onIngredientsSel
   }
 
   void onIngredientsSelected(List<String> selectedIngredients) {
-  // Implement the logic to handle the selected ingredients
-  // For example, you can update the state or perform any other action
-}
+    // Implement the logic to handle the selected ingredients
+    // For example, you can update the state or perform any other action
+  }
 
   void onRecipeTap(RecipeModel recipe) {
     Navigator.push(
